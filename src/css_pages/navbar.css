@@ -1,0 +1,28 @@
+/* Add these styles to your CSS file */
+.navbar {
+    width: 40%;
+    color:rgb(0, 0, 0);
+    padding-bottom: 2rem;
+}
+
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar li {
+    margin: 0 1rem;
+}
+
+.navbar a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
