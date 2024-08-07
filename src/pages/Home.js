@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../css_pages/Home.css';
+import { ThemeContext } from '../context/themeContext';
+import ThemeToggle from '../components/themeToggle';
 import headshot from '../assets/headshot.jpg';
 import resume from '../assets/alexs_resume.pdf';
 import Navbar from '../components/nav';
@@ -21,7 +23,7 @@ import skillgcp from '../assets/skill-gcp.svg';
 
 const Home = () => {
     const [showPdf, setShowPdf] = useState(false);
-
+    const { theme } = useContext(ThemeContext);
     const [showMap, setShowMap] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
 
@@ -35,18 +37,9 @@ const Home = () => {
 
 
     return (
-        <div className="home-container">
-            <div className="content">
+        <div className={`home-container ${theme}`}>
+            <div className={`content ${theme}`}>
                 <header className="header">
-                    {showMap && (
-                        <div className="map-overlay">
-                            <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95250.86932393022!2d-88.38929098085609!3d41.750942791327915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880ee54d4ed5111b%3A0x7fd1f848c350e85d!2sAurora%2C%20IL!5e0!3m2!1sen!2sus!4v1722031888377!5m2!1sen!2sus"
-                                title="Map of Aurora, IL"
-                            ></iframe>
-                            <button onClick={toggleMap} className="close-map">Close Map</button>
-                        </div>
-                    )}
                     <div className="header-text">
                         <h1>Alex Sorescu</h1>
                         <div className="info">
@@ -82,7 +75,20 @@ const Home = () => {
                             alt="Alex Sorescu" 
                         />
                     </div>
+                <ThemeToggle />
                 </header>
+
+                {showMap && (
+                <div className="map-container">
+                    <div className="map-overlay">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95250.86932393022!2d-88.38929098085609!3d41.750942791327915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880ee54d4ed5111b%3A0x7fd1f848c350e85d!2sAurora%2C%20IL!5e0!3m2!1sen!2sus!4v1722031888377!5m2!1sen!2sus"
+                            title="Map of Aurora, IL"
+                        ></iframe>
+                        <button onClick={toggleMap} className="close-map">Close Map</button>
+                    </div>
+                </div>
+            )}
                 <footer className="print">
                     asorescu@imsa.edu • GitHub: asor-1
                 </footer>
@@ -122,7 +128,7 @@ const Home = () => {
                 </footer>
             </div>
             <Navbar />
-            <div className='about-section'>
+            <div className={`about-section ${theme}`}>
                 <h3 className='about-header'>About Alex...</h3>
                 <p>
                 Hi there, 
@@ -133,7 +139,7 @@ const Home = () => {
                 </p>
             </div>
 
-            <div className='resume-section'>
+            <div className={`resume-section ${theme}`}>
                 <h3 className='resume-header'>Alex's Resume...</h3>
                 <div className='pdf-buttons'>
                     <a href={resume} download className='pdf-button-download-button'>Download PDF</a>
@@ -147,7 +153,7 @@ const Home = () => {
                 )}
             </div>
 
-            <div className='education-section'>
+            <div className={`education-section ${theme}`}>
                 <h3 className='education-header'>Education...</h3>
                 <h4>
                     Illinois Mathematics and Science Academy
@@ -155,10 +161,10 @@ const Home = () => {
                 <p>August 2022 - June 2025</p>
                 <p>
                     High School Degree<br></br>
-                    - planning to continue my education in university. With the intention of pursuing a degree in Computer Science and Biology. 
+                    - Planning to continue my education in university. With the intention of pursuing a degree in Computer Science and Biology. 
                 </p>
             </div>
-            <div className='education-classes'>
+            <div className={`education-classes ${theme}`}>
                 <h3 className='education-header'>Relevant Courses...</h3>
                 <div className='course-list'>
                     <div className='course-item'>
@@ -192,7 +198,7 @@ const Home = () => {
                     </div>
             </div>
 
-            <div className='research-section'>
+            <div className={`research-section ${theme}`}>
                 <h3 className='research-header'>Relevant Research Experience...</h3>
                 <div clasName='nu-research'>
                     <h4>Feinberg School of Medicine, Northwestern University</h4>
@@ -206,7 +212,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className='list-skills'>
+            <div className={`list-skills ${theme}`}>
                 <h3>List of Skills:</h3>
                 <div className='skill-row'>
                 <div className='skill-item'>

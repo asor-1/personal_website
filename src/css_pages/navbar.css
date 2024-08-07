@@ -1,7 +1,6 @@
-/* Add these styles to your CSS file */
 .navbar {
     width: 40%;
-    color:rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
     padding-bottom: 2rem;
 }
 
@@ -24,5 +23,10 @@
 }
 
 .navbar a:hover {
+    text-decoration: underline;
+}
+
+.navbar a.active {
+    font-weight: bold;
     text-decoration: underline;
 }
