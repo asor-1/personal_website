@@ -125,7 +125,11 @@ const Home = () => {
             <div className='about-section'>
                 <h3 className='about-header'>About Alex...</h3>
                 <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Hi there, 
+                <br></br><br></br>I am a dedicated and attentive ML developer with an interest in computational biology. As a current student and a researcher focused on machine learning applications in biology, I am deeply committed to using technology to solve complex problems. 
+                My academic and recreational projects are where I apply my knowledge. I spend most of my time researching, learning, and playing pickleball. 
+                However, when I am not working I am the biggest supporter of the Tottenham Hotspurs.
+
                 </p>
             </div>
 
@@ -159,11 +163,11 @@ const Home = () => {
                 <div className='course-list'>
                     <div className='course-item'>
                         <span className='course-code'>CSI</span>
-                        <span className='course-name'>Introduction to Computer Science (HTML/CS and Python)</span>
+                        <span className='course-name'>Introduction to Computer Science (HTML/CSS & Python)</span>
                     </div>
                     <div className='course-item'>
                         <span className='course-code'>CS Seminar: Machine Learning</span>
-                        <span className='course-name'>Intro to Machine Learning algorithms(Intent Classification and RAG)</span>
+                        <span className='course-name'>Intro to Machine Learning algorithms (CNN & Intent Classification)</span>
                     </div>
                     <div className='course-item'>
                         <span className='course-code'>OOP</span>
@@ -171,7 +175,7 @@ const Home = () => {
                     </div>
                     <div className='course-item'>
                         <span className='course-code'>Modern Physics</span>
-                        <span className='course-name'>Special Relativity, Quantum Mechanics/Computing, and Elementary Particle Physics</span>
+                        <span className='course-name'>Special Relativity, Quantum Mechanics/Computing, & Elementary Particle Physics</span>
                     </div>
                     <div className='course-item'>
                         <span className='course-code'>SI: Physics</span>
@@ -204,6 +208,7 @@ const Home = () => {
 
             <div className='list-skills'>
                 <h3>List of Skills:</h3>
+                <div className='skill-row'>
                 <div className='skill-item'>
                     <img src ={skillpython} alt='Machine Learning Icon'/>
                     <span>Python</span>
@@ -224,6 +229,8 @@ const Home = () => {
                     <img src ={skilltensorflow} alt='Tensorflow Icon'/>
                     <span>Tensorflow</span>
                 </div>
+                </div>
+                <div className='skill-row'>
                 <div className='skill-item'>
                     <img src ={machineLearningIcon} alt='Pytorch Icon'/>
                     <span>Pytorch</span>
@@ -243,6 +250,7 @@ const Home = () => {
                 <div className='skill-item'>
                     <img src ={skillgcp} alt='GCP Icon'/>
                     <span>Google Cloud Production</span>
+                </div>
                 </div>
                     
             </div>

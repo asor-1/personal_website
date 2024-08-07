@@ -1,41 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useCallback } from 'react';
 import ReactMarkdown from 'react-markdown';
 import '../css_pages/Projects.css';
-import '../css_pages/Home.css';
 import headshot from '../assets/headshot.jpg';
 import Navbar from '../components/nav';
 import githubIcon from '../assets/skill-github.svg';
 import instagramIcon from '../assets/skill-instagram.svg';
 import linkedinIcon from '../assets/skill-linkedin.svg';
 import gmailIcon from '../assets/skill-gmail.svg';
+// Import SVGs directly to test if the issue is with the public folder
+import bacteria1 from '../assets/bacteria1.svg';
+import bacteria2 from '../assets/bacteria2.svg';
+import bacteria3 from '../assets/bacteria3.svg';
+import bacteria4 from '../assets/bacteria4.svg';
+
 const projects = [
-  { id: 1, name: 'Project 1', svgPath: '../assets/bacteria1.svg', markdownPath: '../markdown/project1.md', demoLink: '#' },
-  { id: 2, name: 'Project 2', svgPath: '../assets/bacteria2.svg', markdownPath: '../markdown/project2.md', demoLink: '#' },
-  { id: 3, name: 'Project 3', svgPath: '../assets/bacteria3.svg', markdownPath: '../markdown/project3.md', demoLink: '#' },
-  { id: 4, name: 'Project 4', svgPath: '../assets/bacteria4.svg', markdownPath: '../markdown/project4.md', demoLink: '#' },
-  { id: 5, name: 'Project 5', svgPath: '../assets/bacteria5.svg', markdownPath: '../markdown/project5.md', demoLink: '#' },
+  { id: 1, name: 'Track Cell Segmentations', svgPath: bacteria1, markdownPath: '../markdown/project1.md', demoLink: '#' },
+  { id: 2, name: 'OpenMind Website', svgPath: bacteria2, markdownPath: '/markdown/project2.md', demoLink: '#' },
+  { id: 3, name: 'GraphRag Revised', svgPath: bacteria3, markdownPath: '/markdown/project3.md', demoLink: '#' },
+  { id: 4, name: 'Assistance RAG', svgPath: bacteria4, markdownPath: '/markdown/project4.md', demoLink: '#' },
+  { id: 4, name: 'No Training RCNN', svgPath: bacteria1, markdownPath: '/markdown/project5.md', demoLink: '#' },
 ];
 
-const BACTERIA_SIZE = 60; // Size of the bacteria in pixels
-const DISH_PADDING = 20; // Padding from the edge of the dish in pixels
-const MIN_DISTANCE = 80; // Minimum distance between bacteria centers
+//These units are in pixels
+const BACTERIA_SIZE = 60;
+const DISH_PADDING = 20;
+const MIN_DISTANCE = 90;
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [markdownContent, setMarkdownContent] = useState('');
   const [bacteriaPositions, setBacteriaPositions] = useState([]);
-  const [showMap, setShowMap] = useState(false)
+  const [showMap, setShowMap] = useState(false);
 
-  const toggleMap = () => {
-    setShowMap(!showMap);
-  };
-  useEffect(() => {
-    const positions = generateBacteriaPositions();
-    setBacteriaPositions(positions);
+  const isValidPosition = useCallback((newPos, existingPositions) => {
+    for (const pos of existingPositions) {
+      const distance = Math.sqrt(
+        Math.pow(newPos.x - pos.x, 2) + Math.pow(newPos.y - pos.y, 2)
+      );
+      if (distance < MIN_DISTANCE) {
+        return false;
+      }
+    }
+    return true;
   }, []);
 
-  const generateBacteriaPositions = () => {
+  const generateBacteriaPositions = useCallback(() => {
     const positions = [];
     const dishSize = Math.min(window.innerWidth * 0.8, 600) - DISH_PADDING * 2;
     const centerX = dishSize / 2;
@@ -66,24 +75,20 @@ const Projects = () => {
     }
 
     return positions;
-  };
+  }, [isValidPosition]);
 
-  const isValidPosition = (newPos, existingPositions) => {
-    for (const pos of existingPositions) {
-      const distance = Math.sqrt(
-        Math.pow(newPos.x - pos.x, 2) + Math.pow(newPos.y - pos.y, 2)
-      );
-      if (distance < MIN_DISTANCE) {
-        return false;
-      }
-    }
-    return true;
-  };
+  useEffect(() => {
+    const positions = generateBacteriaPositions();
+    setBacteriaPositions(positions);
+  }, [generateBacteriaPositions]);
 
   const handleProjectClick = async (project) => {
     setSelectedProject(project);
     try {
       const response = await fetch(project.markdownPath);
+      if (!response.ok) {
+        throw new Error('Failed to fetch markdown');
+      }
       const text = await response.text();
       setMarkdownContent(text);
     } catch (error) {
@@ -95,6 +100,10 @@ const Projects = () => {
   const closeProjectDetails = () => {
     setSelectedProject(null);
     setMarkdownContent('');
+  };
+
+  const toggleMap = () => {
+    setShowMap(!showMap);
   };
 
   return (
@@ -185,48 +194,46 @@ const Projects = () => {
         </footer>
       </div>
       <Navbar />
+      <div className='about-projects'>
+        <h3 className='about-header'>Alex's Notes...</h3>
+            <p>
+            This is my projects section. Once you scroll down to the petri dish and press the bacteria the projects will pop up.
+            Reload the page to see the bacteria in different positions.
+          </p>
+      </div>
       <div className="projects-container">
         <div className="petri-dish">
           {projects.map((project, index) => (
-            <motion.div
+            <div
               key={project.id}
               className="bacteria"
               style={{
                 left: bacteriaPositions[index]?.x - BACTERIA_SIZE / 2,
                 top: bacteriaPositions[index]?.y - BACTERIA_SIZE / 2,
+                cursor: 'pointer',
               }}
-              whileHover={{ scale: 1.1 }}
               onClick={() => handleProjectClick(project)}
             >
               <img src={project.svgPath} alt={`Bacteria for ${project.name}`} />
-              <motion.div className="tooltip" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                {project.name}
-              </motion.div>
-            </motion.div>
+              <div className="tooltip">{project.name}</div>
+            </div>
           ))}
         </div>
       </div>
-      <AnimatePresence>
-        {selectedProject && (
-          <motion.div
-            className="project-details"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-          >
-            <h2>{selectedProject.name}</h2>
-            <div className="markdown-content">
-              <ReactMarkdown>{markdownContent}</ReactMarkdown>
-            </div>
-            <div className="button-container">
-              <a href={selectedProject.demoLink} target="_blank" rel="noopener noreferrer" className="demo-button">
-                View Demo
-              </a>
-              <button onClick={closeProjectDetails} className="close-button">Close</button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {selectedProject && (
+        <div className="project-details">
+          <h2>{selectedProject.name}</h2>
+          <div className="markdown-content">
+            <ReactMarkdown>{markdownContent}</ReactMarkdown>
+          </div>
+          <div className="button-container">
+            <a href={selectedProject.demoLink} target="_blank" rel="noopener noreferrer" className="demo-button">
+              View Demo
+            </a>
+            <button onClick={closeProjectDetails} className="close-button">Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

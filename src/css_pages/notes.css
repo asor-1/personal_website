@@ -2,7 +2,6 @@ body, html {
   margin: 0;
   padding: 0;
   background-color: #ffffff;
-  min-height: 100vh;
 }
 ::-webkit-scrollbar {
   width: 12px;
@@ -26,7 +25,8 @@ body, html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
+  justify-content: flex-start;
+  padding-top: 2rem;
 }
 
 .content.personal-info {
@@ -45,11 +45,11 @@ body, html {
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start; 
+  padding-bottom: 1rem; 
 }
 
 .header-text {
-  flex: 1;
   text-align: center;
 }
 
@@ -129,21 +129,39 @@ body, html {
 
 .category-buttons {
   display: flex;
-  justify-content: space-between;
   margin-bottom: 1rem;
 }
 
 .category-buttons button {
-  padding: 0.5rem 1rem;
+  background-color: #cecece; 
   border: none;
-  background-color: #f0f0f0;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  padding: 0.5rem;
+  margin: 2%;
   cursor: pointer;
-  border-radius: 10%;
+  transition: background-color 0.3s, transform 0.3s;
+  border-radius: 4%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .category-buttons button.active {
-  background-color: #007bff;
+  background-color: #a5a5a5; 
+  border: none;
   color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  padding: 0.5rem;
+  margin: 2%;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  border-radius: 4%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .admin-button {
@@ -196,10 +214,17 @@ body, html {
   border: 1px solid #ddd;
 }
 
-.about-notes{
-width: 80%;
-max-width: 45%;
-padding: 1rem;
-border-radius: 0.625rem;
-background-color: #fff;
+.about-notes {
+  width: 80%;
+  max-width: 45%;
+  padding: 1rem;
+  border-radius: 0.625rem;
+  background-color: #fff;
+  margin-bottom: 2rem; /* Add margin at the bottom */
+}
+
+.notes-section {
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto; /* Changed from 2rem auto to 0 auto */
 }

@@ -39,7 +39,7 @@ const Notes = () => {
     if (password === '1234') {
       setIsAdminMode(true);
     } else {
-      alert('Incorrect password. Please Try Again.');
+      alert('Incorrect password');
     }
   };
 
@@ -132,12 +132,19 @@ const Notes = () => {
           </a>
         </footer>
       </div>
-
       <Navbar />
       <div className='about-notes'>
         <h3 className='about-header'>Alex's Notes...</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            This is my notes section. Here, is where I document my thoughts, ideas, and insights on various topics that pique my interest. 
+            Whether it's a dive into machine learning, reflections on recent projects, or ideas of new concepts, these notes are a snapshot of my brain in action.
+            <br></br>
+            <br></br>
+            Through these notes, I not only keep track of my learning but also provide valuable insights to others who might find them useful. 
+            Each entry is a step in my ongoing journey to understand, innovate, and grow.
+            
+            Feel free to explore, and I hope you find something here that sparks your curiosity and inspires you as much as it does me. 
+
           </p>
       </div>
       <div className="notes-section">

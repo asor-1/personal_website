@@ -234,10 +234,14 @@ body, html, #root {
 .list-skills h2 {
     text-align: left;
 }
-
-.skill-items {
+.skill-row {
     display: flex;
     justify-content: flex-start;
+    margin-bottom: 20px;
+}
+.skill-items {
+    display: flex;
+    flex-direction: row;
     gap: 20px;
 }
 
@@ -245,14 +249,16 @@ body, html, #root {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: calc(20% - 20px);
-    margin: 10px;
 }
 
 .skill-item img {
     width: 2rem;
     height: 2rem;
     margin-bottom: 5px;
+}
+
+.skill-item span {
+    text-align: center;
 }
 .fixed-button {
     position: fixed;

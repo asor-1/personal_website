@@ -16,6 +16,16 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+.about-projects {
+  width: 80%;
+  max-width: 45%;
+  padding-top: 1rem;
+  border-radius: 0.625rem;
+  background-color: #fff;
+  margin-bottom: 2rem; /* Add margin at the bottom */
+}
+
 .projects-container {
   display: flex;
   flex-direction: column;
@@ -73,23 +83,29 @@
   position: fixed;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%); /* Center both vertically and horizontally */
   background-color: white;
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 5px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   z-index: 10;
-  max-width: 60%;
+  max-width: 80%; /* Increased from 60% to 80% for better visibility */
   max-height: 80vh;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .markdown-content {
   margin-bottom: 1rem;
+  flex-grow: 1; /* Allow content to grow and push buttons to bottom */
+  overflow-y: auto; /* Add scroll to content if it exceeds max-height */
 }
 
 .button-container {
   display: flex;
   justify-content: space-between;
+  margin-top: 1rem; /* Add some space above buttons */
 }
 
 .demo-button, .close-button {
