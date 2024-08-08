@@ -25,16 +25,10 @@ const Home = () => {
     const [showPdf, setShowPdf] = useState(false);
     const { theme } = useContext(ThemeContext);
     const [showMap, setShowMap] = useState(false);
-    const [showPopup, setShowPopup] = useState(false);
 
     const toggleMap = () => {
         setShowMap(!showMap);
     };
-
-    const togglePopup = () => {
-        setShowPopup(!showPopup);
-    };
-
 
     return (
         <div className={`home-container ${theme}`}>
@@ -164,7 +158,7 @@ const Home = () => {
                     - Planning to continue my education in university. With the intention of pursuing a degree in Computer Science and Biology. 
                 </p>
             </div>
-            <div className={`education-classes ${theme}`}>
+            <div className='education-classes'>
                 <h3 className='education-header'>Relevant Courses...</h3>
                 <div className='course-list'>
                     <div className='course-item'>
@@ -260,21 +254,6 @@ const Home = () => {
                 </div>
                     
             </div>
-
-            <div>
-            <button className="fixed-button" onClick={togglePopup}>
-                Inspiration
-            </button>
-            {showPopup && (
-                <div className="popup">
-                    <button className="close-button" onClick={togglePopup}>X</button>
-                    <div className="popup-content">
-                        <h3>Where I got my inspiration from...</h3>
-                        <p>The design of this webpage was inspired by Aidan Andrews. Check out his website https://www.aidanandrews.info/ </p>
-                    </div>
-                </div>
-            )}
-        </div>
         </div>
     );
 };

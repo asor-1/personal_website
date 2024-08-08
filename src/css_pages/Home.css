@@ -41,7 +41,7 @@ body, #root {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--bg-color);
+    background-color: var(--bg-color) !important; 
     color: var(--text-color);
     padding: 2rem;
     min-height: 100vh;
@@ -49,8 +49,7 @@ body, #root {
   
 
 .content {
-    width: 80%;
-    max-width: 45%;
+    width: 50%;
     text-align: center;
     padding: 0.75rem;
     border: 1px solid;
@@ -94,13 +93,11 @@ body, #root {
 }
 
 .headshot {
-    position: absolute;
-    right: 1rem;
-    top: 3rem;
+    position: relative;
 }
 
 .headshot img {
-    width: 80%;
+    width: 50%;
     height: 50%;
     border-radius: 50%;
     object-fit: cover;
@@ -270,6 +267,9 @@ body, #root {
 }
 
 .education-classes {
+    width: 80%;
+    max-width: 45%;
+    padding: 1rem;
     margin-bottom: 2rem;
     text-align: left;
 }
@@ -283,15 +283,16 @@ body, #root {
 .course-item {
     display: flex;
     align-items: left;
-    background-color: var(--card-bg-color);
-    color: var(--text-color);
+    background-color: #e7e6e6;
+    color: black;
     border-radius: 0.5rem;
     padding: 1rem;
     transition: background-color 0.3s ease;
 }
 
 .course-item:hover {
-    background-color: var(--hover-bg-color);
+    background-color: #d8d6d6;
+    ;
 }
 
 .course-code {
