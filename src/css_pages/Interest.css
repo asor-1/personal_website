@@ -32,20 +32,26 @@ body, html, #root {
 
 .content {
     width: 80%;
-    max-width: 45%;
-    text-align: center;
-    padding: 0.75rem;
+    text-align: left;
+    padding: 1.5rem;
     border: 1px solid #ddd;
     border-radius: 0.625rem;
     background-color: #fff;
     box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.1);
     position: relative;
-    margin-bottom: 2rem; /* Add some bottom margin to separate it from the about section */
-}
-.header {
+    margin-bottom: 2rem;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+}
+.main-content {
+    flex: 1;
+    padding-right: 1.5rem;
+}
+
+/* Adjust the header */
+.header {
+    width: 100%;
 }
 
 .header-text {
@@ -73,17 +79,21 @@ body, html, #root {
 }
 
 .headshot {
-    position: absolute;
-    right: 1rem;
-    top: 3rem;
+    flex-shrink: 0;
+    width: 150px;
+    height: 150px;
+    margin-left: 1.5rem;
 }
 
+/* Style the headshot image */
 .headshot img {
-    width: 80%;
-    height: 50%;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     object-fit: cover;
+    border: 3px solid #ddd;
 }
+
 
 .map-overlay {
     position: absolute;

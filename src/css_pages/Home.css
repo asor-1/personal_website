@@ -47,25 +47,28 @@ body, #root {
     min-height: 100vh;
 }
   
-
 .content {
     width: 50%;
     text-align: center;
-    padding: 0.75rem;
-    border: 1px solid;
-    border-color: var(--border-color);
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
     border-radius: 0.625rem;
     background-color: var(--card-bg-color);
     color: var(--text-color);
     box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.1);
     position: relative;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    margin-bottom: 2rem; /* Add some bottom margin to separate it from the about section */
-}
-.header {
+    margin-bottom: 2rem;
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+}
+.header {
+    width:100%;
+}
+.main-content {
     align-items: center;
+    padding-right: 1.5rem;
 }
 
 .header-text {
@@ -92,15 +95,25 @@ body, #root {
     margin-right: 0.5rem;
 }
 
-.headshot {
-    position: relative;
+.header-text {
+    width: 100%;
 }
 
+/* Style the headshot container */
+.headshot {
+    flex-shrink: 0;
+    width: 25vh;
+    height: 35vh;
+    margin-left: 1.5rem;
+}
+
+/* Style the headshot image */
 .headshot img {
-    width: 50%;
-    height: 50%;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     object-fit: cover;
+    border: 3px solid var(--border-color);
 }
 
 .map-container {
@@ -382,22 +395,26 @@ body, #root {
 .close-button:hover {
     color: red;
 }
-
-.light .content, .content.light {
-    background-color: var(--card-bg-color);
+.name-role {
+    margin-bottom: 10px; /* Add space between sections */
 }
 
-.dark .content, .content.dark {
-    background-color: var(--card-bg-color);
+.place-name {
+    margin: 0;
+    font-size: 1.2em; 
 }
 
-.light .about-section, .about-section.light {
-    background-color: var(--card-bg-color);
+.role {
+    margin: 0;
+    font-size: 1em; 
 }
 
-.dark .about-section, .about-section.dark {
-    background-color: var(--card-bg-color);
+.date {
+    margin: 0.5rem;
+    font-style: italic;
 }
+
+
 
 @media (max-width: 1024px) {
     .content {

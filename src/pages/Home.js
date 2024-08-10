@@ -33,6 +33,7 @@ const Home = () => {
     return (
         <div className={`home-container ${theme}`}>
             <div className={`content ${theme}`}>
+            <div className="main-content">
                 <header className="header">
                     <div className="header-text">
                         <h1>Alex Sorescu</h1>
@@ -63,13 +64,6 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="headshot">
-                        <img 
-                            src={headshot} 
-                            alt="Alex Sorescu" 
-                        />
-                    </div>
-                <ThemeToggle />
                 </header>
 
                 {showMap && (
@@ -119,11 +113,15 @@ const Home = () => {
                     >
                        <img src ={instagramIcon} className='footer-icon' alt='Instagram Icon'/>
                     </a>
-                </footer>
+                    </footer>
+                </div>
+                <div className="headshot">
+                    <img src={headshot} alt="Alex Sorescu" />
+                </div>
             </div>
             <Navbar />
             <div className={`about-section ${theme}`}>
-                <h3 className='about-header'>About Alex...</h3>
+                <h2 className='about-header'>About Alex...</h2>
                 <p>
                 Hi there, 
                 <br></br><br></br>I am a dedicated and attentive ML developer with an interest in computational biology. As a current student and a researcher focused on machine learning applications in biology, I am deeply committed to using technology to solve complex problems. 
@@ -134,7 +132,7 @@ const Home = () => {
             </div>
 
             <div className={`resume-section ${theme}`}>
-                <h3 className='resume-header'>Alex's Resume...</h3>
+                <h2 className='resume-header'>Alex's Resume...</h2>
                 <div className='pdf-buttons'>
                     <a href={resume} download className='pdf-button-download-button'>Download PDF</a>
                     <button onClick={() => setShowPdf(true)} className='pdf-button-view-button'>View PDF</button>
@@ -148,18 +146,18 @@ const Home = () => {
             </div>
 
             <div className={`education-section ${theme}`}>
-                <h3 className='education-header'>Education...</h3>
+                <h2 className='education-header'>Education...</h2>
                 <h4>
                     Illinois Mathematics and Science Academy
                 </h4>
-                <p>August 2022 - June 2025</p>
+                <p className='date'>August 2022 - June 2025</p>
                 <p>
                     High School Degree<br></br>
                     - Planning to continue my education in university. With the intention of pursuing a degree in Computer Science and Biology. 
                 </p>
             </div>
             <div className='education-classes'>
-                <h3 className='education-header'>Relevant Courses...</h3>
+                <h2 className='education-header'>Relevant Courses...</h2>
                 <div className='course-list'>
                     <div className='course-item'>
                         <span className='course-code'>CSI</span>
@@ -193,15 +191,21 @@ const Home = () => {
             </div>
 
             <div className={`research-section ${theme}`}>
-                <h3 className='research-header'>Relevant Research Experience...</h3>
+                <h2 className='research-header'>Relevant Research Experience...</h2>
                 <div clasName='nu-research'>
-                    <h4>Feinberg School of Medicine, Northwestern University</h4>
-                        <p>July 2023 - Present</p>
-                        <p>High School Degree, planning to continue my education in university. With the intention of pursuing a degree in Computer Science and Biology.</p>
+                    <div className='name-role'>
+                    <h4 className='place-name'>Feinberg School of Medicine, Northwestern University</h4>
+                    <p className = 'role'>Lab Researcher</p>
+                    </div>
+                        <p className='date'>July 2023 - Present</p>
+                        <p>I built an image sequencing pipeline focused on pancreatic cancer cells, utilizing Cellpose, Python, and computer vision algorithms such as contour tracing and spatial gradient analysis. This pipeline was designed to assess whether and when Sotorasib and Gemcitabine-treated cells reactivated their signaling pathways for proliferation. It was subsequently integrated with another pipeline to analyze gene expression during these signaling events, aiming to identify which genes were responsible for developing resistance.</p>
                 </div>
                 <div>
-                    <h4>University of Illinois College of Medicine at Chicago</h4>
-                        <p>May 2024 - Present</p>
+                <div className='name-role'>
+                    <h4 className='place-name'>University of Illinois Chicago, Medical School</h4>
+                    <p className = 'role'>Lab Intern</p>
+                </div>
+                        <p className='date'>May 2024 - Present</p>
                         <p>High School Degree, planning to continue my education in university. With the intention of pursuing a degree in Computer Science and Biology.</p>
                 </div>
             </div>

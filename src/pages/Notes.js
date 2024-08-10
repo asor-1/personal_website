@@ -71,6 +71,7 @@ const Notes = () => {
   return (
     <div className='home-container'>
       <div className="content personal-info">
+      <div className='main-content'>
         <header className="header">
           {showMap && (
             <div className="map-overlay">
@@ -110,9 +111,6 @@ const Notes = () => {
               </div>
             </div>
           </div>
-          <div className="headshot">
-            <img src={headshot} alt="Alex Sorescu" />
-          </div>
         </header>
         <footer className="print">
           asorescu@imsa.edu • GitHub: asor-1
@@ -131,6 +129,10 @@ const Notes = () => {
             <img src={instagramIcon} className='footer-icon' alt='Instagram Icon'/>
           </a>
         </footer>
+        </div>
+                <div className="headshot">
+                    <img src={headshot} alt="Alex Sorescu" />
+                </div>
       </div>
       <Navbar />
       <div className='about-notes'>
