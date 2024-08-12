@@ -1,0 +1,121 @@
+import React, { useState, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
+import '../css_pages/notes.css';
+
+const NotesPanel = () => {
+  const [categories, setCategories] = useState(['Work', 'School', 'Personal']);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [notes, setNotes] = useState({});
+  const [selectedNote, setSelectedNote] = useState(null);
+  const [isAdminMode, setIsAdminMode] = useState(false);
+  const [adminPassword, setAdminPassword] = useState('');
+  const [newNoteTitle, setNewNoteTitle] = useState('');
+  const [newNoteBody, setNewNoteBody] = useState('');
+
+  useEffect(() => {
+    // Fetch notes from the server or local storage
+    // This is a placeholder. Replace with actual data fetching logic
+    const fetchedNotes = {
+      Work: [
+        { id: 1, title: 'Project A', content: '# Project A\n\nThis is a work note.' },
+        { id: 2, title: 'Meeting Notes', content: '# Meeting Notes\n\n- Discuss timeline\n- Review budget' },
+      ],
+      School: [
+        { id: 3, title: 'Math Homework', content: '# Math Homework\n\n1. Complete exercises 1-5\n2. Study for quiz' },
+      ],
+      Personal: [
+        { id: 4, title: 'Shopping List', content: '# Shopping List\n\n- Milk\n- Bread\n- Eggs' },
+      ],
+    };
+    setNotes(fetchedNotes);
+  }, []);
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    setSelectedNote(null);
+  };
+
+  const handleNoteClick = (note) => {
+    setSelectedNote(note);
+  };
+
+  const handleAdminClick = () => {
+    const password = prompt('Enter admin password:');
+    if (password === 'correct_password') { // Replace with actual password validation
+      setIsAdminMode(true);
+    } else {
+      alert('Incorrect password');
+    }
+  };
+
+  const handleSubmitNewNote = () => {
+    if (newNoteTitle && newNoteBody && selectedCategory) {
+      const newNote = {
+        id: Date.now(), // Use a proper ID generation method in production
+        title: newNoteTitle,
+        content: newNoteBody,
+      };
+      setNotes(prevNotes => ({
+        ...prevNotes,
+        [selectedCategory]: [...(prevNotes[selectedCategory] || []), newNote],
+      }));
+      setNewNoteTitle('');
+      setNewNoteBody('');
+      // Here you would also send the new note to your server or save it to local storage
+    }
+  };
+
+  return (
+    <div className="notes-panel">
+      <div className="categories-row">
+        {categories.map(category => (
+          <button
+            key={category}
+            onClick={() => handleCategoryClick(category)}
+            className={selectedCategory === category ? 'active' : ''}
+          >
+            {category}
+          </button>
+        ))}
+        <button onClick={handleAdminClick} className="admin-button">Admin</button>
+      </div>
+
+      {isAdminMode && (
+        <div className="admin-panel">
+          <input
+            type="text"
+            placeholder="Note Title"
+            value={newNoteTitle}
+            onChange={(e) => setNewNoteTitle(e.target.value)}
+          />
+          <textarea
+            placeholder="Note Body (Markdown)"
+            value={newNoteBody}
+            onChange={(e) => setNewNoteBody(e.target.value)}
+          />
+          <button onClick={handleSubmitNewNote}>Submit New Note</button>
+        </div>
+      )}
+
+      <div className="notes-list">
+        {selectedCategory && notes[selectedCategory]?.map(note => (
+          <div
+            key={note.id}
+            onClick={() => handleNoteClick(note)}
+            className={`note-title ${selectedNote?.id === note.id ? 'active' : ''}`}
+          >
+            {note.title}
+          </div>
+        ))}
+      </div>
+
+      {selectedNote && (
+        <div className="note-content">
+          <ReactMarkdown>{selectedNote.content}</ReactMarkdown>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default NotesPanel;

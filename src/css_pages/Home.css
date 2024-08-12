@@ -1,0 +1,432 @@
+.light {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --border-color: #ddd;
+    --card-bg-color: #fff;
+    --hover-bg-color: #e9ecef;
+}
+
+/* Dark theme styles */
+.dark {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    --border-color: #444;
+    --card-bg-color: #2a2a2a;
+    --hover-bg-color: #3a3a3a;
+}
+body, #root {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bg-color) !important; 
+    color: var(--text-color);
+    padding: 2rem;
+    min-height: 100vh;
+}
+  
+.content {
+    width: 50%;
+    text-align: center;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.625rem;
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.header {
+    width:100%;
+}
+.main-content {
+    align-items: center;
+    padding-right: 1.5rem;
+}
+
+.header-text {
+    flex: 1;
+    text-align: center;
+}
+
+.location-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.location svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.header-text {
+    width: 100%;
+}
+
+/* Style the headshot container */
+.headshot {
+    flex-shrink: 0;
+    width: 25vh;
+    height: 35vh;
+    margin-left: 1.5rem;
+}
+
+/* Style the headshot image */
+.headshot img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--border-color);
+}
+
+.map-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 1000;
+}
+
+.map-overlay {
+    width: 50vw; /* 50% of the viewport width */
+    height: 70vh; /* 70% of the viewport height */
+    background-color: white;
+    border-radius: 0.625rem;
+    overflow: hidden;
+    position: relative;
+    margin-right: 20px; /* Space from the right edge */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.map-overlay iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.close-map {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .map-overlay {
+        width: 90%;
+        height: 60vh;
+        max-width: none;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+.footer-icon {
+    width: 2rem; /* Adjust the size as needed */
+    padding-top: .5rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    height: 2rem; /* Adjust the size as needed */
+}
+/* End of CSS styling for my container */
+.theme-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+.about-section {
+    width: 80%;
+    max-width: 45%;
+    padding: 1rem;
+    border-radius: 0.625rem;
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    border-color: var(--border-color);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+.resume-section, .education-section, .research-section, .list-skills {
+    width: 80%;
+    max-width: 45%;
+    padding: 1rem;
+    border-radius: 0.625rem;
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    border-color: var(--border-color);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.about-header {
+    margin-top: 0;
+    text-align: left;
+    font-size: 1em; 
+}
+.resume-header {
+    margin-top: 0;
+    text-align: left;
+    font-size: 1em; 
+}
+.pdf-button-download-button {
+  background-color: #cecece; 
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  padding: .2rem;
+  margin: 2%;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  border-radius: 3%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.pdf-button-download-button:hover{
+  background-color: #8f8f8f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+
+}
+
+.pdf-button-view-button {
+    background-color: #cecece; 
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+      font-size: 16px;
+      padding: .35rem;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+      border-radius: 3%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .pdf-button-view-button:hover{
+      background-color: #8f8f8f;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    
+    }
+
+.pdf-viewer {
+    width: 90%;
+    height: 75vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.pdf-viewer iframe {
+    width: 100%;
+    height: calc(100% - 5%); /* Subtract space for the close button */
+    border: none;
+}
+
+.education-classes {
+    width: 80%;
+    max-width: 45%;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.course-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.course-item {
+    display: flex;
+    align-items: left;
+    background-color: #e7e6e6;
+    color: black;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.course-item:hover {
+    background-color: #d8d6d6;
+    ;
+}
+
+.course-code {
+    font-weight: bold;
+    min-width: 80px;
+    margin-right: 1rem;
+}
+
+.course-name {
+    flex-grow: 1;
+}
+
+.list-skills h2 {
+    text-align: left;
+}
+.skill-row {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+.skill-items {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.skill-item img {
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 5px;
+}
+
+.skill-item span {
+    text-align: center;
+}
+.fixed-button {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: #007bff; /* Blue background */
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 1000; /* Ensure it's above other elements */
+}
+
+.fixed-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.popup {
+    position: fixed;
+    bottom: 4rem;
+    right: 1rem;
+    width: 300px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.popup-content {
+    padding: 1rem;
+}
+
+.close-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #333;
+}
+
+.close-button:hover {
+    color: red;
+}
+.name-role {
+    margin-bottom: 10px; /* Add space between sections */
+}
+
+.place-name {
+    margin: 0;
+    font-size: 1.2em; 
+}
+
+.role {
+    margin: 0;
+    font-size: 1em; 
+}
+
+.date {
+    margin: 0.5rem;
+    font-style: italic;
+}
+
+
+
+@media (max-width: 1024px) {
+    .content {
+        width: 90%;
+    }
+
+    .headshot, .map-overlay {
+        position: static;
+        margin: 1rem auto;
+    }
+
+    .header {
+        flex-direction: column;
+    }
+}

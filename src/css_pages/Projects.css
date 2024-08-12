@@ -1,0 +1,263 @@
+.light {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --border-color: #ddd;
+  --card-bg-color: #fff;
+  --hover-bg-color: #e9ecef;
+}
+
+/* Dark theme styles */
+.dark {
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+  --border-color: #444;
+  --card-bg-color: #2a2a2a;
+  --hover-bg-color: #3a3a3a;
+}
+body, #root {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--bg-color) !important; 
+  color: var(--text-color);
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.content {
+  width: 70%;
+  text-align: left;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.625rem;
+  background-color: var(--card-bg-color);
+  color: var(--text-color);
+  box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.header {
+  width:100%;
+}
+.main-content {
+  flex: 1;
+  padding-right: 1.5rem;
+}
+
+.header-text {
+  flex: 1;
+  text-align: center;
+}
+
+.headshot {
+  flex-shrink: 0;
+  width: 150px;
+  height: 150px;
+  margin-left: 1.5rem;
+}
+
+/* Style the headshot image */
+.headshot img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ddd;
+}
+.about-projects {
+  width: 80%;
+  max-width: 45%;
+  padding-top: 1rem;
+  border-radius: 0.625rem;
+  background-color: #fff;
+  margin-bottom: 2rem; /* Add margin at the bottom */
+}
+
+.projects-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.petri-dish {
+  position: relative;
+  width: 80vw;
+  height: 80vw;
+  max-width: 600px;
+  max-height: 600px;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  border: 5px solid #d4d4d4;
+  overflow: hidden;
+}
+.info-icon {
+  position: absolute;
+  top: 50%; /* Adjust as needed */
+  right: 10px; /* Space from the right edge */
+  cursor: pointer;
+}
+
+.info-icon img {
+  width: 30px; /* Adjust size as needed */
+  height: auto;
+}
+
+.info-message {
+  position: absolute;
+  top: 50%;
+  right: 60px; /* Position to the right of the icon */
+  background: rgba(0, 0, 0, 0.8); /* Dark background for contrast */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  z-index: 1000; /* Ensure it appears above other content */
+}
+
+.bacteria {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.bacteria:hover {
+  transform: scale(1.1);
+}
+
+.bacteria img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tooltip {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 12px;
+  white-space: nowrap;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.project-details {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center both vertically and horizontally */
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  max-width: 80%; /* Increased from 60% to 80% for better visibility */
+  max-height: 80vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.markdown-content {
+  margin-bottom: 1rem;
+  flex-grow: 1; /* Allow content to grow and push buttons to bottom */
+  overflow-y: auto; /* Add scroll to content if it exceeds max-height */
+}
+
+/* For inline code blocks */
+.markdown-content code {
+  background-color: #000;
+  color: #f8f8f2;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem; /* Add some space above buttons */
+}
+
+.demo-button, .close-button {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.demo-button {
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+}
+
+.demo-button:hover {
+  background-color: #2980b9;
+}
+
+.close-button {
+  color: #e74c3c;
+  border: none;
+}
+
+.close-button:hover {
+  color: #c0392b;
+}
+ 
+.custom-code-block {
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace !important;
+  font-size: 0.75rem !important;
+  line-height: 1.5 !important;
+  padding: 1rem !important;
+  border-radius: 4px !important;
+  overflow-x: auto !important;
+}
+
+/* Add specific overrides for syntax highlighting */
+.custom-code-block .token.comment {
+  color: #6a9955 !important;
+}
+
+.custom-code-block .token.keyword {
+  color: #569cd6 !important;
+}
+
+.custom-code-block .token.string {
+  color: #d69d85 !important;
+}
