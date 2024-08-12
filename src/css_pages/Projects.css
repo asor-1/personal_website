@@ -100,49 +100,142 @@ body, #root {
   margin-bottom: 2rem; /* Add margin at the bottom */
 }
 
+
+.markdown-content {
+  margin-bottom: 1rem;
+  flex-grow: 1; /* Allow content to grow and push buttons to bottom */
+  overflow-y: auto; /* Add scroll to content if it exceeds max-height */
+}
+
+/* For inline code blocks */
+.markdown-content code {
+  background-color: #000;
+  color: #f8f8f2;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+
+
+.custom-code-block {
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace !important;
+  font-size: 0.75rem !important;
+  line-height: 1.5 !important;
+  padding: 1rem !important;
+  border-radius: 4px !important;
+  overflow-x: auto !important;
+}
+
+/* Add specific overrides for syntax highlighting */
+.custom-code-block .token.comment {
+  color: #6a9955 !important;
+}
+
+.custom-code-block .token.keyword {
+  color: #569cd6 !important;
+}
+
+.custom-code-block .token.string {
+  color: #d69d85 !important;
+}
+
 .projects-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 80vh;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
   background-color: #ffffff;
-  overflow: hidden;
+}
+
+.petri-dish-name {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.petri-dish-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .petri-dish {
   position: relative;
-  width: 80vw;
-  height: 80vw;
-  max-width: 600px;
-  max-height: 600px;
-  background-color: #f0f0f0;
+  width: 30rem;
+  height: 30rem;
   border-radius: 50%;
-  border: 5px solid #d4d4d4;
-  overflow: hidden;
+  background-color: #f0f0f0;
+  margin-right: 2rem;
 }
+
+.info-section {
+  position: relative;
+  width: 40%;
+  max-width: 400px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .info-icon {
-  position: absolute;
-  top: 50%; /* Adjust as needed */
-  right: 10px; /* Space from the right edge */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 }
 
 .info-icon img {
-  width: 30px; /* Adjust size as needed */
-  height: auto;
+  width: 70%;
+  height: 80%;
+  object-fit: contain;
 }
 
-.info-message {
+.info-container {
   position: absolute;
   top: 50%;
-  right: 60px; /* Position to the right of the icon */
-  background: rgba(0, 0, 0, 0.8); /* Dark background for contrast */
-  color: white;
-  padding: 10px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ddd;
   border-radius: 5px;
+  padding: 15px;
+  width: 90%;
+  max-width: 300px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-container h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.info-container p {
+  color: #666;
   font-size: 14px;
-  z-index: 1000; /* Ensure it appears above other content */
+  flex-grow: 1;
+}
+
+.info-container button {
+  align-self: flex-end;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
 .bacteria {
@@ -174,19 +267,22 @@ body, #root {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 10;
+  pointer-events: none;
 }
 
 .project-details {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Center both vertically and horizontally */
+  transform: translate(-50%, -50%);
   background-color: white;
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  z-index: 10;
-  max-width: 80%; /* Increased from 60% to 80% for better visibility */
+  z-index: 100;
+  width: 90%;
+  max-width: 800px;
   max-height: 80vh;
   overflow-y: auto;
   display: flex;
@@ -195,69 +291,51 @@ body, #root {
 
 .markdown-content {
   margin-bottom: 1rem;
-  flex-grow: 1; /* Allow content to grow and push buttons to bottom */
-  overflow-y: auto; /* Add scroll to content if it exceeds max-height */
+  flex-grow: 1;
+  overflow-y: auto;
 }
-
-/* For inline code blocks */
-.markdown-content code {
-  background-color: #000;
-  color: #f8f8f2;
-  padding: 2px 4px;
-  border-radius: 3px;
-}
-
 
 .button-container {
   display: flex;
   justify-content: space-between;
-  margin-top: 1rem; /* Add some space above buttons */
+  margin-top: 1rem;
 }
 
-.demo-button, .close-button {
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+/* ... (keep other existing styles) */
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .petri-dish-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .petri-dish {
+    width: 300px;
+    height: 300px;
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
+
+  .info-section {
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+  }
 }
 
-.demo-button {
-  background-color: #3498db;
-  color: white;
-  text-decoration: none;
-}
+@media (max-width: 480px) {
+  .petri-dish {
+    width: 250px;
+    height: 250px;
+  }
 
-.demo-button:hover {
-  background-color: #2980b9;
-}
+  .info-section {
+    height: 250px;
+  }
 
-.close-button {
-  color: #e74c3c;
-  border: none;
-}
-
-.close-button:hover {
-  color: #c0392b;
-}
- 
-.custom-code-block {
-  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace !important;
-  font-size: 0.75rem !important;
-  line-height: 1.5 !important;
-  padding: 1rem !important;
-  border-radius: 4px !important;
-  overflow-x: auto !important;
-}
-
-/* Add specific overrides for syntax highlighting */
-.custom-code-block .token.comment {
-  color: #6a9955 !important;
-}
-
-.custom-code-block .token.keyword {
-  color: #569cd6 !important;
-}
-
-.custom-code-block .token.string {
-  color: #d69d85 !important;
+  .bacteria {
+    width: 40px;
+    height: 40px;
+  }
 }

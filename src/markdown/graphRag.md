@@ -4,14 +4,6 @@ Microsoft developed a new type of RAG. When compared to the baseline RAG that us
 
 Therefore, for my mental health intiative-OpenMind-I took the action of creating a GraphRAG solely based on the information about our company. However, this GraphRAG is a public template that others may use.
 
-## Table of Contents
-- [Installation](#installation)
-- [Usage](#usage)
-- [Features](#features)
-- [Configuration](#configuration)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgments](#acknowledgments)
 
 ---
 

@@ -177,11 +177,11 @@ const Home = () => {
                     </div>
                     <div className='course-item'>
                         <span className='course-code'>SI: Physics</span>
-                        <span className='course-name'>Equlivant to AP physics 1</span>
+                        <span className='course-name'>Equivalent to AP physics 1</span>
                     </div>
                     <div className='course-item'>
                         <span className='course-code'>BC Calculus 1</span>
-                        <span className='course-name'>Equlivant to calculus I</span>
+                        <span className='course-name'>Equivalent to calculus I</span>
                     </div>
                     <div className='course-item'>
                         <span className='course-code'>ABS</span>

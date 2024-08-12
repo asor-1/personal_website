@@ -39,7 +39,7 @@ const Projects = () => {
   const [markdownContent, setMarkdownContent] = useState('');
   const [bacteriaPositions, setBacteriaPositions] = useState([]);
   const [showMap, setShowMap] = useState(false);
-  const [infoMessage, setInfoMessage] = useState(''); // State for info message
+  const [showInfoContainer, setShowInfoContainer] = useState(false);
 
   const isValidPosition = useCallback((newPos, existingPositions) => {
     for (const pos of existingPositions) {
@@ -53,14 +53,12 @@ const Projects = () => {
     return true;
   }, []);
 
-  
-
   const generateBacteriaPositions = useCallback(() => {
     const positions = [];
-    const dishSize = Math.min(window.innerWidth * 0.8, 600) - DISH_PADDING * 2;
+    const dishSize = Math.min(window.innerWidth * 0.5, 400) - DISH_PADDING * 2; // Reduced dish size
     const centerX = dishSize / 2;
     const centerY = dishSize / 2;
-    const radius = dishSize / 2 - BACTERIA_SIZE / 2 - DISH_PADDING;
+    const radius = (dishSize / 2) - (BACTERIA_SIZE / 2) - DISH_PADDING;
 
     for (let i = 0; i < projects.length; i++) {
       let newPosition;
@@ -124,9 +122,8 @@ const Projects = () => {
     },
   };
 
-  const showInfoMessage = (message) => {
-    setInfoMessage(message);
-    setTimeout(() => setInfoMessage(''), 3000); // Clear message after 3 seconds
+  const toggleInfoContainer = () => {
+    setShowInfoContainer(!showInfoContainer);
   };
 
   return (
@@ -221,36 +218,48 @@ const Projects = () => {
       <Navbar />
       <div className='about-projects'>
         <h3 className='about-header'>Alex's Projects...</h3>
-            <p>
-            This is my projects section. Once you scroll down to the petri dish and press the bacteria the projects will pop up.
-            Reload the page to see the bacteria in different positions.
-          </p>
+        <p>
+          This is my projects section. Once you scroll down to the petri dish and press the bacteria, the projects will pop up.
+          Reload the page to see the bacteria in different positions.
+        </p>
       </div>
       <div className="projects-container">
         <div className='petri-dish-name'>
           <h2>Alex's Petri Dish</h2>
         </div>
-        <div className="petri-dish">
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              className="bacteria"
-              style={{
-                left: bacteriaPositions[index]?.x - BACTERIA_SIZE / 2,
-                top: bacteriaPositions[index]?.y - BACTERIA_SIZE / 2,
-                cursor: 'pointer',
-              }}
-              onClick={() => handleProjectClick(project)}
+        <div className="petri-dish-wrapper">
+          <div className="petri-dish">
+            {projects.map((project, index) => (
+              <div
+                key={project.id}
+                className="bacteria"
+                style={{
+                  left: `${bacteriaPositions[index]?.x}px`,
+                  top: `${bacteriaPositions[index]?.y}px`,
+                }}
+                onClick={() => handleProjectClick(project)}
+              >
+                <img src={project.svgPath} alt={`Bacteria for ${project.name}`} />
+                <div className="tooltip">{project.name}</div>
+              </div>
+            ))}
+          </div>
+          <div className="info-section">
+            <div 
+              className={`info-icon ${showInfoContainer ? 'active' : ''}`} 
+              onClick={toggleInfoContainer}
             >
-              <img src={project.svgPath} alt={`Bacteria for ${project.name}`} />
-              <div className="tooltip">{project.name}</div>
+              <img src={infoIcon} alt="Info Icon" />
             </div>
-          ))}
+            {showInfoContainer && (
+              <div className="info-container">
+                <h3>Welcome to Alex's Petri Dish!</h3>
+                <p>Even though I am interested in computational biology, I have never once picked up a pipette in the wet lab. </p>
+                <button onClick={toggleInfoContainer}>Close</button>
+              </div>
+            )}
+          </div>
         </div>
-        <div className="info-icon" onClick={() => showInfoMessage('Your message here')}>
-          <img src={infoIcon} alt="Info Icon" />
-        </div>
-        {infoMessage && <div className="info-message">{infoMessage}</div>}
       </div>
       {selectedProject && (
         <div className="project-details">
