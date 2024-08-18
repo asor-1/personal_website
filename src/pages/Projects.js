@@ -3,12 +3,8 @@ import ReactMarkdown from 'react-markdown';
 import '../css_pages/Projects.css';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import headshot from '../assets/headshot.jpg';
 import Navbar from '../components/nav';
-import githubIcon from '../assets/skill-github.svg';
-import instagramIcon from '../assets/skill-instagram.svg';
-import linkedinIcon from '../assets/skill-linkedin.svg';
-import gmailIcon from '../assets/skill-gmail.svg';
+import Container from '../components/container';
 import infoIcon from '../assets/microscope.svg'; // Import your info SVG
 // Import SVGs directly to test if the issue is with the public folder
 import bacteria1 from '../assets/bacteria1.svg';
@@ -38,7 +34,6 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [markdownContent, setMarkdownContent] = useState('');
   const [bacteriaPositions, setBacteriaPositions] = useState([]);
-  const [showMap, setShowMap] = useState(false);
   const [showInfoContainer, setShowInfoContainer] = useState(false);
 
   const isValidPosition = useCallback((newPos, existingPositions) => {
@@ -111,9 +106,6 @@ const Projects = () => {
     setMarkdownContent('');
   };
 
-  const toggleMap = () => {
-    setShowMap(!showMap);
-  };
   const customTheme = {
     ...oneLight,
     'code[class*="language-"]': {
@@ -128,93 +120,7 @@ const Projects = () => {
 
   return (
     <div className="home-container">
-      <div className="content">
-      <div className='main-content'>
-        <header className="header">
-          {showMap && (
-            <div className="map-overlay">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95250.86932393022!2d-88.38929098085609!3d41.750942791327915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880ee54d4ed5111b%3A0x7fd1f848c350e85d!2sAurora%2C%20IL!5e0!3m2!1sen!2sus!4v1722031888377!5m2!1sen!2sus"
-                title="Map of Aurora, IL"
-              ></iframe>
-              <button onClick={toggleMap} className="close-map">Close Map</button>
-            </div>
-          )}
-          <div className="header-text">
-            <h1>Alex Sorescu</h1>
-            <div className="info">
-              <p>
-                <img 
-                  src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=17&pause=1000&color=556B76FF&center=true&vCenter=true&width=300&height=17&lines=Student+Researcher;Computational+Biology;AI/ML+Developer;;" 
-                  alt="Typing SVG" 
-                />
-              </p>
-              <div className="location-container">
-                <span className="location" onClick={toggleMap}>
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="2" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    className="lucide lucide-map-pin"
-                  >
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 4.42 7 13 7 13s7-8.58 7-13c0-3.87-3.13-7-7-7z"></path>
-                    <circle cx="12" cy="9" r="3"></circle>
-                  </svg>
-                  {!showMap && "Aurora, Illinois, United States"}
-                </span>
-              </div>
-            </div>
-          </div>
-        </header>
-        <footer className="print">
-          asorescu@imsa.edu • GitHub: asor-1
-        </footer>
-        <footer className="no-print">
-          <a 
-            href="mailto:asorescu@imsa.edu" 
-            title="Email Alex" 
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            <img src ={gmailIcon} className='footer-icon' alt='Gmail Icon'/>
-          </a>
-          <a 
-            href="https://linkedin.com/in/aidanandrewss" 
-            title="Visit Alex's LinkedIn" 
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            <img src ={linkedinIcon} className='footer-icon' alt='Linkedin Icon'/>
-          </a>
-          <a 
-            href="https://github.com/asor-1" 
-            title="GitHub" 
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            <img src ={githubIcon} className='footer-icon' alt='Github Icon'/>
-          </a>
-          <a 
-            href="https://www.instagram.com/a.lsor1/" 
-            title="Instagram" 
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            <img src ={instagramIcon} className='footer-icon' alt='Instagram Icon'/>
-          </a>
-        </footer>
-        </div>
-        <div className="headshot">
-            <img 
-              src={headshot} 
-              alt="Alex Sorescu" 
-            />
-          </div>
-      </div>
+      <Container />
       <Navbar />
       <div className='about-projects'>
         <h3 className='about-header'>Alex's Projects...</h3>
