@@ -71,21 +71,24 @@ const Home = () => {
 
             <div className={`education-section ${theme}`}>
                 <h2 className='education-header'>Education...</h2>
-                <h4>
+                <h4 className ='place-name'>
                     Illinois Mathematics and Science Academy
                 </h4>
+                <p className = 'role'>#10 Public High School in America & #3 Public High School in Illinois</p>
                 <p className='date'>August 2022 - June 2025</p>
                 <p>
-                    High School Degree<br></br>
-                    - Planning to continue my education in university. With the intention of pursuing a degree in Computer Science and Biology. 
+                    High School Degree
+                </p>
+                <p className='role'>Planning to continue my education in university. With the intention of pursuing a degree in Computer Science and Biology. 
                 </p>
             </div>
             <div className='education-classes'>
                 <h2 className='education-header'>Relevant Courses...</h2>
+                <p className = "course-p">These are just some of the courses that I have taken that relate to my work. However, these courses do not limit what I know. For example, I know most of linear algebra because of machine learning; yet, I don't have the class credit for it.</p>
                 <div className='course-list'>
                     <div className='course-item'>
-                        <span className='course-code'>CSI</span>
-                        <span className='course-name'>Introduction to Computer Science (HTML/CSS & Python)</span>
+                        <span className='course-code'>Advanced Programming</span>
+                        <span className='course-name'>Advanced Computer Science (algorithms & data structures)</span>
                     </div>
                     <div className='course-item'>
                         <span className='course-code'>CS Seminar: Machine Learning</span>
@@ -100,11 +103,11 @@ const Home = () => {
                         <span className='course-name'>Special Relativity, Quantum Mechanics/Computing, & Elementary Particle Physics</span>
                     </div>
                     <div className='course-item'>
-                        <span className='course-code'>SI: Physics</span>
-                        <span className='course-name'>Equivalent to AP physics 1</span>
+                        <span className='course-code'>Calculus Physics: Mechanics</span>
+                        <span className='course-name'>Equivalent to AP Physics C</span>
                     </div>
                     <div className='course-item'>
-                        <span className='course-code'>BC Calculus 1</span>
+                        <span className='course-code'>BC Calculus 1&2</span>
                         <span className='course-name'>Equivalent to calculus I</span>
                     </div>
                     <div className='course-item'>

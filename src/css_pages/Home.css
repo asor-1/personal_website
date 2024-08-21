@@ -267,6 +267,7 @@ body, #root {
 .role {
     margin: 0;
     font-size: 1em; 
+    color: #0d517b;
 }
 
 .date {

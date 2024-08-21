@@ -117,6 +117,7 @@ body, #root {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  border: 2px black;
   width: 100%;
 }
 
@@ -125,6 +126,7 @@ body, #root {
   width: 30rem;
   height: 30rem;
   border-radius: 50%;
+  border: 2px black;
   background-color: #f0f0f0;
   margin-right: 2rem;
 }

@@ -18,28 +18,52 @@ const Graph3D = () => {
   const data = {
     nodes: [
       { id: 'Physics', group: 1, color: getRandomColor() },
-      { id: 'Classical Mechanics', group: 1, color: getRandomColor() },
-      { id: 'Quantum Mechanics', group: 1, color: getRandomColor() },
+      { id: 'Classical Mechanics (Vectors)', group: 1, color: getRandomColor() },
+      { id: 'Quantum Computing', group: 1, color: getRandomColor() },
+      { id: 'How quantum AI can improve LLMs and biomedical devices', group: 1, color: getRandomColor() },
       { id: 'Relativity', group: 1, color: getRandomColor() },
       { id: 'Machine Learning', group: 2, color: getRandomColor() },
-      { id: 'Neural Networks', group: 2, color: getRandomColor() },
-      { id: 'Deep Learning', group: 2, color: getRandomColor() },
-      { id: 'Reinforcement Learning', group: 2, color: getRandomColor() },
+      { id: 'Graph Based RAG', group: 2, color: getRandomColor() },
+      { id: 'Graph Communities/Summaries', group: 2, color: getRandomColor() },
+      { id: 'Global Answer', group: 2, color: getRandomColor() },
+      { id: 'Text Chunks', group: 2, color: getRandomColor() },
+      { id: 'Source Documents', group: 2, color: getRandomColor() },
+      { id: 'How to improve intent classification', group: 2, color: getRandomColor() },
+      { id: 'Unsupervised Learning (UCellSeg)', group: 2, color: getRandomColor() },
+      { id: 'Improving tracking trajectory over frames (>50)', group: 2, color: getRandomColor() },
       { id: 'Math', group: 3, color: getRandomColor() },
       { id: 'Calculus', group: 3, color: getRandomColor() },
-      { id: 'Algebra', group: 3, color: getRandomColor() },
-      { id: 'Geometry', group: 3, color: getRandomColor() }
+      { id: 'Linear Algebra', group: 3, color: getRandomColor() },
+      { id: 'Random Math', group: 3, color: getRandomColor() },
+      { id: 'Philosophy', group: 4, color: getRandomColor() },
+      { id: 'Mozi', group: 4, color: getRandomColor() },
+      { id: 'Critics on Confucianism', group: 4, color: getRandomColor() },
+      { id: 'How to train without labels', group: 4, color: getRandomColor() },
+      { id: 'Comp. Biology', group: 5, color: getRandomColor() },
+      { id: 'HIV Protease pockets', group: 5, color: getRandomColor() },
+      { id: 'MD trajectory files of HIV Protease', group: 5, color: getRandomColor() }
     ],
     links: [
-      { source: 'Physics', target: 'Classical Mechanics' },
-      { source: 'Physics', target: 'Quantum Mechanics' },
+      { source: 'Physics', target: 'Classical Mechanics (Vectors)' },
+      { source: 'Physics', target: 'Quantum Computing' },
+      { source: 'Quantum Computing', target: 'How quantum AI can improve LLMs and biomedical devices' },
       { source: 'Physics', target: 'Relativity' },
-      { source: 'Machine Learning', target: 'Neural Networks' },
-      { source: 'Machine Learning', target: 'Deep Learning' },
-      { source: 'Machine Learning', target: 'Reinforcement Learning' },
+      { source: 'Machine Learning', target: 'Graph Based RAG' },
+      { source: 'Machine Learning', target: 'How to improve intent classification' },
+      { source: 'Machine Learning', target: 'Unsupervised Learning (UCellSeg)' },
+      { source: 'Machine Learning', target: 'Improving tracking trajectory over frames (>50)' },
       { source: 'Math', target: 'Calculus' },
-      { source: 'Math', target: 'Algebra' },
-      { source: 'Math', target: 'Geometry' }
+      { source: 'Math', target: 'Linear Algebra' },
+      { source: 'Graph Based RAG', target: 'Linear Algebra' },
+      { source: 'Graph Based RAG', target: 'Graph Communities/Summaries' },
+      { source: 'Graph Based RAG', target: 'Global Answer' },
+      { source: 'Graph Based RAG', target: 'Text Chunks' },
+      { source: 'Text Chunks', target: 'Source Documents' },
+      { source: 'How to train without labels', target: 'Unsupervised Learning (UCellSeg)' },
+      { source: 'Math', target: 'Random Math' },
+      { source: 'Philosophy', target: 'Mozi' },
+      { source: 'Comp. Biology', target: 'HIV Protease pockets' },
+      { source: 'Comp. Biology', target: 'MD trajectory files of HIV Protease' }
     ]
   };
 
@@ -65,19 +89,19 @@ const Graph3D = () => {
       ref={graphRef}
       graphData={data}
       backgroundColor="#000033" // Set background color
-      linkWidth={1} // Thicken the links
+      linkWidth={0.5} // Thicken the links
       linkColor={() => 'white'} // Set link color to white
       nodeThreeObject={node => {
         const group = new THREE.Group();
 
         // Create sphere geometry for the node
-        const sphereRadius = ['Physics', 'Machine Learning', 'Math'].includes(node.id) ? 8 : 4;
+        const sphereRadius = ['Physics', 'Machine Learning', 'Math', 'Philosophy', 'Comp. Biology'].includes(node.id) ? 8 : 4;
         const sphereMaterial = new THREE.MeshBasicMaterial({ color: node.color });
         const sphereGeometry = new THREE.SphereGeometry(sphereRadius, 32, 32);
         const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 
         // Create sprite text for larger nodes only
-        if (['Physics', 'Machine Learning', 'Math'].includes(node.id)) {
+        if (['Physics', 'Machine Learning', 'Math', 'Philosophy', 'Comp. Biology'].includes(node.id)) {
           const sprite = new SpriteText(node.id);
           sprite.material.depthWrite = false;
           sprite.color = 'white';
@@ -90,7 +114,7 @@ const Graph3D = () => {
         group.add(sphere);
         return group;
       }}
-      nodeLabel={node => (!['Physics', 'Machine Learning', 'Math'].includes(node.id) ? node.id : '')} // Show label on hover for smaller nodes
+      nodeLabel={node => (!['Physics', 'Machine Learning', 'Math', 'Philosophy'].includes(node.id) ? node.id : '')} // Show label on hover for smaller nodes
     />
   );
 };

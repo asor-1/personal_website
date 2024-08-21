@@ -4,9 +4,11 @@ import Navbar from '../components/nav';
 import Graph3D from '../components/graph';
 import Container from '../components/container';
 import '../css_pages/notes.css';
+import vectorGraphPdf from '../assets/notes_pdfs/vector_graph.pdf';
 
 // Set up the worker for react-pdf
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/static/media/pdf.worker.js`;
+
 
 const Notes = () => {
   const [categories, setCategories] = useState(['Work', 'School', 'Personal']);
@@ -19,15 +21,15 @@ const Notes = () => {
   // Sample notes data structure with PDF file paths
   const notes = {
     Work: [
-      { id: '1', title: 'Protein Conformations - 7/25/24', pdfPath: '../assets/notes_pdfs/' },
-      { id: '2', title: 'Knowledge Graph - 8/2/24', pdfPath: '../assets/notes_pdfs/' }
+      { id: '1', title: 'Protein Conformations - 7/25/24', pdfPath: '/assets/notes_pdfs/protein_conformations.pdf' },
+      { id: '2', title: 'Knowledge Graph - 8/2/24', pdfPath: '/assets/notes_pdfs/vector_graph.pdf' }
     ],
     School: [
-      { id: '3', title: 'Study Plan', pdfPath: '../assets/notes_pdfs/' },
-      { id: '4', title: 'Research Topics', pdfPath: '../assets/notes_pdfs/' }
+      { id: '3', title: 'Study Plan', pdfPath: '/assets/notes_pdfs/study_plan.pdf' },
+      { id: '4', title: 'Research Topics', pdfPath: '/assets/notes_pdfs/research_topics.pdf' }
     ],
     Personal: [
-      { id: '5', title: 'Project Ideas - 7/29/24', pdfPath: '../assets/notes_pdfs/' }
+      { id: '5', title: 'Project Ideas - 7/29/24', pdfPath: '/assets/notes_pdfs/project_ideas.pdf' }
     ]
   };
 
@@ -108,12 +110,9 @@ const Notes = () => {
             {selectedNote && (
               <div className="note-content">
                 <h3>{selectedNote.title}</h3>
-                <Document
-                  file={selectedNote.pdfPath}
-                  onLoadSuccess={onDocumentLoadSuccess}
-                >
-                  <Page pageNumber={pageNumber} />
-                </Document>
+                <Document file={selectedNote.pdfPath} onLoadSuccess={onDocumentLoadSuccess}>
+  <Page pageNumber={pageNumber} />
+</Document>
                 <div className="pdf-controls">
                   <button onClick={previousPage} disabled={pageNumber <= 1}>Previous</button>
                   <p>Page {pageNumber} of {numPages}</p>
