@@ -28,9 +28,9 @@ const Home = () => {
                 <h2 className='about-header'>About Alex...</h2>
                 <p>
                 Hi there, 
-                <br></br><br></br>I am a dedicated and attentive ML developer with an interest in computational biology. As a current student and a researcher focused on machine learning applications in biology, I am deeply committed to using technology to solve complex problems. 
-                My academic and recreational projects are where I apply my knowledge. I spend most of my time researching, learning, and playing pickleball. 
-                However, when I am not working I am the biggest supporter of the Tottenham Hotspurs.
+                <br></br><br></br>I am a dedicated and attentive ML developer with an interest in computational biology. As a current student and researcher focused on machine learning applications in biology, I am deeply committed to using technology to solve complex problems. 
+                My academic and recreational projects are where I apply my knowledge. I spend most of my time researching, learning, and applying machine learning. 
+                However, when I am not working I am the biggest supporter of the Tottenham Hotspurs (or playing pickleball).
 
                 </p>
             </div>
@@ -47,6 +47,17 @@ const Home = () => {
                         <button onClick={() => setShowPdf(false)} className='pdf-button-view-button'>Close</button>
                     </div>
                 )}
+            </div>
+            <div className={`research-section ${theme}`}>
+                <h2 className='research-header'>Relevant Work Experience...</h2>
+                <div clasName='nu-research'>
+                    <div className='name-role'>
+                    <h4 className='place-name'>OpenMind - Mental Health Initiative</h4>
+                    <p className = 'role'>Co-Founder/CTO (AI developer)</p>
+                    </div>
+                        <p className='date'>December 2022 - Present</p>
+                        <p>The initiative offers comprehensive resources and services to support individuals in their mental wellness journey. The organization offers a range of traditional mental health resources, such as therapy and support groups. The flagship offering is an AI-powered mental health chatbot therapist app named Quinn, designed to provide accessible, on-demand support for individuals experiencing mental health challenges. We also created an assistant AI for Quinn that provides directions to support groups and facilities and updates user information. <br></br><br></br>We have raised over $20,000 from competitions and grants. Conducted a successful pilot within our school, as well as pilots with other organizations and mental health clinics. OpenMind was invited to speak at Springfield, IL congress.</p>
+                </div>
             </div>
             
             <div className={`research-section ${theme}`}>
@@ -84,7 +95,7 @@ const Home = () => {
             </div>
             <div className='education-classes'>
                 <h2 className='education-header'>Relevant Courses...</h2>
-                <p className = "course-p">These are just some of the courses that I have taken that relate to my work. However, these courses do not limit what I know. For example, I know most of linear algebra because of machine learning; yet, I don't have the class credit for it.</p>
+                <p className = "">These courses do not limit what I know.</p>
                 <div className='course-list'>
                     <div className='course-item'>
                         <span className='course-code'>Advanced Programming</span>

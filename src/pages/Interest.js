@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import '../css_pages/Interest.css';
-import headshot from '../assets/headshot.jpg';
 import Navbar from '../components/nav';
 import Container from '../components/container'
 import mathML from '../assets/math_for_mL.jpg'
 import mozi from '../assets/moziCover.jpg'
 import jstewart from '../assets/jstewart.jpg'
-import githubIcon from '../assets/skill-github.svg';
-import instagramIcon from '../assets/skill-instagram.svg';
-import linkedinIcon from '../assets/skill-linkedin.svg';
-import gmailIcon from '../assets/skill-gmail.svg';
 
 const Interest = () => {
     const [activeTab, setActiveTab] = useState(null);
