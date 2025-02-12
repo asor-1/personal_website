@@ -15,6 +15,8 @@ import skillscikit from '../assets/skill-scikit.svg';
 import skilltensorflow from '../assets/skill-tensorflow.svg';
 import skillgcp from '../assets/skill-gcp.svg';
 import Hexagon from '../components/hexagons';
+import Courses from '../components/courses';
+import SkillsSection from '../components/skills';
 
 const Home = () => {
     const [showPdf, setShowPdf] = useState(false);
@@ -22,7 +24,7 @@ const Home = () => {
 
     return (
         <div className={`home-container ${theme}`}>
-            {/* Hexagon Background */}
+
             <Hexagon />
             <Container />
             <Navbar />
@@ -38,7 +40,7 @@ const Home = () => {
             </div>
 
             <div className={`resume-section ${theme}`}>
-                <h2 className='resume-header'>Alex's Resume...</h2>
+                <h2 className='resume-header'>Alex's Resume...(Not up-to-date)</h2>
                 <div className='pdf-buttons'>
                     <a href={resume} download className='pdf-button-download-button'>Download PDF</a>
                     <button onClick={() => setShowPdf(true)} className='pdf-button-view-button'>View PDF</button>
@@ -88,28 +90,10 @@ const Home = () => {
                 <p className='date'>August 2022 - June 2025</p>
                 <p>High School Degree</p>
             </div>
+                <Courses />
 
-            <div className='education-classes'>
-                <h2 className='education-header'>Relevant Courses...</h2>
-                <p>These courses do not limit what I know.</p>
-                <div className='course-list'>
-                    <div className='course-item'><span className='course-code'>Advanced Programming</span><span className='course-name'>Advanced Computer Science (algorithms & data structures)</span></div>
-                    <div className='course-item'><span className='course-code'>CS Seminar: Machine Learning</span><span className='course-name'>Intro to Machine Learning algorithms (CNN & Intent Classification)</span></div>
-                    <div className='course-item'><span className='course-code'>OOP</span><span className='course-name'>Object-oriented programming (Java)</span></div>
-                    <div className='course-item'><span className='course-code'>Physical Chemistry</span><span className='course-name'>Thermodynamics, kinetic theory, & quantum mech. applied to chemistry</span></div>
-                </div>
-            </div>
-
-            <div className={`list-skills ${theme}`}>
-                <h3>List of Skills:</h3>
-                <div className='skill-row'>
-                    <div className='skill-item'><img src={skillpython} alt='Python Icon'/><span>Python</span></div>
-                    <div className='skill-item'><img src={skilljava} alt='Java Icon'/><span>Java</span></div>
-                    <div className='skill-item'><img src={skillr} alt='R Icon'/><span>R</span></div>
-                    <div className='skill-item'><img src={skillreact} alt='React Icon'/><span>React</span></div>
-                    <div className='skill-item'><img src={skilltensorflow} alt='Tensorflow Icon'/><span>Tensorflow</span></div>
-                </div>
-            </div>
+           
+            <SkillsSection theme={theme} />
         </div>
     );
 };

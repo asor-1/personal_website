@@ -51,6 +51,7 @@ body, #root {
   width: 80%;
   max-width: 45%;
   padding-top: 1rem;
+  padding-left: 1rem;
   border-radius: 0.625rem;
   background-color: #fff;
   margin-bottom: 2rem; /* Add margin at the bottom */

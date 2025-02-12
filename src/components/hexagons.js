@@ -11,18 +11,6 @@ const Hexagon = () => {
     '⊆', '⊇', '∩', 'F=ma', 'E=mc²', 'PV=nRT', 'Σf=0'
   ], []);
 
-  const generateEquation = () => {
-    const equations = [
-      '<svg viewBox="0 0 100 40"><text x="10" y="30" font-family="math, serif" font-size="20px">∫e^x dx</text></svg>',
-      '<svg viewBox="0 0 100 40"><text x="10" y="30" font-family="math, serif" font-size="20px">Σx²</text></svg>',
-      '<svg viewBox="0 0 100 40"><text x="10" y="30" font-family="math, serif" font-size="20px">∇×F</text></svg>',
-      '<svg viewBox="0 0 150 60"><text x="10" y="50" font-family="math, serif" font-size="20px">O(n²)</text></svg>',
-      '<svg viewBox="0 0 150 60"><text x="10" y="50" font-family="math, serif" font-size="20px">SHA-256</text></svg>',
-      '<svg viewBox="0 0 150 60"><text x="10" y="50" font-family="math, serif" font-size="20px">Eulerian Circuit</text></svg>'
-    ];
-    return equations[Math.floor(Math.random() * equations.length)];
-  };
-
   useEffect(() => {
     const createElements = () => {
       const container = containerRef.current;
@@ -35,28 +23,26 @@ const Hexagon = () => {
       const numLineGroups = 10;
       const linesPerGroup = 10;
       const numSymbols = window.innerWidth < 768 ? 20 : 30;
+      const placedSymbols = [];
 
-      // Generate grouped curvy lines
       for (let g = 0; g < numLineGroups; g++) {
         let startX, startY, endX, endY;
 
-        // Define random start and end positions on the edges
         const edge = Math.floor(Math.random() * 4);
-        if (edge === 0) { // Top edge
+        if (edge === 0) {
           startX = Math.random() * containerWidth;
           startY = 0;
-        } else if (edge === 1) { // Bottom edge
+        } else if (edge === 1) {
           startX = Math.random() * containerWidth;
           startY = containerHeight;
-        } else if (edge === 2) { // Left edge
+        } else if (edge === 2) {
           startX = 0;
           startY = Math.random() * containerHeight;
-        } else { // Right edge
+        } else {
           startX = containerWidth;
           startY = Math.random() * containerHeight;
         }
 
-        // Define end point on another edge
         const endEdge = (edge + Math.floor(Math.random() * 3) + 1) % 4;
         if (endEdge === 0) {
           endX = Math.random() * containerWidth;
@@ -72,13 +58,14 @@ const Hexagon = () => {
           endY = Math.random() * containerHeight;
         }
 
-        // Generate multiple curvy lines per group
+        const lineColor = g % 2 === 0 ? "rgba(0, 75, 128, 0.4)" : "rgba(0, 128, 0, 0.4)";
+
         for (let i = 0; i < linesPerGroup; i++) {
           const line = document.createElement("div");
           line.className = "wavy-line";
 
-          const variation = (Math.random() - 0.5) * 200; // Bigger variation for curvier effect
-          const midX = (startX + endX) / 2 + (Math.random() - 0.5) * 300; // Add randomness to curve midpoint
+          const variation = (Math.random() - 0.5) * 200;
+          const midX = (startX + endX) / 2 + (Math.random() - 0.5) * 300;
           const midY = (startY + endY) / 2 + (Math.random() - 0.5) * 300;
 
           const pathData = `M${startX} ${startY} 
@@ -88,26 +75,34 @@ const Hexagon = () => {
                             ${endX} ${endY}`;
 
           line.innerHTML = `<svg class="line-svg" viewBox="0 0 ${containerWidth} ${containerHeight}">
-            <path d="${pathData}" stroke="rgba(0, 100, 255, 0.4)" stroke-width="0.8" fill="transparent" />
+            <path d="${pathData}" stroke="${lineColor}" stroke-width="0.8" fill="transparent" />
           </svg>`;
 
           container.appendChild(line);
         }
       }
 
-      // Place scientific symbols only in 0-15% and 85-100% range
       for (let i = 0; i < numSymbols; i++) {
-        const symbol = document.createElement("div");
+        let symbol, x, y, overlap;
+        do {
+          // Randomly choose left edge (0-15%) or right edge (85-100%)
+          const isLeftEdge = Math.random() < 0.5;
+          if (isLeftEdge) {
+            x = Math.random() * (containerWidth * 0.15); // 0-15%
+          } else {
+            x = containerWidth * 0.85 + Math.random() * (containerWidth * 0.15); // 85-100%
+          }
+          y = Math.random() * (containerHeight - 50);
+          overlap = placedSymbols.some(([px, py]) => Math.hypot(px - x, py - y) < 50);
+        } while (overlap);
+
+        symbol = document.createElement("div");
         symbol.className = "scientific-symbol";
-        symbol.innerHTML = Math.random() > 0.7 ? generateEquation() : scientificSymbols[Math.floor(Math.random() * scientificSymbols.length)];
+        symbol.innerHTML = scientificSymbols[Math.floor(Math.random() * scientificSymbols.length)];
+        symbol.style.left = `${x}px`;
+        symbol.style.top = `${y}px`;
 
-        let x, y;
-        x = Math.random() < 0.5 ? Math.random() * 15 : 85 + Math.random() * 15; // Keep symbols on the edges
-        y = Math.random() * 100;
-
-        symbol.style.left = `${x}%`;
-        symbol.style.top = `${y}%`;
-
+        placedSymbols.push([x, y]);
         container.appendChild(symbol);
       }
     };
@@ -152,12 +147,6 @@ const Hexagon = () => {
             color: black;
             pointer-events: none;
             white-space: nowrap;
-          }
-
-          .scientific-symbol svg {
-            width: 100px;
-            height: 40px;
-            fill: black;
           }
         `}
       </style>

@@ -2,7 +2,10 @@
     width: 40%;
     color: rgb(0, 0, 0);
     padding-bottom: 2rem;
+    background: transparent;
+    padding: 1rem 0;
     z-index: 0;
+    transition: all 0.3s ease-in-out;
 }
 
 .navbar ul {
@@ -30,4 +33,13 @@
 .navbar a.active {
     font-weight: bold;
     text-decoration: underline;
+}
+.navbar.sticky {
+    position: fixed;
+    top: 0;
+    background: rgba(255, 255, 255, 0.7); /* Semi-transparent */
+    backdrop-filter: blur(10px); /* Blur effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 0.8rem 0;
+    z-index: 10;
 }
