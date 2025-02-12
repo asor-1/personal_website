@@ -248,3 +248,19 @@ body, #root {
     background-color: rgba(var(--card-bg-color), 0.95);
     backdrop-filter: blur(10px);
 }
+.nu-research {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures text stays on the left, image on the right */
+    gap: 1rem;
+}
+
+.research-content {
+    flex: 1; /* Ensures text takes up available space */
+}
+
+.research-logo {
+    width: 20%; /* Adjust size as needed */
+    height: auto;
+    border-radius: 8px; /* Optional rounded corners */
+}

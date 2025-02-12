@@ -88,9 +88,9 @@ const Hexagon = () => {
           // Randomly choose left edge (0-15%) or right edge (85-100%)
           const isLeftEdge = Math.random() < 0.5;
           if (isLeftEdge) {
-            x = Math.random() * (containerWidth * 0.15); // 0-15%
+            x = Math.random() * (containerWidth * 0.2); // 0-15%
           } else {
-            x = containerWidth * 0.85 + Math.random() * (containerWidth * 0.15); // 85-100%
+            x = containerWidth * 0.80 + Math.random() * (containerWidth * 0.2); // 85-100%
           }
           y = Math.random() * (containerHeight - 50);
           overlap = placedSymbols.some(([px, py]) => Math.hypot(px - x, py - y) < 50);

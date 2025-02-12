@@ -66,26 +66,41 @@ const Home = () => {
             </div>
             
             <div className={`research-section ${theme}`}>
-                <h2 className='research-header'>Relevant Research Experience...</h2>
+                <h2 className='research-header'>Relevant Research Experience...(NOT up-to-date)</h2>
+        
                 <div className='nu-research'>
-                    <div className='name-role'>
-                        <h4 className='place-name'>Feinberg School of Medicine, Northwestern University</h4>
-                        <p className='role'>Lab Researcher</p>
+                    <div className='research-content'>
+                        <div className='name-role'>
+                            <h4 className='place-name'>Feinberg School of Medicine, Northwestern University</h4>
+                            <p className='role'>Lab Researcher</p>
+                        </div>
+                        <p className='date'>July 2023 - Present</p>
+                        <p>I built an image sequencing pipeline focused on pancreatic cancer cells...</p>
                     </div>
-                    <p className='date'>July 2023 - Present</p>
-                    <p>I built an image sequencing pipeline focused on pancreatic cancer cells...</p>
+                    <img src={require('../assets/goyalLabLogo.jpg')} alt="Feinberg School of Medicine Logo" className="research-logo" />
                 </div>
-                <div className='name-role'>
-                    <h4 className='place-name'>University of Illinois Chicago, Medical School</h4>
-                    <p className='role'>Lab Intern</p>
+
+                <div className='nu-research'>
+                    <div className='research-content'>
+                        <div className='name-role'>
+                            <h4 className='place-name'>University of Illinois Chicago, Medical School</h4>
+                            <p className='role'>Lab Intern</p>
+                        </div>
+                        <p className='date'>May 2024 - Present</p>
+                        <p>High School Degree, planning to continue my education in university...</p>
+                    </div>
+                    <img src={require('../assets/uiclogo.jpg')} alt="UIC Medical School Logo" className="research-logo" />
                 </div>
-                <p className='date'>May 2024 - Present</p>
-                <p>High School Degree, planning to continue my education in university...</p>
             </div>
+
 
             <div className={`education-section ${theme}`}>
                 <h2 className='education-header'>Education...</h2>
-                <h4 className ='place-name'>Illinois Mathematics and Science Academy</h4>
+                <h4 className ='place-name'>University of Maryland, College Park (UMD)</h4>
+                <p className='role'>#10 Ranked Computer Science program in the nation according to csrankings.org</p>
+                <p className='date'>Expected Graduation: August 2025 - June 2029</p>
+                <p>Bachelor of Science (BS): Computer Science with a specialization in Machine Learning</p>
+                <h4 className ='place-name'>Illinois Mathematics and Science Academy (IMSA)</h4>
                 <p className='role'>#10 Public High School in America & #3 Public High School in Illinois</p>
                 <p className='date'>August 2022 - June 2025</p>
                 <p>High School Degree</p>
