@@ -1,96 +1,92 @@
+/* Container Styles */
 .content-personal-info {
-    width: 45%;
+    width: 50%;
     text-align: left;
-    padding: 0.5rem;
-    border-radius: 0.625rem;
-    background-color: #fff;
-    box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2); /* Glassmorphism effect */
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     position: relative;
     margin-bottom: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-
-.header {
-    width: 100%;
-}
-.header h1 {
-    margin-bottom: 0.5rem;
-}
-.main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.header-text {
-    flex: 1;
-    text-align: center;
+/* Typography */
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
 }
 
-.info {
-    margin-bottom: 1rem;
-}
-.location-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 0.5rem;
-}
-
-.location-container {
-    display: flex;
-    align-items: center;
-    margin-top: 0.5rem;
+/* Animated Name */
+.name-animated {
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(90deg, #154360, #2874A6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 1s ease-in-out;
 }
 
-.location svg {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-right: 0.5rem;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-
-.header-text {
-    width: 100%;
-}
-
-/* Style the headshot container */
+/* Headshot */
 .headshot {
     flex-shrink: 0;
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     margin-right: 2rem;
-    border: none;
 }
 
-/* Style the headshot image */
 .headshot img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
+    border: 3px solid #154360;
+    transition: transform 0.3s ease;
 }
 
+.headshot img:hover {
+    transform: scale(1.05);
+}
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .map-overlay {
-        width: 90%;
-        height: 60vh;
-        max-width: none;
-        margin-right: auto;
-        margin-left: auto;
-    }
+/* Social Media Icons */
+.contact-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
 }
 
 .footer-icon {
-    width: 2rem; /* Adjust the size as needed */
-    padding-top: .5rem;
-    padding-left: .5rem;
-    padding-right: .5rem;
-    height: 2rem; /* Adjust the size as needed */
+    width: 2rem;
+    height: 2rem;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.footer-icon:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .content-personal-info {
+        flex-direction: column;
+        text-align: center;
+        width: 90%;
+    }
+
+    .headshot {
+        margin: 1rem 0;
+    }
 }

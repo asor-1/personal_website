@@ -2,6 +2,7 @@
     width: 40%;
     color: rgb(0, 0, 0);
     padding-bottom: 2rem;
+    z-index: 0;
 }
 
 .navbar ul {

@@ -11,6 +11,7 @@ import bacteria1 from '../assets/bacteria1.svg';
 import bacteria2 from '../assets/bacteria2.svg';
 import bacteria3 from '../assets/bacteria3.svg';
 import bacteria4 from '../assets/bacteria4.svg';
+import Hexagon from '../components/hexagons';
 
 import track from '../markdown/project1.md'
 import graphRAG from '../markdown/graphRag.md'
@@ -120,6 +121,7 @@ const Projects = () => {
 
   return (
     <div className="home-container">
+      <Hexagon />
       <Container />
       <Navbar />
       <div className='about-projects'>
@@ -160,7 +162,7 @@ const Projects = () => {
             {showInfoContainer && (
               <div className="info-container">
                 <h3>Welcome to Alex's Petri Dish!</h3>
-                <p>Even though I am interested in computational biology, I have never once picked up a pipette in the wet lab. </p>
+                <p>Even though I am interested in computational biology, I have never once picked up a pipette in wet lab. </p>
                 <button onClick={toggleInfoContainer}>Close</button>
               </div>
             )}

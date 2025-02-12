@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import '../css_pages/Interest.css';
 import Navbar from '../components/nav';
-import Container from '../components/container'
-import mathML from '../assets/math_for_mL.jpg'
-import mozi from '../assets/moziCover.jpg'
-import jstewart from '../assets/jstewart.jpg'
+import Container from '../components/container';
+import Graph3D from '../components/graph';
+import mathML from '../assets/math_for_mL.jpg';
+import mozi from '../assets/moziCover.jpg';
+import jstewart from '../assets/jstewart.jpg';
+import Hexagon from '../components/hexagons';
 
 const Interest = () => {
     const [activeTab, setActiveTab] = useState(null);
-
 
     const toggleTab = (tab) => {
         setActiveTab(activeTab === tab ? null : tab);
@@ -26,13 +27,13 @@ const Interest = () => {
                 image: mozi,
                 title: "The Mozi: A Complete Translation",
                 author: "Ian Johnston (Translator)",
-                description: "It is one of the few texts to survive the Warring States period (403-221 B.C.E.) and is crucial to understanding the origins of Chinese philosophy and two other foundational works, the Mengzi and the Xunzi. Ian Johnston provides an English translation of the entire Mozi, as well as the first bilingual edition in any European language to be published in the West. His careful translation reasserts the significance of the text's central doctrines, and his annotations and contextual explanations add vivid historical and interpretive dimensions"
+                description: "It is one of the few texts to survive the Warring States period (403-221 B.C.E.) and is crucial to understanding the origins of Chinese philosophy. Ian Johnston provides an English translation of the entire Mozi, with annotations and historical context."
             },
             {
                 image: mathML,
                 title: "Mathematics for Machine Learning",
                 author: "Marc Peter Deisenroth",
-                description: "Deisenroth introduces you to the fundamental mathematical tools needed to understand machine-learning; this includes linear algebra, analytic geometry, matrix decomposition, vector calc, optimization, probability and statistics."
+                description: "Deisenroth introduces you to the fundamental mathematical tools needed to understand machine-learning; this includes linear algebra, analytic geometry, matrix decomposition, vector calculus, optimization, probability, and statistics."
             },
             {
                 image: "/api/placeholder/150/200",
@@ -68,14 +69,21 @@ const Interest = () => {
         </div>
     );
 
+    const GraphContainer = () => (
+        <div className="interest-container graph-container">
+            <h3>3D Graph</h3>
+            <Graph3D />
+        </div>
+    );
+
     return (
         <div className="home-container">
-          <Container />
-          <Navbar />
+            <Hexagon />
+            <Container />
+            <Navbar />
             <div className='about-section'>
                 <h3 className='about-header'>Alex's Interests...</h3>
-                <p> These are just some of the things that I am interested. Feel free to check out what I'm interested in outside of my studies!
-                </p>
+                <p> These are just some of the things that I am interested in. Feel free to check out what I'm passionate about outside of my studies!</p>
             </div>
             <div className="interest-navbar">
                 <button 
@@ -90,11 +98,18 @@ const Interest = () => {
                 >
                     Hobbies
                 </button>
+                <button 
+                    className={`nav-button ${activeTab === 'graph' ? 'active' : ''}`} 
+                    onClick={() => toggleTab('graph')}
+                >
+                    3D Graph
+                </button>
             </div>
 
-            {/* Conditional rendering of containers */}
+            {/* Conditional rendering of sections */}
             {activeTab === 'bookshelf' && <BookshelfContainer />}
             {activeTab === 'hobbies' && <HobbiesContainer />}
+            {activeTab === 'graph' && <GraphContainer />}
         </div>
     );
 };

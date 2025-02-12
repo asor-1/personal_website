@@ -5,6 +5,7 @@ import Graph3D from '../components/graph';
 import Container from '../components/container';
 import '../css_pages/notes.css';
 import vectorGraphPdf from '../assets/notes_pdfs/vector_graph.pdf';
+import Hexagon from '../components/hexagons';
 
 // Set up the worker for react-pdf
 pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/static/media/pdf.worker.js`;
@@ -21,8 +22,8 @@ const Notes = () => {
   // Sample notes data structure with PDF file paths
   const notes = {
     Work: [
-      { id: '1', title: 'Protein Conformations - 7/25/24', pdfPath: '/assets/notes_pdfs/protein_conformations.pdf' },
-      { id: '2', title: 'Knowledge Graph - 8/2/24', pdfPath: '/assets/notes_pdfs/vector_graph.pdf' }
+      { id: '1', title: 'Protein Conformations - 7/25/24', pdfPath: '../assets/notes_pdfs/protein_conformations.pdf' },
+      { id: '2', title: 'Knowledge Graph - 8/2/24', pdfPath: '../assets/alexs_resume.pdf' }
     ],
     School: [
       { id: '3', title: 'Study Plan', pdfPath: '/assets/notes_pdfs/study_plan.pdf' },
@@ -61,6 +62,7 @@ const Notes = () => {
 
   return (
     <div className='home-container'>
+      <Hexagon />
       <Container />
       <Navbar />
       <div className='about-notes'>
