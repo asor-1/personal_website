@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useMemo } from "react";
 
-const Hexagon = () => {
+const MathVisualization = () => {
   const containerRef = useRef(null);
 
   const scientificSymbols = useMemo(() => [
@@ -9,6 +9,90 @@ const Hexagon = () => {
     '∑', 'π', '∫', 'Δ', '∞', 'λ', 'β', 'μ', '∏', '∂', 'θ', 'Ω', 
     'e^x', 'dx/dt', '∇', 'φ', 'ψ', '⊕', '⊗', '∀', '∃', '∈', '∉', 
     '⊆', '⊇', '∩', 'F=ma', 'E=mc²', 'PV=nRT', 'Σf=0'
+  ], []);
+
+  const functions = useMemo(() => [
+    {
+      name: 'sin(x)',
+      generate: (width, height) => {
+        const points = [];
+        for (let x = 0; x < width; x += 5) {
+          const y = height/2 + Math.sin(x/50) * 100;
+          points.push([x, y]);
+        }
+        return points;
+      }
+    },
+    {
+      name: 'fractal',
+      generate: (width, height) => {
+        const points = [];
+        const iterations = 3;
+        const baseX = width * 0.2;
+        const baseY = height * 0.5;
+        
+        const addKochCurve = (x1, y1, x2, y2, depth) => {
+          if (depth === 0) {
+            points.push([x1, y1], [x2, y2]);
+            return;
+          }
+          
+          const dx = x2 - x1;
+          const dy = y2 - y1;
+          const len = Math.sqrt(dx*dx + dy*dy);
+          const unit = len/3;
+          
+          const p1 = [x1, y1];
+          const p2 = [x1 + dx/3, y1 + dy/3];
+          const p3 = [
+            x1 + dx/2 - dy*Math.sqrt(3)/6,
+            y1 + dy/2 + dx*Math.sqrt(3)/6
+          ];
+          const p4 = [x1 + 2*dx/3, y1 + 2*dy/3];
+          const p5 = [x2, y2];
+          
+          addKochCurve(p1[0], p1[1], p2[0], p2[1], depth-1);
+          addKochCurve(p2[0], p2[1], p3[0], p3[1], depth-1);
+          addKochCurve(p3[0], p3[1], p4[0], p4[1], depth-1);
+          addKochCurve(p4[0], p4[1], p5[0], p5[1], depth-1);
+        };
+        
+        addKochCurve(baseX, baseY, baseX + width * 0.6, baseY, iterations);
+        return points;
+      }
+    },
+    {
+      name: 'tan(x*y)',
+      generate: (width, height) => {
+        const points = [];
+        const t = Math.random() * Math.PI; // Random phase
+        for (let x = 0; x < width; x += 10) {
+          const y = height/2 + Math.tan(x/100 + t) * 50;
+          if (Math.abs(y - height/2) < height/3) {
+            points.push([x, y]);
+          }
+        }
+        return points;
+      }
+    },
+    {
+      name: 'sin(r²)',
+      generate: (width, height) => {
+        const points = [];
+        const centerX = width/2;
+        const centerY = height/2;
+        const radius = Math.min(width, height) * 0.4;
+        const phase = Math.random() * Math.PI * 2; // Random phase
+        
+        for (let angle = 0; angle < Math.PI * 2; angle += 0.1) {
+          const r = radius * (1 + Math.sin(angle * 3 + phase) * 0.2);
+          const x = centerX + Math.cos(angle) * r;
+          const y = centerY + Math.sin(angle) * r;
+          points.push([x, y]);
+        }
+        return points;
+      }
+    }
   ], []);
 
   useEffect(() => {
@@ -20,59 +104,26 @@ const Hexagon = () => {
       const containerHeight = container.offsetHeight;
       container.innerHTML = "";
 
-      const numLineGroups = 10;
-      const linesPerGroup = 10;
+      const numFunctions = 3;
+      const linesPerFunction = 8;
       const numSymbols = window.innerWidth < 768 ? 20 : 30;
       const placedSymbols = [];
 
-      for (let g = 0; g < numLineGroups; g++) {
-        let startX, startY, endX, endY;
+      // Create functions
+      for (let f = 0; f < numFunctions; f++) {
+        const selectedFunction = functions[Math.floor(Math.random() * functions.length)];
+        const lineColor = f % 2 === 0 ? "rgba(0, 75, 128, 0.4)" : "rgba(0, 128, 0, 0.4)";
 
-        const edge = Math.floor(Math.random() * 4);
-        if (edge === 0) {
-          startX = Math.random() * containerWidth;
-          startY = 0;
-        } else if (edge === 1) {
-          startX = Math.random() * containerWidth;
-          startY = containerHeight;
-        } else if (edge === 2) {
-          startX = 0;
-          startY = Math.random() * containerHeight;
-        } else {
-          startX = containerWidth;
-          startY = Math.random() * containerHeight;
-        }
-
-        const endEdge = (edge + Math.floor(Math.random() * 3) + 1) % 4;
-        if (endEdge === 0) {
-          endX = Math.random() * containerWidth;
-          endY = 0;
-        } else if (endEdge === 1) {
-          endX = Math.random() * containerWidth;
-          endY = containerHeight;
-        } else if (endEdge === 2) {
-          endX = 0;
-          endY = Math.random() * containerHeight;
-        } else {
-          endX = containerWidth;
-          endY = Math.random() * containerHeight;
-        }
-
-        const lineColor = g % 2 === 0 ? "rgba(0, 75, 128, 0.4)" : "rgba(0, 128, 0, 0.4)";
-
-        for (let i = 0; i < linesPerGroup; i++) {
+        for (let i = 0; i < linesPerFunction; i++) {
+          const points = selectedFunction.generate(containerWidth, containerHeight);
+          
           const line = document.createElement("div");
           line.className = "wavy-line";
 
-          const variation = (Math.random() - 0.5) * 200;
-          const midX = (startX + endX) / 2 + (Math.random() - 0.5) * 300;
-          const midY = (startY + endY) / 2 + (Math.random() - 0.5) * 300;
-
-          const pathData = `M${startX} ${startY} 
-                            C${startX + variation} ${startY + variation}, 
-                            ${midX} ${midY}, 
-                            ${endX - variation} ${endY - variation}, 
-                            ${endX} ${endY}`;
+          let pathData = `M${points[0][0]} ${points[0][1]}`;
+          for (let j = 1; j < points.length; j++) {
+            pathData += ` L${points[j][0]} ${points[j][1]}`;
+          }
 
           line.innerHTML = `<svg class="line-svg" viewBox="0 0 ${containerWidth} ${containerHeight}">
             <path d="${pathData}" stroke="${lineColor}" stroke-width="0.8" fill="transparent" />
@@ -82,15 +133,15 @@ const Hexagon = () => {
         }
       }
 
+      // Add floating symbols
       for (let i = 0; i < numSymbols; i++) {
         let symbol, x, y, overlap;
         do {
-          // Randomly choose left edge (0-15%) or right edge (85-100%)
           const isLeftEdge = Math.random() < 0.5;
           if (isLeftEdge) {
-            x = Math.random() * (containerWidth * 0.2); // 0-15%
+            x = Math.random() * (containerWidth * 0.2);
           } else {
-            x = containerWidth * 0.80 + Math.random() * (containerWidth * 0.2); // 85-100%
+            x = containerWidth * 0.80 + Math.random() * (containerWidth * 0.2);
           }
           y = Math.random() * (containerHeight - 50);
           overlap = placedSymbols.some(([px, py]) => Math.hypot(px - x, py - y) < 50);
@@ -101,6 +152,9 @@ const Hexagon = () => {
         symbol.innerHTML = scientificSymbols[Math.floor(Math.random() * scientificSymbols.length)];
         symbol.style.left = `${x}px`;
         symbol.style.top = `${y}px`;
+        
+        // Add random animation delay for each symbol
+        symbol.style.animationDelay = `${Math.random() * 2}s`;
 
         placedSymbols.push([x, y]);
         container.appendChild(symbol);
@@ -109,8 +163,11 @@ const Hexagon = () => {
 
     createElements();
     window.addEventListener("resize", createElements);
-    return () => window.removeEventListener("resize", createElements);
-  }, [scientificSymbols]);
+    
+    return () => {
+      window.removeEventListener("resize", createElements);
+    };
+  }, [functions, scientificSymbols]);
 
   return (
     <>
@@ -147,6 +204,19 @@ const Hexagon = () => {
             color: black;
             pointer-events: none;
             white-space: nowrap;
+            animation: float 3s ease-in-out infinite;
+          }
+
+          @keyframes float {
+            0% {
+              transform: translateY(0px);
+            }
+            50% {
+              transform: translateY(-10px);
+            }
+            100% {
+              transform: translateY(0px);
+            }
           }
         `}
       </style>
@@ -156,4 +226,4 @@ const Hexagon = () => {
   );
 };
 
-export default Hexagon;
+export default MathVisualization;
