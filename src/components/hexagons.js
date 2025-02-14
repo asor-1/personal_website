@@ -3,14 +3,6 @@ import React, { useEffect, useRef, useMemo } from "react";
 const MathVisualization = () => {
   const containerRef = useRef(null);
 
-  const scientificSymbols = useMemo(() => [
-    'O(n)', 'O(log n)', 'O(n²)', 'O(1)', 'Ω(n)', 'Θ(n)', 
-    'Eulerian Circuit', 'factorial(n) = n * factorial(n-1)', 'SHA-256', 'MD5', 
-    '∑', 'π', '∫', 'Δ', '∞', 'λ', 'β', 'μ', '∏', '∂', 'θ', 'Ω', 
-    'e^x', 'dx/dt', '∇', 'φ', 'ψ', '⊕', '⊗', '∀', '∃', '∈', '∉', 
-    '⊆', '⊇', '∩', 'F=ma', 'E=mc²', 'PV=nRT', 'Σf=0'
-  ], []);
-
   const functions = useMemo(() => [
     {
       name: 'sin(x)',
@@ -62,13 +54,19 @@ const MathVisualization = () => {
       }
     },
     {
-      name: 'tan(x*y)',
+      name: 'polar_rose',
       generate: (width, height) => {
         const points = [];
-        const t = Math.random() * Math.PI; // Random phase
-        for (let x = 0; x < width; x += 10) {
-          const y = height/2 + Math.tan(x/100 + t) * 50;
-          if (Math.abs(y - height/2) < height/3) {
+        const centerX = width/2;
+        const centerY = height/2;
+        const scale = Math.min(width, height) * 0.3;
+        
+        for (let t = 0; t < Math.PI * 4; t += 0.01) {
+          const r = Math.cos(26 * t) * scale;
+          const theta = 26 * Math.sin(26 * t);
+          const x = centerX + r * Math.cos(theta);
+          const y = centerY + r * Math.sin(theta);
+          if (isFinite(x) && isFinite(y)) {
             points.push([x, y]);
           }
         }
@@ -76,19 +74,22 @@ const MathVisualization = () => {
       }
     },
     {
-      name: 'sin(r²)',
+      name: 'transcendental',
       generate: (width, height) => {
         const points = [];
         const centerX = width/2;
         const centerY = height/2;
-        const radius = Math.min(width, height) * 0.4;
-        const phase = Math.random() * Math.PI * 2; // Random phase
+        const scale = Math.min(width, height) * 0.3;
         
-        for (let angle = 0; angle < Math.PI * 2; angle += 0.1) {
-          const r = radius * (1 + Math.sin(angle * 3 + phase) * 0.2);
-          const x = centerX + Math.cos(angle) * r;
-          const y = centerY + Math.sin(angle) * r;
-          points.push([x, y]);
+        for (let x = -1; x <= 1; x += 0.01) {
+          for (let y = -1; y <= 1; y += 0.01) {
+            if (Math.abs(Math.tan(Math.acos(x) + Math.asin(y)) - 1) < 0.1) {
+              points.push([
+                centerX + x * scale,
+                centerY + y * scale
+              ]);
+            }
+          }
         }
         return points;
       }
@@ -104,61 +105,23 @@ const MathVisualization = () => {
       const containerHeight = container.offsetHeight;
       container.innerHTML = "";
 
-      const numFunctions = 3;
-      const linesPerFunction = 8;
-      const numSymbols = window.innerWidth < 768 ? 20 : 30;
-      const placedSymbols = [];
+      // Select one random function
+      const selectedFunction = functions[Math.floor(Math.random() * functions.length)];
+      const points = selectedFunction.generate(containerWidth, containerHeight);
+      
+      const line = document.createElement("div");
+      line.className = "wavy-line";
 
-      // Create functions
-      for (let f = 0; f < numFunctions; f++) {
-        const selectedFunction = functions[Math.floor(Math.random() * functions.length)];
-        const lineColor = f % 2 === 0 ? "rgba(0, 75, 128, 0.4)" : "rgba(0, 128, 0, 0.4)";
-
-        for (let i = 0; i < linesPerFunction; i++) {
-          const points = selectedFunction.generate(containerWidth, containerHeight);
-          
-          const line = document.createElement("div");
-          line.className = "wavy-line";
-
-          let pathData = `M${points[0][0]} ${points[0][1]}`;
-          for (let j = 1; j < points.length; j++) {
-            pathData += ` L${points[j][0]} ${points[j][1]}`;
-          }
-
-          line.innerHTML = `<svg class="line-svg" viewBox="0 0 ${containerWidth} ${containerHeight}">
-            <path d="${pathData}" stroke="${lineColor}" stroke-width="0.8" fill="transparent" />
-          </svg>`;
-
-          container.appendChild(line);
-        }
+      let pathData = `M${points[0][0]} ${points[0][1]}`;
+      for (let i = 1; i < points.length; i++) {
+        pathData += ` L${points[i][0]} ${points[i][1]}`;
       }
 
-      // Add floating symbols
-      for (let i = 0; i < numSymbols; i++) {
-        let symbol, x, y, overlap;
-        do {
-          const isLeftEdge = Math.random() < 0.5;
-          if (isLeftEdge) {
-            x = Math.random() * (containerWidth * 0.2);
-          } else {
-            x = containerWidth * 0.80 + Math.random() * (containerWidth * 0.2);
-          }
-          y = Math.random() * (containerHeight - 50);
-          overlap = placedSymbols.some(([px, py]) => Math.hypot(px - x, py - y) < 50);
-        } while (overlap);
+      line.innerHTML = `<svg class="line-svg" viewBox="0 0 ${containerWidth} ${containerHeight}">
+        <path d="${pathData}" stroke="rgba(0, 75, 128, 0.4)" stroke-width="0.8" fill="transparent" />
+      </svg>`;
 
-        symbol = document.createElement("div");
-        symbol.className = "scientific-symbol";
-        symbol.innerHTML = scientificSymbols[Math.floor(Math.random() * scientificSymbols.length)];
-        symbol.style.left = `${x}px`;
-        symbol.style.top = `${y}px`;
-        
-        // Add random animation delay for each symbol
-        symbol.style.animationDelay = `${Math.random() * 2}s`;
-
-        placedSymbols.push([x, y]);
-        container.appendChild(symbol);
-      }
+      container.appendChild(line);
     };
 
     createElements();
@@ -167,7 +130,7 @@ const MathVisualization = () => {
     return () => {
       window.removeEventListener("resize", createElements);
     };
-  }, [functions, scientificSymbols]);
+  }, [functions]);
 
   return (
     <>
@@ -195,28 +158,6 @@ const MathVisualization = () => {
           .line-svg {
             width: 100%;
             height: 100%;
-          }
-
-          .scientific-symbol {
-            position: absolute;
-            font-family: "Arial Unicode MS", "Times New Roman", serif;
-            font-size: 24px;
-            color: black;
-            pointer-events: none;
-            white-space: nowrap;
-            animation: float 3s ease-in-out infinite;
-          }
-
-          @keyframes float {
-            0% {
-              transform: translateY(0px);
-            }
-            50% {
-              transform: translateY(-10px);
-            }
-            100% {
-              transform: translateY(0px);
-            }
           }
         `}
       </style>

@@ -4,19 +4,30 @@ import skilljava from '../assets/skill-java.svg';
 import skillr from '../assets/skill-r.svg';
 import skillreact from '../assets/skill-react.svg';
 import skilltensorflow from '../assets/skill-tensorflow.svg';
+import machineLearningIcon from '../assets/skill-pytorch.svg';
+import skillflask from '../assets/skill-flask.svg';
+import skillaws from '../assets/skill-aws.svg';
+import skillscikit from '../assets/skill-scikit.svg';
+import skillgcp from '../assets/skill-gcp.svg';
 
 const SkillsSection = ({ theme }) => {
   const skillCategories = {
-    'Programming Languages': [
+    'Programming Languages/Libraries': [
       { icon: skillpython, name: 'Python' },
       { icon: skilljava, name: 'Java' },
       { icon: skillr, name: 'R' }
     ],
     'Web Development': [
-      { icon: skillreact, name: 'React' }
+      { icon: skillreact, name: 'React' },
+      { icon: skillflask, name: 'Flask' }
     ],
     'Machine Learning': [
-      { icon: skilltensorflow, name: 'TensorFlow' }
+      { icon: skilltensorflow, name: 'TensorFlow' },
+      { icon: machineLearningIcon, name: 'PyTorch' }
+    ],
+    'Cloud Providers': [
+      { icon: skillaws, name: 'AWS' },
+      { icon: skillgcp, name: 'GCP' }
     ]
   };
 
