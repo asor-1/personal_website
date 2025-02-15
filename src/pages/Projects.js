@@ -19,11 +19,11 @@ import assist from '../markdown/project1.md'
 import ucell from '../markdown/project1.md'
 
 const projects = [
-  { id: 1, name: 'Track Segments', svgPath: bacteria1, markdownPath: track, demoLink: 'https://github.com/asor-1/Tracking-Single-Cell-Segmentations' },
+  { id: 1, name: 'Track Over Time', svgPath: bacteria1, markdownPath: track, demoLink: 'https://github.com/asor-1/Tracking-Single-Cell-Segmentations' },
   { id: 2, name: 'OpenMind Website', svgPath: bacteria2, markdownPath: '/markdown/project2.md', demoLink: '#' },
   { id: 3, name: 'GraphRag Revised', svgPath: bacteria3, markdownPath: graphRAG, demoLink: '#' },
-  { id: 4, name: 'Assistance RAG', svgPath: bacteria4, markdownPath: assist, demoLink: '#' },
-  { id: 4, name: 'UCellSeg', svgPath: bacteria1, markdownPath: ucell, demoLink: '#' },
+  { id: 4, name: 'Condition Pipeline', svgPath: bacteria4, markdownPath: assist, demoLink: '#' },
+  { id: 5, name: 'UCellSeg', svgPath: bacteria1, markdownPath: ucell, demoLink: '#' },
 ];
 
 //These units are in pixels
