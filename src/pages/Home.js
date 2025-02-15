@@ -75,10 +75,20 @@ const Home = () => {
                             <p className='role'>Lab Researcher</p>
                         </div>
                         <p className='date'>July 2023 - Present</p>
-                        <p>I built an image sequencing pipeline focused on pancreatic cancer cells...</p>
+                        <p>
+                            My biggest time commitment during high school has been as a lab researcher at the Feinberg School of Medicine. 
+                            Below are some technical highlights of my work:
+                        </p>
+                        <ul>
+                            <li>Developing a model to identify fluorescent intensity in resistant cancer cells.</li>
+                            <li>Developing a image sequencing pipeline to predict if a colony of cancer cells will become resistance based on morphology.</li>
+                            <li>Analyzing cell data that will be used in a research publication.</li>
+                            <li>Research presented at the National University of Singapore and Genome Institute of Singapore (a national initiative under Singapore’s Agency for Science).</li>
+                        </ul>
                     </div>
                     <img src={require('../assets/goyalLabLogo.jpg')} alt="Feinberg School of Medicine Logo" className="research-logo" />
                 </div>
+
 
                 <div className='nu-research'>
                     <div className='research-content'>
@@ -87,7 +97,14 @@ const Home = () => {
                             <p className='role'>Lab Intern</p>
                         </div>
                         <p className='date'>May 2024 - Present</p>
-                        <p>High School Degree, planning to continue my education in university...</p>
+                        <p>
+                            Research at the Ao Ma lab at the University of Illinois College of Medicine at Chicago. Below are some of my highlights:
+                        </p>
+                        <ul>
+                            <li>
+                                Currently, we are testing an algorithm we built to identify pockets and cavities across multiple frames of the protein to see where pockets stay the same and where they disappear.
+                            </li>
+                        </ul>
                     </div>
                     <img src={require('../assets/uiclogo.jpg')} alt="UIC Medical School Logo" className="research-logo" />
                 </div>

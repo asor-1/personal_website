@@ -263,4 +263,5 @@ body, #root {
     width: 20%; /* Adjust size as needed */
     height: auto;
     border-radius: 8px; /* Optional rounded corners */
+    align-self: flex-start; /* Aligns the image to the top of its flex container */
 }
