@@ -18,7 +18,7 @@ const Container = () => {
                         <div className="info">
                             <p>
                                 <img 
-                                    src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=17&pause=1000&color=154360&center=true&vCenter=true&width=300&height=17&lines=Student+Researcher;Computational+Biology;AI/ML+Developer;;" 
+                                    src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=17&pause=1000&color=154360&center=true&vCenter=true&width=300&height=17&lines=Student+Researcher;Computational+Science;AI/ML+Developer;" 
                                     alt="Typing SVG" 
                                 />
                             </p>
