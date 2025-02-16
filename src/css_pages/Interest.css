@@ -210,6 +210,74 @@ body, html, #root {
 .book-description {
     margin-top: 0.5rem;
 }
+/* Add these styles to your existing Interest.css file */
+
+/* Book rating styles */
+.book-title-rating {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.book-rating {
+    font-size: 18px;
+    color: gold;
+    letter-spacing: 2px;
+}
+
+/* Hobbies styles */
+.hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.hobby-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hobby-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.hobby-icon {
+    font-size: 36px;
+    margin-bottom: 16px;
+}
+
+.hobby-title {
+    margin: 8px 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.hobby-description {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hobbies-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .book-title-rating {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .book-rating {
+        margin-top: 8px;
+    }
+}
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {

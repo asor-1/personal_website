@@ -4,16 +4,6 @@ import { ThemeContext } from '../context/themeContext';
 import resume from '../assets/alexs_resume.pdf';
 import Navbar from '../components/nav';
 import Container from '../components/container';
-import machineLearningIcon from '../assets/skill-pytorch.svg';
-import skillpython from '../assets/skill-python.svg';
-import skillflask from '../assets/skill-flask.svg';
-import skillaws from '../assets/skill-aws.svg';
-import skillreact from '../assets/skill-react.svg';
-import skillr from '../assets/skill-r.svg';
-import skilljava from '../assets/skill-java.svg';
-import skillscikit from '../assets/skill-scikit.svg';
-import skilltensorflow from '../assets/skill-tensorflow.svg';
-import skillgcp from '../assets/skill-gcp.svg';
 import Hexagon from '../components/hexagons';
 import Courses from '../components/courses';
 import SkillsSection from '../components/skills';
@@ -33,7 +23,7 @@ const Home = () => {
                 <h2 className='about-header'>About Alex...</h2>
                 <p>
                     Hi there, 
-                    <br></br><br></br>I am a dedicated and attentive ML developer with an interest in computational biology. As a current student and researcher focused on machine learning applications in biology, I am deeply committed to using technology to solve complex problems. 
+                    <br></br><br></br>Welcome to my personal website! This is just a place for me to test out my react skills. I am a dedicated and attentive ML developer with an interest in computational biology. As a current student and researcher focused on machine learning applications in biology, I am deeply committed to using technology to solve complex problems. 
                     My academic and recreational projects are where I apply my knowledge. I spend most of my time researching, learning, and applying machine learning. 
                     However, when I am not working I am the biggest supporter of the Tottenham Hotspurs (or playing pickleball).
                 </p>
