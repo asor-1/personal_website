@@ -59,7 +59,7 @@ body, #root {
     max-width: 45%;
     padding: 1rem;
     border-radius: 0.625rem;
-    background-color: var(--bg-color) !important; 
+    background-color: rgba(255,255,255,0.5) !important; 
     color: var(--text-color);
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
     position: relative;
@@ -231,7 +231,7 @@ body, #root {
     position: relative;
     z-index: 2;
     margin-top: 1%;
-    background-color: rgba(255, 255, 255, 0.95); /* Light theme */
+    background-color: rgba(255,255,255,0.75);
     backdrop-filter: blur(10px);
 }
 
@@ -245,7 +245,7 @@ body, #root {
 .education-classes {
     position: relative;
     z-index: 2;
-    background-color: rgba(var(--card-bg-color), 0.95);
+    background-color: rgba(255,255,255,0.5);
     backdrop-filter: blur(10px);
 }
 .nu-research {

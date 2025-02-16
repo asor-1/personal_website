@@ -77,7 +77,7 @@ const Interest = () => {
         };
 
         return (
-            <div className="interest-container bookshelf-container">
+            <div className="bookshelf-container">
                 <h3>Bookshelf</h3>
                 <div className="books-list">
                     {books.map((book, index) => (

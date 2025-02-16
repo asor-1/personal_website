@@ -171,7 +171,15 @@ body, html, #root {
     width: 60%;
     padding: 1rem;
     border-radius: 0.625rem;
-    background-color: #fff;
+    background-color: rgba(255,255,255,0.75);
+    margin-top: 1rem;
+}
+
+.bookshelf-container {
+    width: 55%;
+    padding: 1rem;
+    border-radius: 0.625rem;
+    background-color: rgba(255,255,255,0.75);
     margin-top: 1rem;
 }
 

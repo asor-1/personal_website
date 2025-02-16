@@ -20,7 +20,7 @@ const Home = () => {
             <Navbar />
 
             <div className={`about-section ${theme}`}>
-                <h2 className='about-header'>About Alex...</h2>
+                <h2 className='research-header'>About Alex...</h2>
                 <p>
                     Hi there, 
                     <br></br><br></br>Welcome to my personal website! This is just a place for me to test out my react skills. I am a dedicated and attentive ML developer with an interest in computational biology. As a current student and researcher focused on machine learning applications in biology, I am deeply committed to using technology to solve complex problems. 
@@ -30,7 +30,7 @@ const Home = () => {
             </div>
 
             <div className={`resume-section ${theme}`}>
-                <h2 className='resume-header'>Alex's Resume...(Not up-to-date)</h2>
+                <h1 className='resume-header'>Alex's Resume...(Not up-to-date)</h1>
                 <div className='pdf-buttons'>
                     <a href={resume} download className='pdf-button-download-button'>Download PDF</a>
                     <button onClick={() => setShowPdf(true)} className='pdf-button-view-button'>View PDF</button>
@@ -64,7 +64,7 @@ const Home = () => {
                             <h4 className='place-name'>Feinberg School of Medicine, Northwestern University</h4>
                             <p className='role'>Lab Researcher</p>
                         </div>
-                        <p className='date'>July 2023 - Present</p>
+                        <p className='date'>Janurary 2023 - Present</p>
                         <p>
                             My biggest time commitment during high school has been as a lab researcher at the Feinberg School of Medicine. 
                             Below are some technical highlights of my work:
