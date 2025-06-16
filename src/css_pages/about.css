@@ -1,0 +1,254 @@
+/* Light Theme */
+.light {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --border-color: #ddd;
+    --card-bg-color: #fff;
+    --hover-bg-color: #e9ecef;
+
+    --accent-1: #386994;
+    --accent-2: #8eaebb;
+    --accent-3: #bdd9cd;
+}
+
+.dark {
+  --bg-color: rgba(3, 14, 31, 0.85); /* fallback solid */
+  --text-color: #e2e2e2; /* lighter neon-ish white */
+  --border-color: #1766af; /* brighter blue */
+  --card-bg-color: rgba(10, 30, 60, 0.85); /* translucent dark blue */
+  --hover-bg-color: #2a70d1; /* bright neon blue */
+
+  --accent-1: #3fa9f5; /* neon blue */
+  --accent-2: #60b0ff; /* lighter neon */
+  --accent-3: #7bcaff; /* even lighter neon */
+  --accent-4: #9fdfff;
+  --accent-5: #c2f0ff;
+}
+
+
+/* Then apply the gradient directly here */
+.dark body, .dark #root {
+  background: radial-gradient(circle at center, #3fa9f5 0%, #00111a 80%, #000000 100%);
+  color: var(--text-color);
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bg-color) !important;
+    color: var(--text-color);
+    padding: 2rem;
+    min-height: 100vh;
+    position: relative;
+    z-index: 0;
+    overflow: visible;
+}
+
+/* REMOVE GRAPH BACKGROUND */
+.home-container::before {
+    display: none !important;
+}
+
+.info {
+    margin-bottom: 1rem;
+}
+
+.about-section,
+.resume-section,
+.education-section,
+.research-section,
+.list-skills,
+.education-classes {
+    width: 80%;
+    max-width: 45%;
+    padding: 1rem;
+    border-radius: 0.625rem;
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 2;
+    margin-top: 1%;
+}
+
+.resume-header,
+.research-header,
+.education-header {
+    margin-top: 0;
+    text-align: left;
+    font-size: 1em;
+    color: var(--accent-5);
+}
+
+.pdf-button-download-button,
+.pdf-button-view-button {
+    background-color: var(--accent-3);
+    border: none;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    padding: .2rem;
+    margin: 2%;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    border-radius: 3%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-button-download-button:hover,
+.pdf-button-view-button:hover {
+    background-color: var(--accent-2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.pdf-viewer {
+    width: 90%;
+    height: 75vh;
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.pdf-viewer iframe {
+    width: 100%;
+    height: calc(100% - 5%);
+    border: none;
+}
+
+.education-classes {
+    width: 80%;
+    max-width: 45%;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.fixed-button {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: var(--accent-2);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.fixed-button:hover {
+    background-color: var(--accent-1);
+}
+
+.popup {
+    position: fixed;
+    bottom: 4rem;
+    right: 1rem;
+    width: 300px;
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.popup-content {
+    padding: 1rem;
+}
+
+.close-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+.close-button:hover {
+    color: red;
+}
+
+.name-role {
+    margin-bottom: 10px;
+}
+
+.place-name {
+    margin: 0;
+    font-size: 1.2em;
+    color: var(--accent-4);
+}
+
+.role {
+    margin: 0;
+    font-size: 1em;
+    color: var(--accent-2);
+}
+
+.date {
+    margin: 0.5rem;
+    font-style: italic;
+}
+
+.nu-research {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.research-content {
+    flex: 1;
+}
+
+.research-logo {
+    width: 20%;
+    height: auto;
+    border-radius: 8px;
+    align-self: flex-start;
+}
+
+.theme-toggle-button {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background-color: var(--accent-3);
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 9999;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.theme-toggle-button:hover {
+    background-color: var(--accent-2);
+    transform: translateY(-1px);
+}

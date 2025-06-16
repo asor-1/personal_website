@@ -1,94 +1,182 @@
-/* Container Styles */
-.content-personal-info {
-    width: 45%;
-    text-align: left;
-    padding: 1rem;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.2); /* Glassmorphism effect */
-    backdrop-filter: blur(10px);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    margin-bottom: 2rem;
+/* --- Font Import for modern, classy fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap');
+
+/* --- CSS Variables for easy themeing --- */
+:root {
+    --cyan-light: #67e8f9;
+    --blue-mid: #3b82f6;
+    --text-primary: #e5e7eb;
+    --text-secondary: #9ca3af;
+}
+
+/* --- Main Card --- */
+.personal-info-card {
+    max-width: 56rem;
+    width: 100%;
+    padding: 2rem;
+    background: transparent;
+    border: none;
+    font-family: 'Lato', sans-serif; /* New body font */
+}
+
+.card-content {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    gap: 2rem;
 }
 
-/* Typography */
-h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    font-family: 'Poppins', sans-serif;
-}
-
-/* Animated Name */
-.name-animated {
-    position: relative;
-    display: inline-block;
-    background: linear-gradient(90deg, #154360, #2874A6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: fadeIn 1s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Headshot */
-.headshot {
+/* --- Profile Section (Headshot & Location) --- */
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
     flex-shrink: 0;
-    width: 180px;
-    height: 180px;
-    margin-right: 2rem;
 }
 
-.headshot img {
+/* --- Headshot & Sparkle --- */
+.headshot-container {
+    position: relative;
+}
+
+.headshot {
+    width: 12rem;
+    height: 12rem;
+    border-radius: 20%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.sparkle-wrapper {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.headshot-container:hover .sparkle-wrapper {
+    opacity: 1;
+}
+
+.sparkle {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #154360;
-    transition: transform 0.3s ease;
+    background-image: radial-gradient(circle, white 5%, #ffde7d 40%, #ffb94c 80%, transparent 100%);
+    clip-path: polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%);
+    animation: sparkle-animation 1.5s infinite;
 }
 
-.headshot img:hover {
-    transform: scale(1.05);
+@keyframes sparkle-animation {
+    0% { transform: scale(0.5) rotate(0deg); opacity: 0.8; }
+    50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+    100% { transform: scale(0.5) rotate(360deg); opacity: 0.8; }
 }
 
-/* Social Media Icons */
-.contact-icons {
+/* --- Text & Info --- */
+.info-text {
+    text-align: left;
     display: flex;
-    justify-content: center;
-    gap: .5rem;
-    transform: scale(1.25);
-
+    flex-direction: column;
+    align-items: center;
 }
 
-.footer-icon {
-    width: 3rem;
-    height: 3rem;
-    transition: transform 0.2s ease, filter 0.2s ease;
+.name-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.25rem; /* Decreased font size */
+    font-weight: 700;
+    color: var(--text-primary); /* Solid color, no gradient */
+    margin: 0;
 }
 
-.footer-icon:hover {
-    transform: scale(1.1);
-    filter: brightness(1.2);
+.bio {
+    margin-top: 0rem;
+    color: var(--text-secondary);
+    max-width: 45ch;
+    line-height: 1.7; 
+    gap:0rem;
+    font-size: 1.05rem;
+}
+
+/* --- Bio Link Styling --- */
+.bio-link {
+    color: var(--cyan-light);
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.2s ease-in-out;
+}
+
+.bio-link:hover {
+    translate: (5px);
+    filter: brightness(1);
 }
 
 
+/* --- Contact Info (Icons, Dot, Email) --- */
+.contact-info {
+    margin-top: 0rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-secondary);
+}
 
-/* Responsive */
-@media (max-width: 768px) {
-    .content-personal-info {
-        flex-direction: column;
-        text-align: center;
-        width: 90%;
+.social-icon-link svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.social-icon-link:hover svg {
+    color: var(--cyan-light);
+    transform: translateY(-3px) scale(1.1);
+}
+
+.separator-dot {
+    font-size: 1.25rem;
+    line-height: 1;
+    padding-bottom: 4px;
+}
+
+.email-link {
+    text-decoration: none;
+    color: var(--text-secondary);
+    transition: color 0.2s ease-in-out;
+}
+
+.email-link:hover {
+    color: var(--text-primary);
+}
+
+.email-text {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9rem;
+}
+
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 767px) {
+    .sparkle-wrapper {
+        display: none;
     }
+}
 
-    .headshot {
-        margin: 1rem 0;
+@media (min-width: 768px) {
+    .card-content {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+        gap: 3rem;
     }
+    .info-text { align-items: flex-start; }
+    .bio { max-width: 50ch; }
+    .contact-info {
+        justify-content: flex-start;
+    }
+    .name-heading { font-size: 4rem; } /* Adjusted desktop size */
 }
