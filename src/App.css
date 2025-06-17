@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+.app-container {
+  margin-left: 65px; /* This should match the width of .vertical-navbar */
+  padding: 2rem; /* Optional padding for the content area */
+}

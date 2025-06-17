@@ -11,6 +11,7 @@ import Navbar from './components/nav';
 const App = () => {
     return (
         <ThemeProvider>
+            <Navbar />
             <div className="app-container">
                 <Routes>
                     <Route path="/" element={<Home />} />
