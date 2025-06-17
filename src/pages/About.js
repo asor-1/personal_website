@@ -1,23 +1,18 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
+import React, { useState, useContext } from 'react';
 import '../css_pages/about.css';
 import { ThemeContext } from '../context/themeContext';
-import GitHubCalendar from 'react-github-calendar';
 import resume from '../assets/alexs_resume.pdf';
 import Navbar from '../components/nav';
-import Container from '../components/container';
 import Courses from '../components/courses';
 import SkillsSection from '../components/skills';
 import PersonalInfoCard from '../components/container';
 
 const Home = () => {
     const [showPdf, setShowPdf] = useState(false);
-    const { theme, toggleTheme } = useContext(ThemeContext); // <-- includes toggle
-    
+    const { theme } = useContext(ThemeContext);
+
     return (
         <div className={`home-container ${theme}`}>
-            <button className="theme-toggle-button" onClick={toggleTheme}>
-                {theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode'}
-            </button>
             <div className="bg-gray-900 min-h-screen flex items-center justify-center p-4">
                 <PersonalInfoCard />
             </div>
@@ -36,6 +31,29 @@ const Home = () => {
                 )}
             </div>
 
+            <div className={`education-section ${theme}`}>
+                <h2 className='education-header'>Education...</h2>
+
+                {/* UMD Section with new structure */}
+                <div className='education-item'>
+                    <div className='education-logo-container'>
+                        <img src={require('../assets/pssg.png')} alt="UMD logo" className="education-logo" />
+                        <p className='date'>Expected: 2025 - 2029</p>
+                    </div>
+                    <div className='education-details'>
+                        <h4 className='place-name'>University of Maryland, College Park (UMD)</h4>
+                        <p className='role'>#10 Ranked Computer Science program in the nation according to csrankings.org</p>
+                        <div className='major-info'>
+                            <span>💻</span>
+                            <p>Bachelor of Science (BS): Computer Science with a specialization in Machine Learning</p>
+                        </div>
+                    </div>
+                </div>
+                <hr className="education-divider" />
+                <Courses />
+            </div>
+
+
             <div className={`research-section ${theme}`}>
                 <h2 className='research-header'>Relevant Work Experience...</h2>
                 <div className='nu-research'>
@@ -50,7 +68,7 @@ const Home = () => {
             
             <div className={`research-section ${theme}`}>
                 <h2 className='research-header'>Relevant Research Experience...(NOT up-to-date)</h2>
-                 <div className='nu-research'>
+                <div className='nu-research'>
                     <div className='research-content'>
                         <div className='name-role'>
                             <h4 className='place-name'>Parallel Software and Systems Group - UMD</h4>
@@ -103,22 +121,7 @@ const Home = () => {
                     <img src={require('../assets/uiclogo.jpg')} alt="UIC Medical School Logo" className="research-logo" />
                 </div>
             </div>
-
-
-            <div className={`education-section ${theme}`}>
-                <h2 className='education-header'>Education...</h2>
-                <h4 className ='place-name'>University of Maryland, College Park (UMD)</h4>
-                <p className='role'>#10 Ranked Computer Science program in the nation according to csrankings.org</p>
-                <p className='date'>Expected Graduation: August 2025 - June 2029</p>
-                <p>Bachelor of Science (BS): Computer Science with a specialization in Machine Learning</p>
-                <h4 className ='place-name'>Illinois Mathematics and Science Academy (IMSA)</h4>
-                <p className='role'>#10 Public High School in America & #3 Public High School in Illinois</p>
-                <p className='date'>August 2022 - June 2025</p>
-                <p>High School Degree</p>
-            </div>
-                <Courses />
-
-           
+            
             <SkillsSection theme={theme} />
         </div>
     );
