@@ -40,6 +40,7 @@ const PersonalInfoCard = () => {
                 <div className="info-text">
                     <h1 className="name-heading">alex sorescu</h1>
                     <p className="bio">
+                        TLDR:
                         Hi there! I'm Alex, a rising freshman studying CS+ML @ UMD.<br />
                         Apart of the <a href="https://pssg.cs.umd.edu/" target="_blank" rel="noopener noreferrer" className="bio-link">PSSG</a> (Parallel Software Systems Group).<br />
                         I'm interested in using ML and AI to advance the human condition.

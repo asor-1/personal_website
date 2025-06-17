@@ -1,6 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import '../css_pages/about.css';
 import { ThemeContext } from '../context/themeContext';
+import GitHubCalendar from 'react-github-calendar';
 import resume from '../assets/alexs_resume.pdf';
 import Navbar from '../components/nav';
 import Container from '../components/container';
@@ -11,7 +12,7 @@ import PersonalInfoCard from '../components/container';
 const Home = () => {
     const [showPdf, setShowPdf] = useState(false);
     const { theme, toggleTheme } = useContext(ThemeContext); // <-- includes toggle
-
+    
     return (
         <div className={`home-container ${theme}`}>
             <button className="theme-toggle-button" onClick={toggleTheme}>
@@ -21,17 +22,6 @@ const Home = () => {
                 <PersonalInfoCard />
             </div>
             <Navbar />
-
-            <div className={`about-section ${theme}`}>
-                <h2 className='research-header'>About Alex...</h2>
-                <p>
-                    Hi there, 
-                    <br></br><br></br>Welcome to my personal website! This is just a place for me to test out my react skills. I am a dedicated and attentive ML developer with an interest in computational biology. As a current student and researcher focused on machine learning applications in biology, I am deeply committed to using technology to solve complex problems. 
-                    My academic and recreational projects are where I apply my knowledge. I spend most of my time researching, learning, and applying machine learning. 
-                    However, when I am not working I am the biggest supporter of the Tottenham Hotspurs (or playing pickleball).
-                </p>
-            </div>
-
             <div className={`resume-section ${theme}`}>
                 <h1 className='resume-header'>Alex's Resume...(Not up-to-date)</h1>
                 <div className='pdf-buttons'>
