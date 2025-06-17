@@ -2,12 +2,6 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../css_pages/navbar.css'; // We'll create the new CSS file next
 
-// --- SVG Icon Components ---
-const HomeIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline>
-    </svg>
-);
 
 const AboutIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -33,7 +27,6 @@ const Navbar = () => {
 
     // The links for the new navbar
     const navLinks = [
-        { to: "/", label: "Home", icon: <HomeIcon /> },
         { to: "/about", label: "About", icon: <AboutIcon /> },
         { to: "/projects", label: "Projects", icon: <ProjectsIcon /> },
         { to: "/interest", label: "Interests", icon: <InterestsIcon /> }

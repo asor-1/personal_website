@@ -81,7 +81,8 @@
 .list-skills {
     max-width: 45%;
     padding: 1rem;
-    background-color: rgba(10, 30, 60, 0.85);
+    opacity: 60%;
+    background-color: transparent;
     border-radius: 0.625rem;
     backdrop-filter: blur(10px);
     position: relative;
@@ -90,27 +91,28 @@
 }
 .about-section:hover,
 .education-section:hover,
-.resume-section:hover,
 .research-section:hover,
 .list-skills:hover {
     max-width: 45%;
+    transition: 50ms;
     padding: 1rem;
+    opacity: 100%;
     border-radius: 0.625rem;
     background-color: var(--card-bg-color);
     color: var(--text-color);
     border: 1px solid var(--border-color);
-    backdrop-filter: blur(10px);
-    position: relative;
-    z-index: 2;
-    margin-top: 1%;
 }
 .resume-header,
 .research-header,
 .education-header {
     margin-top: 0;
     text-align: left;
-    font-size: 1em;
+    font-size: 2em;
     color: var(--accent-5);
+}
+.resume-section:hover{
+    opacity: 100%;
+    transition: 50ms;
 }
 
 .pdf-button-download-button,
@@ -320,3 +322,46 @@
     background-color: var(--border-color);
     margin: 2rem 0;
 }
+
+/* GPA SVG Icon */
+.gpa-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--accent-3); /* Match theme accent color */
+    flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+/* Computer Icon made with CSS */
+.computer-icon {
+    width: 24px;
+    height: 18px;
+    border: 2px solid var(--accent-3);
+    border-radius: 3px;
+    position: relative;
+    flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.computer-icon::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 4px;
+    background-color: var(--accent-3);
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.computer-icon::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 2px;
+    background-color: var(--accent-3);
+}
+

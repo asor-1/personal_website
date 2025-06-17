@@ -10,6 +10,15 @@ import PersonalInfoCard from '../components/container';
 const Home = () => {
     const [showPdf, setShowPdf] = useState(false);
     const { theme } = useContext(ThemeContext);
+    // GPA Icon Component
+    const GpaIcon = () => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="gpa-icon">
+            <path d="M4 3h16a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path>
+            <path d="M4 11v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11"></path>
+            <path d="m9 16 2 2 4-4"></path>
+        </svg>
+    );
+
 
     return (
         <div className={`home-container ${theme}`}>
@@ -17,6 +26,27 @@ const Home = () => {
                 <PersonalInfoCard />
             </div>
             <Navbar />
+            <div className={`education-section ${theme}`}>
+                <h2 className='education-header'>Education...</h2>
+                <div className='education-item'>
+                    <div className='education-logo-container'>
+                        <img src={require('../assets/umd-logo.png')} alt="UMD logo" className="education-logo" />
+                        <p className='date'>Expected: 2029</p>
+                    </div>
+                    <div className='education-details'>
+                        <h4 className='place-name'>University of Maryland, College Park (UMD)</h4>
+                        <p className='role'>#10 Ranked Computer Science program in the nation according to csrankings.org</p>
+                        <div className='major-info'>
+                            <span className="computer-icon"></span>
+                            <p>B.S. in Computer Science: Machine Learning</p>
+                        </div>
+                            <div className='major-info'>
+                            <GpaIcon />
+                            <p>GPA: 4.0 (for example)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div className={`resume-section ${theme}`}>
                 <h1 className='resume-header'>Alex's Resume...(Not up-to-date)</h1>
                 <div className='pdf-buttons'>
@@ -31,38 +61,19 @@ const Home = () => {
                 )}
             </div>
 
-            <div className={`education-section ${theme}`}>
-                <h2 className='education-header'>Education...</h2>
-
-                {/* UMD Section with new structure */}
-                <div className='education-item'>
-                    <div className='education-logo-container'>
-                        <img src={require('../assets/pssg.png')} alt="UMD logo" className="education-logo" />
-                        <p className='date'>Expected: 2025 - 2029</p>
-                    </div>
-                    <div className='education-details'>
-                        <h4 className='place-name'>University of Maryland, College Park (UMD)</h4>
-                        <p className='role'>#10 Ranked Computer Science program in the nation according to csrankings.org</p>
-                        <div className='major-info'>
-                            <span>💻</span>
-                            <p>Bachelor of Science (BS): Computer Science with a specialization in Machine Learning</p>
-                        </div>
-                    </div>
-                </div>
-                <hr className="education-divider" />
-                <Courses />
-            </div>
-
 
             <div className={`research-section ${theme}`}>
                 <h2 className='research-header'>Relevant Work Experience...</h2>
                 <div className='nu-research'>
-                    <div className='name-role'>
-                        <h4 className='place-name'>OpenMind - Mental Health Initiative</h4>
-                        <p className='role'>Co-Founder/CTO (AI developer)</p>
+                    <div className='research-content'>
+                        <div className='name-role'>
+                            <h4 className='place-name'>OpenMind</h4>
+                            <p className='role'>Co-founder/CTO</p>
+                        </div>
+                        <p className='date'>Dec. 2022 - Jan. 2025</p>
+                        <p> More info soon... </p>
                     </div>
-                    <p className='date'>December 2022 - Present</p>
-                    <p>The initiative offers comprehensive resources and services to support individuals in their mental wellness journey...</p>
+                    <img src={require('../assets/pssg.png')} alt="PSSG Logo" className="research-logo" />
                 </div>
             </div>
             
