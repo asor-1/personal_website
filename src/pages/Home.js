@@ -4,7 +4,6 @@ import { ThemeContext } from '../context/themeContext';
 import resume from '../assets/alexs_resume.pdf';
 import Navbar from '../components/nav';
 import Container from '../components/container';
-import Hexagon from '../components/hexagons';
 import Courses from '../components/courses';
 import SkillsSection from '../components/skills';
 
@@ -15,7 +14,6 @@ const Home = () => {
     return (
         <div className={`home-container ${theme}`}>
 
-            <Hexagon />
             <Container />
             <Navbar />
 

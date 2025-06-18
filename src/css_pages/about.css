@@ -80,54 +80,70 @@
 .research-section,
 .list-skills {
     max-width: 45%;
-    padding: 1rem;
-    opacity: 60%;
+    padding: 0.5rem;
+    opacity: 40%;
     background-color: transparent;
     border-radius: 0.625rem;
     backdrop-filter: blur(10px);
     position: relative;
     z-index: 2;
-    margin-top: 1%;
+    margin-bottom: 0%;
+    border: 1px solid transparent;
+    transition: opacity 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
-.about-section:hover,
-.education-section:hover,
-.research-section:hover,
-.list-skills:hover {
+.education-section {
     max-width: 45%;
-    transition: 50ms;
-    padding: 1rem;
-    opacity: 100%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    opacity: 40%;
+    background-color: transparent;
     border-radius: 0.625rem;
-    background-color: var(--card-bg-color);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 2;
+    border: 1px solid transparent;
+    transition: opacity 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+
+.section-header {
+    text-align: left; /* Ensures text within the header is left-aligned */
+    margin-top: 3rem; /* Adds space above the section header */
+    width: 45%; /* Match the width of your content sections */
 }
 .resume-header,
 .research-header,
 .education-header {
-    margin-top: 0;
-    text-align: left;
+    margin-top: 0; /* Resetting this as margin is now on .section-header */
+    text-align: left; /* Already set, but good for specificity */
     font-size: 2em;
     color: var(--accent-5);
 }
-.resume-section:hover{
+.about-section:hover,
+.education-section:hover,
+.research-section:hover,
+.list-skills:hover,
+.resume-section:hover {
     opacity: 100%;
-    transition: 50ms;
+    border-color: var(--border-color);
 }
 
 .pdf-button-download-button,
 .pdf-button-view-button {
     background-color: var(--accent-3);
     border: none;
+
     color: white;
     text-align: center;
     display: inline-block;
     font-size: 16px;
-    padding: .2rem;
+    padding: .5rem;
     margin: 2%;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
-    border-radius: 3%;
+    border-radius: 5%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -228,6 +244,26 @@
     margin: 0.5rem;
     font-style: italic;
 }
+.date-exp {
+    font-size: 12px;
+    background-color: #444444; 
+    padding: 0.25rem 0.5rem; 
+    border-radius: 12px; 
+    border: 1px solid var(--border-color); 
+    color: var(--text-color); 
+    white-space: nowrap;
+}
+.other-exp {
+    font-size: 12px;
+    background-color: #444444; 
+    padding: 0.25rem 0.5rem; 
+    border-radius: 12px;
+    margin-right: 0.25rem;
+    border: 1px solid var(--border-color); 
+    color: var(--text-color); 
+    white-space: nowrap;
+    display:inline-block;
+}
 
 .nu-research {
     display: flex;
@@ -285,7 +321,7 @@
     width: 8rem;
     height: auto;
     border-radius: 8px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0rem;
 }
 
 .education-logo-container .date {
@@ -318,9 +354,14 @@
 
 .education-divider {
     border: 0;
-    height: 1px;
+    height: 2px;
     background-color: var(--border-color);
-    margin: 2rem 0;
+    width: 43%;
+    border-radius: 1px;
+    opacity: 0.95;
+    margin-top: 3rem; /* Space above the divider */
+    margin-bottom: 3rem; /* Space below the divider */
+    filter: drop-shadow(0 0 5px var(--accent-3));
 }
 
 /* GPA SVG Icon */
@@ -364,4 +405,3 @@
     height: 2px;
     background-color: var(--accent-3);
 }
-

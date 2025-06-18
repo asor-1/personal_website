@@ -11,7 +11,6 @@ import bacteria1 from '../assets/bacteria1.svg';
 import bacteria2 from '../assets/bacteria2.svg';
 import bacteria3 from '../assets/bacteria3.svg';
 import bacteria4 from '../assets/bacteria4.svg';
-import Hexagon from '../components/hexagons';
 
 import track from '../markdown/project1.md'
 import graphRAG from '../markdown/graphRag.md'
@@ -121,7 +120,6 @@ const Projects = () => {
 
   return (
     <div className="home-container">
-      <Hexagon />
       <Container />
       <Navbar />
       <div className='about-projects'>

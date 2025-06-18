@@ -6,7 +6,6 @@ import Graph3D from '../components/graph';
 import mathML from '../assets/math_for_mL.jpg';
 import mozi from '../assets/moziCover.jpg';
 import jstewart from '../assets/jstewart.jpg';
-import Hexagon from '../components/hexagons';
 
 const Interest = () => {
     const [activeTab, setActiveTab] = useState(null);
@@ -139,7 +138,6 @@ const Interest = () => {
 
     return (
         <div className="home-container">
-            <Hexagon />
             <Container />
             <Navbar />
             <div className='about-section'>

@@ -16,17 +16,14 @@
 
 .vertical-navbar {
     position: fixed;
-    left: 0;
+    left: 1%;
     top: 50%;
     height: auto;
     width: 4%; /* Width of the collapsed navbar */
     background: var(--bg-color);
     backdrop-filter: blur(10px);
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    border-right: 1px solid var(--border-color);
-    border-top-right-radius: 10%;
-    border-bottom-right-radius: 10%;
+    border: 1px solid var(--border-color);
+    border-radius: 5%;
     display: flex;
     align-items: center;
     justify-content: center;
