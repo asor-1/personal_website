@@ -3,7 +3,6 @@ import '../css_pages/about.css';
 import { ThemeContext } from '../context/themeContext';
 import resume from '../assets/alexs_resume.pdf';
 import Navbar from '../components/nav';
-import Courses from '../components/courses';
 import SkillsSection from '../components/skills';
 import PersonalInfoCard from '../components/container';
 
@@ -151,7 +150,7 @@ const Home = () => {
             </div>
             
             
-            <SkillsSection theme={theme} />
+            <SkillsSection />
         </div>
     );
 };

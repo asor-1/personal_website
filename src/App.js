@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from './context/themeContext';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
-import Notes from './pages/Notes';
 import Interest from './pages/Interest';
 import About from './pages/About';
 import Navbar from './components/nav';
@@ -17,7 +16,6 @@ const App = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/About" element={<About />} />
                     <Route path="/projects" element={<Projects />} />
-                    <Route path="/notes" element={<Notes />} />
                     <Route path="/interest" element={<Interest />} />
                 </Routes>
             </div>

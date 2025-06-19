@@ -1,0 +1,227 @@
+/*
+  CSS Variables for Theming (Light/Dark Mode)
+  These should ideally be defined at a global level (e.g., :root or body)
+  but for demonstration, we'll put them here.
+*/
+:root {
+  --background-light: #f8faff; /* Very light blue-gray */
+  --card-bg-light: #ffffff;
+  --text-primary-light: #333333;
+  --text-secondary-light: #555555;
+  --border-light: #e0e0e0;
+  --shadow-light: rgba(0, 0, 0, 0.08);
+  --accent-blue-light: #3b82f6; /* Blue-500 */
+  --accent-purple-light: #8b5cf6; /* Purple-500 */
+  --accent-teal-light: #2dd4bf; /* Teal-400 */
+  --accent-cyan-light: #06b6d4; /* Cyan-500 */
+}
+
+.dark-theme {
+  --background-light: #0d1117; /* Dark background similar to GitHub */
+  --card-bg-light: #161b22;
+  --text-primary-light: #e6edf3;
+  --text-secondary-light: #a6adbb;
+  --border-light: #30363d;
+  --shadow-light: rgba(0, 0, 0, 0.3);
+  --accent-blue-light: #60a5fa; /* Blue-400 */
+  --accent-purple-light: #a78bfa; /* Purple-400 */
+  --accent-teal-light: #5eead4; /* Teal-300 */
+  --accent-cyan-light: #22d3ee; /* Cyan-300 */
+}
+
+
+/* General Section Styling */
+.skillsSection {
+  width: 100%; /* Full width as requested */
+  padding: 4rem 1rem; /* py-16 px-4 */
+  background: linear-gradient(135deg, var(--background-light), var(--card-bg-light));
+  color: var(--text-primary-light);
+  transition: all 0.5s ease-in-out; /* Smooth theme transition */
+  box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+.container {
+  max-width: 1280px; /* Equivalent to max-w-6xl */
+  margin: 0 auto; /* mx-auto */
+}
+
+/* Main Title */
+.mainTitle {
+  font-size: 2.5rem; /* text-4xl */
+  font-weight: 800; /* font-extrabold */
+  text-align: center;
+  margin-bottom: 4rem; /* mb-16 */
+  position: relative;
+}
+
+@media (min-width: 768px) { /* md breakpoint */
+  .mainTitle {
+    font-size: 3rem; /* md:text-5xl */
+  }
+}
+
+.gradientText {
+  background-image: linear-gradient(to right, var(--accent-blue-light), var(--accent-purple-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent; /* Fallback for browsers not supporting background-clip */
+}
+
+.mainTitleUnderline {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -0.625rem; /* -10px */
+  width: 6rem; /* w-24 */
+  height: 0.25rem; /* h-1 */
+  background: linear-gradient(to right, var(--accent-blue-light), var(--accent-purple-light));
+  border-radius: 9999px; /* rounded-full */
+}
+
+/* Categories Grid */
+.categoriesGrid {
+  display: grid;
+  grid-template-columns: 1fr; /* col-span-1 */
+  gap: 3rem; /* gap-12 */
+}
+
+@media (min-width: 1024px) { /* lg breakpoint */
+  .categoriesGrid {
+    grid-template-columns: repeat(2, 1fr); /* lg:grid-cols-2 */
+  }
+}
+
+/* Skill Category Card */
+.skillCategoryCard {
+  background-color: var(--card-bg-light);
+  border-radius: 1rem; /* rounded-2xl */
+  box-shadow: 0 20px 25px -5px var(--shadow-light), 0 8px 10px -6px var(--shadow-light); /* shadow-xl */
+  border: 1px solid var(--border-light);
+  padding: 2rem; /* p-8 */
+  transform: scale(1); /* Initial state for hover effect */
+  transition: transform 0.3s ease-in-out;
+  overflow: hidden;
+  position: relative;
+}
+
+.skillCategoryCard:hover {
+  transform: scale(1.01); /* hover:scale-[1.01] */
+}
+
+/* Category Title */
+.categoryTitle {
+  font-size: 1.875rem; /* text-3xl */
+  font-weight: 700; /* font-bold */
+  margin-bottom: 2rem; /* mb-8 */
+  color: var(--text-primary-light);
+  position: relative;
+  z-index: 10;
+}
+
+.categoryTitleUnderline {
+  position: absolute;
+  bottom: -0.3125rem; /* -5px */
+  left: 0;
+  width: 4rem; /* w-16 */
+  height: 0.25rem; /* h-1 */
+  background: linear-gradient(to right, var(--accent-teal-light), var(--accent-cyan-light));
+  border-radius: 9999px; /* rounded-full */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.skillCategoryCard:hover .categoryTitleUnderline {
+  opacity: 1;
+}
+
+/* Individual Skills Grid */
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* grid-cols-2 */
+  gap: 1.5rem; /* gap-6 */
+}
+
+@media (min-width: 640px) { /* sm breakpoint */
+  .skillsGrid {
+    grid-template-columns: repeat(3, 1fr); /* sm:grid-cols-3 */
+  }
+}
+
+/* Skill Item */
+.skillItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem; /* p-5 */
+  border-radius: 0.75rem; /* rounded-xl */
+  background-color: var(--background-light); /* using background-light as a subtle difference */
+  transform: scale(1); /* Initial state for hover */
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+  overflow: hidden;
+  will-change: transform; /* Optimize animation */
+}
+
+.skillItem:hover {
+  transform: scale(1.05); /* hover:scale-105 */
+}
+
+/* Skill Item Glow Effect */
+.skillItemGlow {
+  position: absolute;
+  inset: 0; /* Equivalent to top:0; right:0; bottom:0; left:0; */
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1)); /* from-blue-100 to-purple-100 (light) */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none; /* Allows clicks to pass through */
+}
+
+.dark-theme .skillItemGlow {
+  background: linear-gradient(135deg, rgba(30, 64, 175, 0.2), rgba(88, 28, 135, 0.2)); /* from-blue-800 to-purple-800 (dark) */
+}
+
+.skillItem:hover .skillItemGlow {
+  opacity: 1; /* group-hover/item:opacity-20 (we'll make it 100% for full glow in plain CSS) */
+}
+
+
+/* Skill Icon */
+.skillIcon {
+  width: 4rem; /* w-16 */
+  height: 4rem; /* h-16 */
+  margin-bottom: 0.75rem; /* mb-3 */
+  object-fit: contain;
+  filter: grayscale(100%); /* filter grayscale */
+  transition: all 0.3s ease-in-out;
+}
+
+.skillItem:hover .skillIcon {
+  filter: grayscale(0%); /* group-hover/item:grayscale-0 */
+  transform: scale(1.1); /* Slight additional scale on icon */
+}
+
+/* Skill Name */
+.skillName {
+  font-size: 1.125rem; /* text-lg */
+  font-weight: 600; /* font-semibold */
+  color: var(--text-primary-light);
+  text-align: center;
+  position: relative; /* Ensure text is above glow */
+  z-index: 1;
+}
+
+/* Skill Item Border on Hover */
+.skillItemBorder {
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  border-radius: 0.75rem; /* rounded-xl */
+  transition: border-color 0.3s ease-in-out;
+}
+
+.skillItem:hover .skillItemBorder {
+  border-color: var(--accent-blue-light); /* group-hover/item:border-blue-500 */
+}

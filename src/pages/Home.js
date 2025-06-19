@@ -4,7 +4,6 @@ import { ThemeContext } from '../context/themeContext';
 import resume from '../assets/alexs_resume.pdf';
 import Navbar from '../components/nav';
 import Container from '../components/container';
-import Courses from '../components/courses';
 import SkillsSection from '../components/skills';
 
 const Home = () => {
@@ -110,7 +109,6 @@ const Home = () => {
                 <p className='date'>August 2022 - June 2025</p>
                 <p>High School Degree</p>
             </div>
-                <Courses />
 
            
             <SkillsSection theme={theme} />
