@@ -40,9 +40,9 @@ const PersonalInfoCard = () => {
                 <div className="info-text">
                     <h1 className="name-heading">alex sorescu</h1>
                     <p className="bio">
-                        Hi there! I'm Alex, a rising freshman studying CS+ML @ UMD.<br />
-                        Apart of the <a href="https://pssg.cs.umd.edu/" target="_blank" rel="noopener noreferrer" className="bio-link">PSSG</a> (Parallel Software Systems Group).<br />
-                        I'm interested in using ML and AI to advance the human condition.
+                        Hi there, I am studying CS+ML @ UMD<br />
+                        Apart of the research group: <a href="https://pssg.cs.umd.edu/" target="_blank" rel="noopener noreferrer" className="bio-link">PSSG</a>.<br />
+                        I'm interested LLMs and reinforcement learning.
                     </p>
                     <div className="contact-info">
                          <a href="https://github.com/asor-1" title="Visit My GitHub" target="_blank" rel="noopener noreferrer" className="social-icon-link">

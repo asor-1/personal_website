@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import '../css_pages/about.css';
 import { ThemeContext } from '../context/themeContext';
 import resume from '../assets/alexs_resume.pdf';
@@ -9,7 +10,19 @@ import PersonalInfoCard from '../components/container';
 const Home = () => {
     const [showPdf, setShowPdf] = useState(false);
     const { theme } = useContext(ThemeContext);
-    // GPA Icon Component
+    const location = useLocation();
+
+    // Scroll to section if URL has a hash (like #education-section)
+    useEffect(() => {
+        const hash = location.hash;
+        if (hash) {
+            const element = document.querySelector(hash);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    }, [location]);
+
     const GpaIcon = () => (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="gpa-icon">
             <path d="M4 3h16a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path>
@@ -18,11 +31,9 @@ const Home = () => {
         </svg>
     );
 
-
     return (
         <div className={`home-container ${theme}`}>
-           
-            <Navbar /> 
+            <Navbar />
 
             <div className="bg-gray-900 min-h-screen flex items-center justify-center p-4">
                 <PersonalInfoCard />
@@ -44,7 +55,7 @@ const Home = () => {
                             <span className="computer-icon"></span>
                             <p>B.S. in Computer Science: Machine Learning</p>
                         </div>
-                            <div className='major-info'>
+                        <div className='major-info'>
                             <GpaIcon />
                             <p>GPA: 4.0</p>
                         </div>
@@ -69,7 +80,7 @@ const Home = () => {
             </div>
 
             <div id="experience-section" className={`section-header ${theme}`}>
-            <h2 className='education-header'>Relevant Experience...</h2>
+                <h2 className='education-header'>Relevant Experience...</h2>
             </div>
             <div className={`education-section ${theme}`}>
                 <div className='education-item'>
@@ -86,7 +97,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
             <hr className="education-divider" />
             <div className={`education-section ${theme}`}>
                 <div className='education-item'>
@@ -117,10 +128,10 @@ const Home = () => {
                         <p className='role'>Lab Researcher | Goyal Lab</p>
                         <div className='major-info'>
                             <span className="computer-icon"></span>
-                        <p>Developing a model to identify fluorescent intensity in resistant cancer cells.</p>
-                            </div>
+                            <p>Developing a model to identify fluorescent intensity in resistant cancer cells.</p>
+                        </div>
                         <div className='major-info'>
-                        <p>Developing a image sequencing pipeline to predict if a colony of cancer cells will become resistance based on morphology.</p>
+                            <p>Developing a image sequencing pipeline to predict if a colony of cancer cells will become resistance based on morphology.</p>
                         </div>
                         <div className='major-info'>
                             <p>Analyzing cell data that will be used in a research publication.</p>
@@ -128,7 +139,6 @@ const Home = () => {
                         <div className='major-info'>
                             <p>Research presented at the National University of Singapore and Genome Institute of Singapore (a national initiative under Singapore’s Agency for Science).</p>
                         </div>
-
                         <p className='other-exp'>Prof. Yogesh Goyal</p>
                     </div>
                 </div>
@@ -145,9 +155,8 @@ const Home = () => {
                         <p className='role'>Lab Intern | Ma Lab</p>
                         <div className='major-info'>
                             <span className="computer-icon"></span>
-                        <p>Currently, we are testing an algorithm we built to identify pockets and cavities across multiple frames of the protein to see where pockets stay the same and where they disappear.</p>
-                            </div>
-
+                            <p>Currently, we are testing an algorithm we built to identify pockets and cavities across multiple frames of the protein to see where pockets stay the same and where they disappear.</p>
+                        </div>
                         <p className='other-exp'>Prof. Ao Ma</p>
                         <p className='other-exp'>Dr. Hui Li</p>
                     </div>
