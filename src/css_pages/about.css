@@ -30,7 +30,7 @@
 
 /* Then apply the gradient directly here */
 .dark body, .dark #root {
-  background: radial-gradient(circle at center, #3fa9f5 0%, #00111a 80%, #000000 100%);
+  background: rgba(3, 14, 31, 0.85) !important;
   color: var(--text-color);
   transition: background 0.5s ease, color 0.5s ease;
 }

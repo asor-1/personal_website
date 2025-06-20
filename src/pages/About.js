@@ -21,11 +21,14 @@ const Home = () => {
 
     return (
         <div className={`home-container ${theme}`}>
+           
+            <Navbar /> 
+
             <div className="bg-gray-900 min-h-screen flex items-center justify-center p-4">
                 <PersonalInfoCard />
             </div>
-            <Navbar />
-            <div className='section-header'>
+
+            <div id="education-section" className='section-header'>
                 <h2 className='education-header'>Education...</h2>
             </div>
             <div className={`education-section ${theme}`}>
@@ -48,6 +51,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+
             <div className='section-header'>
                 <h2 className='resume-header'>Alex's Resume...(Not up-to-date)</h2>
             </div>
@@ -63,7 +67,8 @@ const Home = () => {
                     </div>
                 )}
             </div>
-            <div className={`section-header ${theme}`}>
+
+            <div id="experience-section" className={`section-header ${theme}`}>
             <h2 className='education-header'>Relevant Experience...</h2>
             </div>
             <div className={`education-section ${theme}`}>
@@ -114,16 +119,16 @@ const Home = () => {
                             <span className="computer-icon"></span>
                         <p>Developing a model to identify fluorescent intensity in resistant cancer cells.</p>
                             </div>
-                        <div className='major-info'>   
-                        <p>Developing a image sequencing pipeline to predict if a colony of cancer cells will become resistance based on morphology.</p>   
+                        <div className='major-info'>
+                        <p>Developing a image sequencing pipeline to predict if a colony of cancer cells will become resistance based on morphology.</p>
                         </div>
                         <div className='major-info'>
                             <p>Analyzing cell data that will be used in a research publication.</p>
                         </div>
-                        <div className='major-info'>   
+                        <div className='major-info'>
                             <p>Research presented at the National University of Singapore and Genome Institute of Singapore (a national initiative under Singapore’s Agency for Science).</p>
-                        </div>  
-                        
+                        </div>
+
                         <p className='other-exp'>Prof. Yogesh Goyal</p>
                     </div>
                 </div>
@@ -142,15 +147,16 @@ const Home = () => {
                             <span className="computer-icon"></span>
                         <p>Currently, we are testing an algorithm we built to identify pockets and cavities across multiple frames of the protein to see where pockets stay the same and where they disappear.</p>
                             </div>
-                        
+
                         <p className='other-exp'>Prof. Ao Ma</p>
                         <p className='other-exp'>Dr. Hui Li</p>
                     </div>
                 </div>
             </div>
-            
-            
-            <SkillsSection />
+
+            <div id="tech-stack-section">
+                <SkillsSection />
+            </div>
         </div>
     );
 };

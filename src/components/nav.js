@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import '../css_pages/navbar.css'; // We'll create the new CSS file next
+import '../css_pages/navbar.css';
 
-
+// Existing icons...
 const AboutIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
@@ -21,15 +21,40 @@ const InterestsIcon = () => (
     </svg>
 );
 
+// NEW ICONS for Education, Experience, Skills (you can choose different ones)
+const EducationIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 10v6H2V6h10L22 10z"></path><path d="M6 14h2"></path><path d="M12 14h2"></path>
+    </svg>
+);
+
+const ExperienceIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+    </svg>
+);
+
+const SkillsIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17 19H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2z"></path><path d="M10 10l-4 4L10 18"></path><path d="M14 6l4 4L14 14"></path>
+    </svg>
+);
+
 
 const Navbar = () => {
     const location = useLocation();
 
-    // The links for the new navbar
     const navLinks = [
+
         { to: "/about", label: "About", icon: <AboutIcon /> },
         { to: "/projects", label: "Projects", icon: <ProjectsIcon /> },
-        { to: "/interest", label: "Interests", icon: <InterestsIcon /> }
+        { to: "/interest", label: "Interests", icon: <InterestsIcon /> },
+
+        ...(location.pathname === "/about" ? [
+            { to: "/about#education-section", label: "Education", icon: <EducationIcon /> },
+            { to: "/about#experience-section", label: "Experience", icon: <ExperienceIcon /> },
+            { to: "/about#tech-stack-section", label: "Skills", icon: <SkillsIcon /> },
+        ] : [])
     ];
 
     return (
@@ -37,7 +62,10 @@ const Navbar = () => {
             <ul>
                 {navLinks.map(link => (
                     <li key={link.to}>
-                        <Link to={link.to} className={location.pathname === link.to ? 'active' : ''}>
+                        <Link
+                            to={link.to}
+                            className={location.pathname === link.to || (location.hash && location.pathname + location.hash === link.to) ? 'active' : ''}
+                        >
                             {link.icon}
                             <span className="tooltip">{link.label}</span>
                         </Link>

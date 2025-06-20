@@ -1,227 +1,220 @@
 /*
-  CSS Variables for Theming (Light/Dark Mode)
-  These should ideally be defined at a global level (e.g., :root or body)
-  but for demonstration, we'll put them here.
+  Global CSS Variables with the specified dark theme palette.
+  Removed light/dark theme switching as per request.
 */
 :root {
-  --background-light: #f8faff; /* Very light blue-gray */
-  --card-bg-light: #ffffff;
-  --text-primary-light: #333333;
-  --text-secondary-light: #555555;
-  --border-light: #e0e0e0;
-  --shadow-light: rgba(0, 0, 0, 0.08);
-  --accent-blue-light: #3b82f6; /* Blue-500 */
-  --accent-purple-light: #8b5cf6; /* Purple-500 */
-  --accent-teal-light: #2dd4bf; /* Teal-400 */
-  --accent-cyan-light: #06b6d4; /* Cyan-500 */
+  --bg-color: rgba(3, 14, 31, 0.85); /* fallback solid */
+  --text-color: #e2e2e2; /* lighter neon-ish white */
+  --border-color: #1766af; /* brighter blue */
+  --card-bg-color: rgba(10, 30, 60, 0.85); /* translucent dark blue */
+  --hover-bg-color: #2a70d1; /* bright neon blue */
+
+  --accent-1: #3fa9f5; /* neon blue */
+  --accent-2: #60b0ff; /* lighter neon */
+  --accent-3: #7bcaff; /* even lighter neon */
+  --accent-4: #9fdfff;
+  --accent-5: #c2f0ff;
+
+  /* Mapped the previous general variable names to the new provided ones */
+  --background: var(--bg-color);
+  --card-bg: var(--card-bg-color);
+  --text-primary: var(--text-color);
+  --text-secondary: var(--text-color); /* Using primary text color for consistency with image */
+  --border: var(--border-color);
+  --shadow: rgba(0, 0, 0, 0.6); /* Adjusted shadow for new dark background */
+
+  --tag-bg: rgba(var(--accent-1), 0.2); /* Translucent tag background from accent */
+  --tag-text: var(--accent-1); /* Tag text color from accent */
+  --advanced-tag-bg: var(--accent-1); /* 'Advanced' tag background is pure accent */
+  --advanced-tag-text: #ffffff; /* White text for 'Advanced' tag */
+  --progress-bg: rgba(var(--text-color), 0.2); /* Progress bar background (lighter, translucent) */
+  --progress-fill: var(--accent-1); /* Progress bar fill from accent */
 }
 
-.dark-theme {
-  --background-light: #0d1117; /* Dark background similar to GitHub */
-  --card-bg-light: #161b22;
-  --text-primary-light: #e6edf3;
-  --text-secondary-light: #a6adbb;
-  --border-light: #30363d;
-  --shadow-light: rgba(0, 0, 0, 0.3);
-  --accent-blue-light: #60a5fa; /* Blue-400 */
-  --accent-purple-light: #a78bfa; /* Purple-400 */
-  --accent-teal-light: #5eead4; /* Teal-300 */
-  --accent-cyan-light: #22d3ee; /* Cyan-300 */
-}
 
-
-/* General Section Styling */
+/* General Section Styling - using original class name */
 .skillsSection {
-  width: 100%; /* Full width as requested */
-  padding: 4rem 1rem; /* py-16 px-4 */
-  background: linear-gradient(135deg, var(--background-light), var(--card-bg-light));
-  color: var(--text-primary-light);
-  transition: all 0.5s ease-in-out; /* Smooth theme transition */
-  box-sizing: border-box; /* Include padding in element's total width and height */
+  width: 100%;
+  padding: 4rem 1rem;
+  background-color: transparent;
+  color: var(--text-primary);
+  transition: all 0.5s ease-in-out;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif; /* Recommended modern font */
+  display: flex; /* For centering container */
+  justify-content: center; /* For centering container */
 }
 
 .container {
-  max-width: 1280px; /* Equivalent to max-w-6xl */
-  margin: 0 auto; /* mx-auto */
+  max-width: 45%; /* Set container to 45% of the parent width */
+  width: 100%; /* Ensure it takes full available width within max-width */
+  margin: 0 auto;
+  padding: 0 1rem; /* Padding for edges */
 }
+
+@media (max-width: 1024px) { /* Adjust for smaller screens */
+  .container {
+    max-width: 70%; /* Increase width for tablets */
+  }
+}
+
+@media (max-width: 768px) { /* Adjust for even smaller screens */
+  .container {
+    max-width: 90%; /* Increase width for mobile */
+  }
+}
+
 
 /* Main Title */
 .mainTitle {
-  font-size: 2.5rem; /* text-4xl */
-  font-weight: 800; /* font-extrabold */
-  text-align: center;
-  margin-bottom: 4rem; /* mb-16 */
-  position: relative;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 3rem;
+  text-align: left;
+  letter-spacing: -0.03em;
+  padding-left: 1rem;
 }
 
-@media (min-width: 768px) { /* md breakpoint */
-  .mainTitle {
-    font-size: 3rem; /* md:text-5xl */
-  }
-}
-
-.gradientText {
-  background-image: linear-gradient(to right, var(--accent-blue-light), var(--accent-purple-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent; /* Fallback for browsers not supporting background-clip */
-}
-
-.mainTitleUnderline {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -0.625rem; /* -10px */
-  width: 6rem; /* w-24 */
-  height: 0.25rem; /* h-1 */
-  background: linear-gradient(to right, var(--accent-blue-light), var(--accent-purple-light));
-  border-radius: 9999px; /* rounded-full */
-}
-
-/* Categories Grid */
-.categoriesGrid {
+/* Content Grid (for two columns) */
+.contentGrid {
   display: grid;
-  grid-template-columns: 1fr; /* col-span-1 */
-  gap: 3rem; /* gap-12 */
+  grid-template-columns: 1fr; /* Default to single column on small screens */
+  gap: 3rem;
 }
 
-@media (min-width: 1024px) { /* lg breakpoint */
-  .categoriesGrid {
-    grid-template-columns: repeat(2, 1fr); /* lg:grid-cols-2 */
+@media (min-width: 768px) { /* Tablet and Desktop */
+  .contentGrid {
+    grid-template-columns: 3fr 2fr; /* Approx. 60/40 split for core skills and languages */
+    gap: 4rem;
   }
 }
 
-/* Skill Category Card */
+/* Core Skills Column */
+.coreSkillsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
 .skillCategoryCard {
-  background-color: var(--card-bg-light);
-  border-radius: 1rem; /* rounded-2xl */
-  box-shadow: 0 20px 25px -5px var(--shadow-light), 0 8px 10px -6px var(--shadow-light); /* shadow-xl */
-  border: 1px solid var(--border-light);
-  padding: 2rem; /* p-8 */
-  transform: scale(1); /* Initial state for hover effect */
-  transition: transform 0.3s ease-in-out;
-  overflow: hidden;
-  position: relative;
+  background-color: var(--card-bg);
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 16px var(--shadow);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
 }
 
 .skillCategoryCard:hover {
-  transform: scale(1.01); /* hover:scale-[1.01] */
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px var(--shadow);
 }
 
-/* Category Title */
 .categoryTitle {
-  font-size: 1.875rem; /* text-3xl */
-  font-weight: 700; /* font-bold */
-  margin-bottom: 2rem; /* mb-8 */
-  color: var(--text-primary-light);
-  position: relative;
-  z-index: 10;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  letter-spacing: -0.02em;
 }
 
-.categoryTitleUnderline {
-  position: absolute;
-  bottom: -0.3125rem; /* -5px */
-  left: 0;
-  width: 4rem; /* w-16 */
-  height: 0.25rem; /* h-1 */
-  background: linear-gradient(to right, var(--accent-teal-light), var(--accent-cyan-light));
-  border-radius: 9999px; /* rounded-full */
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+.skillLevelTag {
+  background-color: var(--advanced-tag-bg);
+  color: var(--advanced-tag-text);
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.skillCategoryCard:hover .categoryTitleUnderline {
-  opacity: 1;
+.skillTagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
-/* Individual Skills Grid */
-.skillsGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* grid-cols-2 */
-  gap: 1.5rem; /* gap-6 */
+.skillTag {
+  background-color: var(--tag-bg);
+  color: var(--tag-text);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out;
+  border: 1px solid transparent; /* Ensure a border is present for the hover effect */
 }
 
-@media (min-width: 640px) { /* sm breakpoint */
-  .skillsGrid {
-    grid-template-columns: repeat(3, 1fr); /* sm:grid-cols-3 */
-  }
+.skillTag:hover {
+  background-color: var(--hover-bg-color); /* Use hover background color */
+  color: white;
+  border-color: var(--hover-bg-color); /* Match border color on hover */
 }
 
-/* Skill Item */
-.skillItem {
-  position: relative;
+
+/* Languages Column */
+.languagesColumn {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1.25rem; /* p-5 */
-  border-radius: 0.75rem; /* rounded-xl */
-  background-color: var(--background-light); /* using background-light as a subtle difference */
-  transform: scale(1); /* Initial state for hover */
-  transition: all 0.3s ease-out;
-  cursor: pointer;
+  gap: 1.5rem;
+  padding-top: 0.5rem;
+}
+
+.languagesTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.languageList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.languageItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.languageNameAndPercentage {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-primary); /* Use primary text color */
+}
+
+.languageName {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.languagePercentage {
+  font-size: 0.95rem;
+  color: var(--text-primary); /* Use primary text color */
+}
+
+.progressBarBackground {
+  width: 100%;
+  height: 0.6rem;
+  background-color: var(--progress-bg);
+  border-radius: 0.3rem;
   overflow: hidden;
-  will-change: transform; /* Optimize animation */
 }
 
-.skillItem:hover {
-  transform: scale(1.05); /* hover:scale-105 */
-}
-
-/* Skill Item Glow Effect */
-.skillItemGlow {
-  position: absolute;
-  inset: 0; /* Equivalent to top:0; right:0; bottom:0; left:0; */
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1)); /* from-blue-100 to-purple-100 (light) */
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  pointer-events: none; /* Allows clicks to pass through */
-}
-
-.dark-theme .skillItemGlow {
-  background: linear-gradient(135deg, rgba(30, 64, 175, 0.2), rgba(88, 28, 135, 0.2)); /* from-blue-800 to-purple-800 (dark) */
-}
-
-.skillItem:hover .skillItemGlow {
-  opacity: 1; /* group-hover/item:opacity-20 (we'll make it 100% for full glow in plain CSS) */
-}
-
-
-/* Skill Icon */
-.skillIcon {
-  width: 4rem; /* w-16 */
-  height: 4rem; /* h-16 */
-  margin-bottom: 0.75rem; /* mb-3 */
-  object-fit: contain;
-  filter: grayscale(100%); /* filter grayscale */
-  transition: all 0.3s ease-in-out;
-}
-
-.skillItem:hover .skillIcon {
-  filter: grayscale(0%); /* group-hover/item:grayscale-0 */
-  transform: scale(1.1); /* Slight additional scale on icon */
-}
-
-/* Skill Name */
-.skillName {
-  font-size: 1.125rem; /* text-lg */
-  font-weight: 600; /* font-semibold */
-  color: var(--text-primary-light);
-  text-align: center;
-  position: relative; /* Ensure text is above glow */
-  z-index: 1;
-}
-
-/* Skill Item Border on Hover */
-.skillItemBorder {
-  position: absolute;
-  inset: 0;
-  border: 2px solid transparent;
-  border-radius: 0.75rem; /* rounded-xl */
-  transition: border-color 0.3s ease-in-out;
-}
-
-.skillItem:hover .skillItemBorder {
-  border-color: var(--accent-blue-light); /* group-hover/item:border-blue-500 */
+.progressBarFill {
+  height: 100%;
+  background-color: var(--progress-fill);
+  border-radius: 0.3rem;
+  transition: width 0.7s ease-out;
 }
