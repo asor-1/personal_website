@@ -1,53 +1,54 @@
-/* Light Theme */
 .light {
-  --bg-color: rgba(3, 14, 31, 0.85); /* fallback solid */
-  --text-color: #e2e2e2; /* lighter neon-ish white */
-  --border-color: #1766af; /* brighter blue */
-  --card-bg-color: rgba(10, 30, 60, 0.85); /* translucent dark blue */
-  --hover-bg-color: #2a70d1; /* bright neon blue */
+    --bg-color: rgba(3, 14, 31, 0.85);
+    --text-color: #e2e2e2;
+    --border-color: #1766af;
+    --card-bg-color: rgba(10, 30, 60, 0.85);
+    --hover-bg-color: #2a70d1;
 
-  --accent-1: #3fa9f5; /* neon blue */
-  --accent-2: #60b0ff; /* lighter neon */
-  --accent-3: #7bcaff; /* even lighter neon */
-  --accent-4: #9fdfff;
-  --accent-5: #c2f0ff;
+    --accent-1: #3fa9f5;
+    --accent-2: #60b0ff;
+    --accent-3: #7bcaff;
+    --accent-4: #9fdfff;
+    --accent-5: #c2f0ff;
 }
 
 .dark {
-  --bg-color: rgba(3, 14, 31, 0.85); /* fallback solid */
-  --text-color: #e2e2e2; /* lighter neon-ish white */
-  --border-color: #1766af; /* brighter blue */
-  --card-bg-color: rgba(10, 30, 60, 0.85); /* translucent dark blue */
-  --hover-bg-color: #2a70d1; /* bright neon blue */
+    --bg-color: rgba(3, 14, 31, 0.85);
+    --text-color: #e2e2e2;
+    --border-color: #1766af;
+    --card-bg-color: rgba(10, 30, 60, 0.85);
+    --hover-bg-color: #2a70d1;
 
-  --accent-1: #3fa9f5; /* neon blue */
-  --accent-2: #60b0ff; /* lighter neon */
-  --accent-3: #7bcaff; /* even lighter neon */
-  --accent-4: #9fdfff;
-  --accent-5: #c2f0ff;
+    --accent-1: #3fa9f5;
+    --accent-2: #60b0ff;
+    --accent-3: #7bcaff;
+    --accent-4: #9fdfff;
+    --accent-5: #c2f0ff;
 }
 
-
-/* Then apply the gradient directly here */
-.dark body, .dark #root {
-  background: rgba(3, 14, 31, 0.85) !important;
-  color: var(--text-color);
-  transition: background 0.5s ease, color 0.5s ease;
+.dark body,
+.dark #root {
+    background: rgba(3, 14, 31, 0.85) !important;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    transition: background 0.5s ease, color 0.5s ease;
 }
-
 
 ::-webkit-scrollbar {
     width: 12px;
 }
+
 ::-webkit-scrollbar-track {
     background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 6px;
     border: 3px solid transparent;
     background-clip: content-box;
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background-color: rgba(255, 255, 255, 0.5);
 }
@@ -65,7 +66,6 @@
     overflow: visible;
 }
 
-/* REMOVE GRAPH BACKGROUND */
 .home-container::before {
     display: none !important;
 }
@@ -91,7 +91,24 @@
     border: 1px solid transparent;
     transition: opacity 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
+
 .education-section {
+    max-width: 45%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    opacity: 40%;
+    background-color: transparent;
+    border-radius: 0.625rem;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 2;
+    border: 1px solid transparent;
+    transition: opacity 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.experience-section {
     max-width: 45%;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
@@ -109,18 +126,20 @@
 
 
 .section-header {
-    text-align: left; /* Ensures text within the header is left-aligned */
-    margin-top: 3rem; /* Adds space above the section header */
-    width: 45%; /* Match the width of your content sections */
+    text-align: left;
+    margin-top: 3rem;
+    width: 45%;
 }
+
 .resume-header,
 .research-header,
 .education-header {
-    margin-top: 0; /* Resetting this as margin is now on .section-header */
-    text-align: left; /* Already set, but good for specificity */
+    margin-top: 0;
+    text-align: left;
     font-size: 2em;
     color: var(--accent-5);
 }
+
 .about-section:hover,
 .education-section:hover,
 .research-section:hover,
@@ -130,11 +149,21 @@
     border-color: var(--border-color);
 }
 
+.experience-section:hover {
+    opacity: 100%;
+    border-color: var(--border-color);
+}
+
+.pdf-buttons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 .pdf-button-download-button,
 .pdf-button-view-button {
     background-color: var(--accent-3);
     border: none;
-
     color: white;
     text-align: center;
     display: inline-block;
@@ -220,6 +249,7 @@
     cursor: pointer;
     color: var(--text-color);
 }
+
 .close-button:hover {
     color: red;
 }
@@ -244,25 +274,27 @@
     margin: 0.5rem;
     font-style: italic;
 }
+
 .date-exp {
     font-size: 12px;
-    background-color: #444444; 
-    padding: 0.25rem 0.5rem; 
-    border-radius: 12px; 
-    border: 1px solid var(--border-color); 
-    color: var(--text-color); 
+    background-color: #444444;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
     white-space: nowrap;
 }
+
 .other-exp {
     font-size: 12px;
-    background-color: #444444; 
-    padding: 0.25rem 0.5rem; 
+    background-color: #444444;
+    padding: 0.25rem 0.5rem;
     border-radius: 12px;
     margin-right: 0.25rem;
-    border: 1px solid var(--border-color); 
-    color: var(--text-color); 
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
     white-space: nowrap;
-    display:inline-block;
+    display: inline-block;
 }
 
 .nu-research {
@@ -286,7 +318,7 @@
 .theme-toggle-button {
     position: fixed;
     top: 1rem;
-    right: 1rem; /* <-- Changed from left to right */
+    right: 1rem;
     background-color: var(--accent-3);
     color: white;
     border: none;
@@ -295,7 +327,7 @@
     cursor: pointer;
     font-weight: bold;
     z-index: 9999;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, transform 0.2s;
 }
 
@@ -303,7 +335,6 @@
     background-color: var(--accent-2);
     transform: translateY(-1px);
 }
-
 
 .education-item {
     display: flex;
@@ -319,7 +350,9 @@
 
 .education-logo {
     width: 8rem;
-    height: auto;
+    height: 8rem;
+    object-fit: contain;
+    background-color: #ffffff;
     border-radius: 8px;
     margin-bottom: 0rem;
 }
@@ -340,7 +373,7 @@
 .major-info {
     display: flex;
     align-items: center;
-    gap: 0.75rem; /* Space between icon and text */
+    gap: 0.75rem;
     margin-top: 0.5rem;
 }
 
@@ -359,27 +392,72 @@
     width: 43%;
     border-radius: 1px;
     opacity: 0.95;
-    margin-top: 3rem; /* Space above the divider */
-    margin-bottom: 3rem; /* Space below the divider */
+    margin-top: 3rem;
+    margin-bottom: 3rem;
     filter: drop-shadow(0 0 5px var(--accent-3));
 }
 
-/* GPA SVG Icon */
+.experience-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.experience-logo-container {
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.experience-logo {
+    width: 8rem;
+    height: 8rem;
+    object-fit: contain;
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 0rem;
+}
+
+.experience-logo-container .date {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.experience-details {
+    flex-grow: 1;
+}
+
+.experience-details .place-name {
+    margin-top: 0;
+}
+
+.experience-divider {
+    border: 0;
+    height: 2px;
+    background-color: var(--border-color);
+    width: 100%;
+    border-radius: 1px;
+    opacity: 0.95;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    filter: drop-shadow(0 0 5px var(--accent-3));
+}
+
+
 .gpa-icon {
     width: 24px;
     height: 24px;
-    color: var(--accent-3); /* Match theme accent color */
-    flex-shrink: 0; /* Prevent icon from shrinking */
+    color: var(--accent-3);
+    flex-shrink: 0;
 }
 
-/* Computer Icon made with CSS */
 .computer-icon {
     width: 24px;
     height: 18px;
     border: 2px solid var(--accent-3);
     border-radius: 3px;
     position: relative;
-    flex-shrink: 0; /* Prevent icon from shrinking */
+    flex-shrink: 0;
 }
 
 .computer-icon::after {
@@ -404,4 +482,128 @@
     width: 20px;
     height: 2px;
     background-color: var(--accent-3);
+}
+
+/* --- NEW: Project Section Styles --- */
+
+/* Widen the project section header to match the grid */
+#projects-section.section-header {
+    width: 80%;
+}
+
+.projects-grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3-column layout */
+    gap: 1.5rem;
+    max-width: 80%;
+    /* Wider than other sections for the grid */
+    margin: 0 auto 2rem auto;
+    width: 100%;
+}
+
+.project-card {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.625rem;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    opacity: 0.7;
+    /* Start slightly transparent */
+    display: flex;
+    /* Use flexbox for internal alignment */
+    flex-direction: column;
+    /* Stack content vertically */
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), 0 0 15px var(--accent-3);
+    opacity: 1;
+    /* Fully opaque on hover */
+}
+
+.project-card h4 {
+    color: var(--accent-3);
+    margin-top: 0;
+    font-size: 1.25rem;
+}
+
+.project-card p {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    flex-grow: 1;
+    /* Makes the description push the link down */
+}
+
+.project-link {
+    color: var(--accent-4);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    margin-top: 1rem;
+    /* Add space above the link */
+}
+
+.project-link:hover {
+    color: var(--accent-1);
+    text-decoration: underline;
+}
+
+/* --- NEW: Responsiveness for Projects & Other Sections --- */
+
+/* For tablets */
+@media (max-width: 1024px) {
+    #projects-section.section-header {
+        width: 90%;
+    }
+
+    .projects-grid-container {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 90%;
+    }
+}
+
+/* For mobile phones */
+@media (max-width: 768px) {
+
+    /* Widen all sections for mobile */
+    .section-header,
+    #projects-section.section-header {
+        width: 90%;
+    }
+
+    .education-section,
+    .resume-section,
+    .experience-section {
+        max-width: 90%;
+    }
+
+    .education-divider {
+        width: 85%;
+    }
+
+    .projects-grid-container {
+        grid-template-columns: 1fr;
+        /* Stacks to a single column */
+        max-width: 90%;
+    }
+
+    /* Fix for mobile logo/text alignment */
+    .education-item,
+    .experience-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .education-details,
+    .experience-details {
+        width: 100%;
+    }
+
+    .major-info {
+        justify-content: center;
+    }
 }

@@ -3,11 +3,12 @@ import { useLocation } from 'react-router-dom';
 import '../css_pages/about.css';
 import { ThemeContext } from '../context/themeContext';
 import resume from '../assets/alexs_resume.pdf';
-import Navbar from '../components/nav';
+// Navbar import removed, as it's already in App.js
 import SkillsSection from '../components/skills';
 import PersonalInfoCard from '../components/container';
 
-const Home = () => {
+// Renamed component to match filename and App.js import
+const About = () => {
     const [showPdf, setShowPdf] = useState(false);
     const { theme } = useContext(ThemeContext);
     const location = useLocation();
@@ -33,14 +34,14 @@ const Home = () => {
 
     return (
         <div className={`home-container ${theme}`}>
-            <Navbar />
+            {/* Navbar component removed from here */}
 
             <div className="bg-gray-900 min-h-screen flex items-center justify-center p-4">
                 <PersonalInfoCard />
             </div>
 
             <div id="education-section" className='section-header'>
-                <h2 className='education-header'>Education...</h2>
+                <h2 className='education-header'>Education</h2>
             </div>
             <div className={`education-section ${theme}`}>
                 <div className='education-item'>
@@ -64,12 +65,12 @@ const Home = () => {
             </div>
 
             <div className='section-header'>
-                <h2 className='resume-header'>Alex's Resume...(Not up-to-date)</h2>
+                <h2 className='resume-header'>Alex's Documents</h2>
             </div>
             <div className={`resume-section ${theme}`}>
                 <div className='pdf-buttons'>
-                    <a href={resume} download className='pdf-button-download-button'>Download PDF</a>
-                    <button onClick={() => setShowPdf(true)} className='pdf-button-view-button'>View PDF</button>
+                    <a href={resume} download className='pdf-button-download-button'>Resume PDF</a>
+                    <button onClick={() => setShowPdf(true)} className='pdf-button-view-button'>View Resume</button>
                 </div>
                 {showPdf && (
                     <div className='pdf-viewer'>
@@ -80,32 +81,17 @@ const Home = () => {
             </div>
 
             <div id="experience-section" className={`section-header ${theme}`}>
-                <h2 className='education-header'>Relevant Experience...</h2>
+                <h2 className='education-header'>Experience</h2>
             </div>
-            <div className={`education-section ${theme}`}>
-                <div className='education-item'>
-                    <div className='education-logo-container'>
-                        <img src={require('../assets/pssg.png')} alt="pssg logo" className="education-logo" />
-                        <p className='date-exp'>Dec. 2022 - Jan. 2025</p>
-                    </div>
-                    <div className='education-details'>
-                        <h4 className='place-name'>OpenMind</h4>
-                        <p className='role'>Co-founder/CTO</p>
-                        <div className='major-info'>
-                            <span className="computer-icon"></span>
-                            <p>More info soon...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr className="education-divider" />
-            <div className={`education-section ${theme}`}>
-                <div className='education-item'>
-                    <div className='education-logo-container'>
-                        <img src={require('../assets/pssg.png')} alt="pssg logo" className="education-logo" />
+            {/* FIX: Grouped all experience items into ONE container for consistent width */}
+            <div className={`experience-section ${theme}`}>
+                {/* PSSG Experience */}
+                <div className='experience-item'>
+                    <div className='experience-logo-container'>
+                        <img src={require('../assets/pssg.png')} alt="pssg logo" className="experience-logo" />
                         <p className='date-exp'>May 2025 - Present</p>
                     </div>
-                    <div className='education-details'>
+                    <div className='experience-details'>
                         <h4 className='place-name'>Parallel Software and Systems Group</h4>
                         <p className='role'>Researcher</p>
                         <div className='major-info'>
@@ -115,15 +101,16 @@ const Home = () => {
                         <p className='other-exp'>Prof. Abhinav Bhatele</p>
                     </div>
                 </div>
-            </div>
-            <hr className="education-divider" />
-            <div className={`education-section ${theme}`}>
-                <div className='education-item'>
-                    <div className='education-logo-container'>
-                        <img src={require('../assets/goyalLabLogo.jpg')} alt="goyal lab logo" className="education-logo" />
+
+                <hr className="experience-divider" />
+
+                {/* Feinberg Experience */}
+                <div className='experience-item'>
+                    <div className='experience-logo-container'>
+                        <img src={require('../assets/goyalLabLogo.jpg')} alt="goyal lab logo" className="experience-logo" />
                         <p className='date-exp'>Jan. 2023 - Present</p>
                     </div>
-                    <div className='education-details'>
+                    <div className='experience-details'>
                         <h4 className='place-name'>Feinberg School of Medicine, Northwestern University</h4>
                         <p className='role'>Lab Researcher | Goyal Lab</p>
                         <div className='major-info'>
@@ -142,15 +129,16 @@ const Home = () => {
                         <p className='other-exp'>Prof. Yogesh Goyal</p>
                     </div>
                 </div>
-            </div>
-            <hr className="education-divider" />
-            <div className={`education-section ${theme}`}>
-                <div className='education-item'>
-                    <div className='education-logo-container'>
-                        <img src={require('../assets/uiclogo.jpg')} alt="goyal lab logo" className="education-logo" />
+
+                <hr className="experience-divider" />
+
+                {/* UIC Experience */}
+                <div className='experience-item'>
+                    <div className='experience-logo-container'>
+                        <img src={require('../assets/uiclogo.jpg')} alt="goyal lab logo" className="experience-logo" />
                         <p className='date-exp'>May 2024 - May 2025</p>
                     </div>
-                    <div className='education-details'>
+                    <div className='experience-details'>
                         <h4 className='place-name'>University of Illinois Chicago, Medical School</h4>
                         <p className='role'>Lab Intern | Ma Lab</p>
                         <div className='major-info'>
@@ -163,6 +151,39 @@ const Home = () => {
                 </div>
             </div>
 
+
+            {/* --- PROJECTS SECTION --- */}
+            <div id="projects-section" className='section-header'>
+                <h2 className='education-header'>Projects</h2>
+            </div>
+            <div className="projects-grid-container">
+                {/* Project 1 */}
+                <div className="project-card">
+                    <h4>Project Title 1</h4>
+                    <p>A brief description of the project, what it does, and the technologies used. Keep it to 2-3 lines.</p>
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="project-link">View on GitHub</a>
+                </div>
+                {/* Project 2 */}
+                <div className="project-card">
+                    <h4>Project Title 2</h4>
+                    <p>A brief description of the project, what it does, and the technologies used. Keep it to 2-3 lines.</p>
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="project-link">View on GitHub</a>
+                </div>
+                {/* Project 3 */}
+                <div className="project-card">
+                    <h4>Project Title 3</h4>
+                    <p>A brief description of the project, what it does, and the technologies used. Keep it to 2-3 lines.</p>
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="project-link">View on GitHub</a>
+                </div>
+                {/* Project 4 (to show wrapping) */}
+                <div className="project-card">
+                    <h4>Project Title 4</h4>
+                    <p>This project will appear on the second row, showing that the grid wraps correctly.</p>
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="project-link">View on GitHub</a>
+                </div>
+            </div>
+
+
             <div id="tech-stack-section">
                 <SkillsSection />
             </div>
@@ -170,4 +191,6 @@ const Home = () => {
     );
 };
 
-export default Home;
+// Renamed export
+export default About;
+

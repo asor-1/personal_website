@@ -1,9 +1,7 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+// Import Navigate to handle the redirect
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { ThemeProvider } from './context/themeContext';
-import Home from './pages/Home';
-import Projects from './pages/Projects';
-import Interest from './pages/Interest';
 import About from './pages/About';
 import Navbar from './components/nav';
 
@@ -13,10 +11,9 @@ const App = () => {
             <Navbar />
             <div className="app-container">
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/About" element={<About />} />
-                    <Route path="/projects" element={<Projects />} />
-                    <Route path="/interest" element={<Interest />} />
+                    <Route path="/" element={<About />} />
+                    {/* Any traffic to /about will be redirected to / */}
+                    <Route path="/about" element={<Navigate to="/" replace />} />
                 </Routes>
             </div>
         </ThemeProvider>
@@ -24,3 +21,4 @@ const App = () => {
 };
 
 export default App;
+

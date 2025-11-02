@@ -16,12 +16,11 @@ const ProjectsIcon = () => (
 );
 
 const InterestsIcon = () => (
-     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2a7 7 0 0 0-7 7c0 2.02 1.25 4.38 3.5 6.45.22.2.45.4.7.6.25.2.5.4.75.55.25.15.5.3.75.4.25.1.5.15.75.15s.5-.05.75-.15c.25-.1.5-.25.75-.4.25-.15.5-.3.75-.55.25-.2.5-.4.75-.6C17.75 13.38 19 11.02 19 9a7 7 0 0 0-7-7z"></path><path d="M12 14a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
     </svg>
 );
 
-// NEW ICONS for Education, Experience, Skills (you can choose different ones)
 const EducationIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M22 10v6H2V6h10L22 10z"></path><path d="M6 14h2"></path><path d="M12 14h2"></path>
@@ -45,15 +44,14 @@ const Navbar = () => {
     const location = useLocation();
 
     const navLinks = [
+        { to: "/", label: "About", icon: <AboutIcon /> },
 
-        { to: "/about", label: "About", icon: <AboutIcon /> },
-        { to: "/projects", label: "Projects", icon: <ProjectsIcon /> },
-        { to: "/interest", label: "Interests", icon: <InterestsIcon /> },
-
-        ...(location.pathname === "/about" ? [
-            { to: "/about#education-section", label: "Education", icon: <EducationIcon /> },
-            { to: "/about#experience-section", label: "Experience", icon: <ExperienceIcon /> },
-            { to: "/about#tech-stack-section", label: "Skills", icon: <SkillsIcon /> },
+        ...(location.pathname === "/" ? [
+            // FIX: Pointed hash links to "/"
+            { to: "/#education-section", label: "Education", icon: <EducationIcon /> },
+            { to: "/#experience-section", label: "Experience", icon: <ExperienceIcon /> },
+            { to: "/#projects-section", label: "Projects", icon: <ProjectsIcon /> },
+            { to: "/#tech-stack-section", label: "Skills", icon: <SkillsIcon /> },
         ] : [])
     ];
 
@@ -64,7 +62,12 @@ const Navbar = () => {
                     <li key={link.to}>
                         <Link
                             to={link.to}
-                            className={location.pathname === link.to || (location.hash && location.pathname + location.hash === link.to) ? 'active' : ''}
+                            className={
+                                (link.to === "/" && location.pathname === "/" && !location.hash) ||
+                                    (location.pathname === link.to) ||
+                                    (location.hash && location.pathname + location.hash === link.to)
+                                    ? 'active' : ''
+                            }
                         >
                             {link.icon}
                             <span className="tooltip">{link.label}</span>
