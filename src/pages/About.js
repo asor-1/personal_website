@@ -32,10 +32,26 @@ const About = () => {
         </svg>
     );
 
+    // NEW: GitHub Icon Component
+    const GithubIcon = () => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+        </svg>
+    );
+
+    // NEW: Mouse move handler for spotlight effect
+    const handleMouseMove = (e) => {
+        const card = e.currentTarget;
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+    };
+
     return (
         <div className={`home-container ${theme}`}>
-            {/* Navbar component removed from here */}
-
+            {/* ... other sections ... */}
             <div className="bg-gray-900 min-h-screen flex items-center justify-center p-4">
                 <PersonalInfoCard />
             </div>
@@ -152,34 +168,54 @@ const About = () => {
             </div>
 
 
-            {/* --- PROJECTS SECTION --- */}
+            {/* --- PROJECTS SECTION (UPDATED) --- */}
             <div id="projects-section" className='section-header'>
                 <h2 className='education-header'>Projects</h2>
             </div>
             <div className="projects-grid-container">
                 {/* Project 1 */}
-                <div className="project-card">
+                <div className="project-card" onMouseMove={handleMouseMove}>
                     <h4>Project Title 1</h4>
+                    <img src="https://placehold.co/600x400/1a2b4a/c2f0ff?text=Project+1+Image" alt="Project 1" className="project-image" />
+                    <p className="project-image-caption">An italicized caption for the project image.</p>
                     <p>A brief description of the project, what it does, and the technologies used. Keep it to 2-3 lines.</p>
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="project-link">View on GitHub</a>
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="project-link">
+                        <GithubIcon />
+                        View on GitHub
+                    </a>
                 </div>
                 {/* Project 2 */}
-                <div className="project-card">
+                <div className="project-card" onMouseMove={handleMouseMove}>
                     <h4>Project Title 2</h4>
+                    <img src="https://placehold.co/600x400/1a2b4a/c2f0ff?text=Project+2+Image" alt="Project 2" className="project-image" />
+                    <p className="project-image-caption">Another caption, also in italics and white.</p>
                     <p>A brief description of the project, what it does, and the technologies used. Keep it to 2-3 lines.</p>
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="project-link">View on GitHub</a>
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="project-link">
+                        <GithubIcon />
+                        View on GitHub
+                    </a>
                 </div>
                 {/* Project 3 */}
-                <div className="project-card">
+                <div className="project-card" onMouseMove={handleMouseMove}>
                     <h4>Project Title 3</h4>
+                    <img src="https://placehold.co/600x400/1a2b4a/c2f0ff?text=Project+3+Image" alt="Project 3" className="project-image" />
+                    <p className="project-image-caption">This is the third project's caption.</p>
                     <p>A brief description of the project, what it does, and the technologies used. Keep it to 2-3 lines.</p>
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="project-link">View on GitHub</a>
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="project-link">
+                        <GithubIcon />
+                        View on GitHub
+                    </a>
                 </div>
                 {/* Project 4 (to show wrapping) */}
-                <div className="project-card">
+                <div className="project-card" onMouseMove={handleMouseMove}>
                     <h4>Project Title 4</h4>
+                    <img src="https://placehold.co/600x400/1a2b4a/c2f0ff?text=Project+4+Image" alt="Project 4" className="project-image" />
+                    <p className="project-image-caption">This project appears on the second row.</p>
                     <p>This project will appear on the second row, showing that the grid wraps correctly.</p>
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="project-link">View on GitHub</a>
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="project-link">
+                        <GithubIcon />
+                        View on GitHub
+                    </a>
                 </div>
             </div>
 
@@ -193,4 +229,3 @@ const About = () => {
 
 // Renamed export
 export default About;
-

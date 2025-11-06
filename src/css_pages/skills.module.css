@@ -1,220 +1,147 @@
 /*
   Global CSS Variables with the specified dark theme palette.
-  Removed light/dark theme switching as per request.
 */
 :root {
-  --bg-color: rgba(3, 14, 31, 0.85); /* fallback solid */
-  --text-color: #e2e2e2; /* lighter neon-ish white */
-  --border-color: #1766af; /* brighter blue */
-  --card-bg-color: rgba(10, 30, 60, 0.85); /* translucent dark blue */
-  --hover-bg-color: #2a70d1; /* bright neon blue */
+  --bg-color: rgba(3, 14, 31, 0.85);
+  --text-color: #e2e2e2;
+  --border-color: #1766af;
+  --card-bg-color: rgba(10, 30, 60, 0.85);
+  --hover-bg-color: #2a70d1;
 
-  --accent-1: #3fa9f5; /* neon blue */
-  --accent-2: #60b0ff; /* lighter neon */
-  --accent-3: #7bcaff; /* even lighter neon */
+  --accent-1: #3fa9f5;
+  --accent-2: #60b0ff;
+  --accent-3: #7bcaff;
   --accent-4: #9fdfff;
   --accent-5: #c2f0ff;
-
-  /* Mapped the previous general variable names to the new provided ones */
-  --background: var(--bg-color);
-  --card-bg: var(--card-bg-color);
-  --text-primary: var(--text-color);
-  --text-secondary: var(--text-color); /* Using primary text color for consistency with image */
-  --border: var(--border-color);
-  --shadow: rgba(0, 0, 0, 0.6); /* Adjusted shadow for new dark background */
-
-  --tag-bg: rgba(var(--accent-1), 0.2); /* Translucent tag background from accent */
-  --tag-text: var(--accent-1); /* Tag text color from accent */
-  --advanced-tag-bg: var(--accent-1); /* 'Advanced' tag background is pure accent */
-  --advanced-tag-text: #ffffff; /* White text for 'Advanced' tag */
-  --progress-bg: rgba(var(--text-color), 0.2); /* Progress bar background (lighter, translucent) */
-  --progress-fill: var(--accent-1); /* Progress bar fill from accent */
 }
 
-
-/* General Section Styling - using original class name */
+/* General Section Styling
+  The component is wrapped in a <section> tag
+*/
 .skillsSection {
   width: 100%;
-  padding: 4rem 1rem;
-  background-color: transparent;
-  color: var(--text-primary);
-  transition: all 0.5s ease-in-out;
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif; /* Recommended modern font */
-  display: flex; /* For centering container */
-  justify-content: center; /* For centering container */
-}
-
-.container {
-  max-width: 45%; /* Set container to 45% of the parent width */
-  width: 100%; /* Ensure it takes full available width within max-width */
-  margin: 0 auto;
-  padding: 0 1rem; /* Padding for edges */
-}
-
-@media (max-width: 1024px) { /* Adjust for smaller screens */
-  .container {
-    max-width: 70%; /* Increase width for tablets */
-  }
-}
-
-@media (max-width: 768px) { /* Adjust for even smaller screens */
-  .container {
-    max-width: 90%; /* Increase width for mobile */
-  }
-}
-
-
-/* Main Title */
-.mainTitle {
-  font-size: 2.8rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 3rem;
-  text-align: left;
-  letter-spacing: -0.03em;
-  padding-left: 1rem;
-}
-
-/* Content Grid (for two columns) */
-.contentGrid {
-  display: grid;
-  grid-template-columns: 1fr; /* Default to single column on small screens */
-  gap: 3rem;
-}
-
-@media (min-width: 768px) { /* Tablet and Desktop */
-  .contentGrid {
-    grid-template-columns: 3fr 2fr; /* Approx. 60/40 split for core skills and languages */
-    gap: 4rem;
-  }
-}
-
-/* Core Skills Column */
-.coreSkillsColumn {
   display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
+  justify-content: center;
+  /* Center the container */
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 2rem;
 }
 
+/* NEW: Container is now styled to match .education-section from about.css
+*/
+.container {
+  max-width: 45%;
+  width: 100%;
+  padding: 1.5rem;
+  opacity: 40%;
+  background-color: transparent;
+  border-radius: 0.625rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid transparent;
+  transition: opacity 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.container:hover {
+  opacity: 100%;
+  border-color: var(--border-color);
+}
+
+/* NEW: Grid for the skill categories.
+  This holds the "Machine Learning", "Software Dev", etc. cards.
+*/
+.skillsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  /* 1 column on mobile */
+  gap: 2rem;
+}
+
+/* On tablets and larger, switch to a 2-column grid */
+@media (min-width: 768px) {
+  .skillsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* NEW: Skill Category Card
+  Made minimal, transparent background.
+*/
 .skillCategoryCard {
-  background-color: var(--card-bg);
-  border-radius: 0.75rem;
-  box-shadow: 0 8px 16px var(--shadow);
-  border: 1px solid var(--border);
-  padding: 2rem;
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  transition: none;
+  box-shadow: none;
 }
 
 .skillCategoryCard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 24px var(--shadow);
+  transform: none;
+  box-shadow: none;
 }
 
+/* NEW: Title for the category (e.g., "Machine Learning & AI")
+*/
 .categoryTitle {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 1.25rem;
+  color: var(--accent-4);
+  /* Brighter accent color */
+  margin: 0 0 1.25rem 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  letter-spacing: -0.02em;
 }
 
+/* NEW: "Advanced" tag
+*/
 .skillLevelTag {
-  background-color: var(--advanced-tag-bg);
-  color: var(--advanced-tag-text);
-  padding: 0.25rem 0.75rem;
+  background-color: var(--accent-3);
+  color: var(--bg-color);
+  /* Dark text on light tag */
+  padding: 0.25rem 0.6rem;
   border-radius: 0.375rem;
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.75rem;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
+/* Container for the individual skill pills */
 .skillTagsContainer {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.skillTag {
-  background-color: var(--tag-bg);
-  color: var(--tag-text);
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  font-size: 0.95rem;
-  font-weight: 500;
-  transition: background-color 0.2s ease-out, color 0.2s ease-out;
-  border: 1px solid transparent; /* Ensure a border is present for the hover effect */
-}
-
-.skillTag:hover {
-  background-color: var(--hover-bg-color); /* Use hover background color */
-  color: white;
-  border-color: var(--hover-bg-color); /* Match border color on hover */
-}
-
-
-/* Languages Column */
-.languagesColumn {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding-top: 0.5rem;
-}
-
-.languagesTitle {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 1rem;
-  letter-spacing: -0.02em;
-}
-
-.languageList {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.languageItem {
-  display: flex;
-  flex-direction: column;
   gap: 0.5rem;
 }
 
-.languageNameAndPercentage {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  font-size: 1.1rem;
+/* NEW: Individual skill pill (e.g., "PyTorch")
+*/
+.skillTag {
+  background-color: var(--card-bg-color);
+  color: var(--accent-2);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  color: var(--text-primary); /* Use primary text color */
+  border: 1px solid var(--border-color);
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-.languageName {
-  color: var(--text-primary);
-  font-weight: 600;
+.skillTag:hover {
+  background-color: var(--accent-2);
+  color: var(--card-bg-color);
+  border-color: var(--accent-2);
 }
 
-.languagePercentage {
-  font-size: 0.95rem;
-  color: var(--text-primary); /* Use primary text color */
+/* Responsive adjustments for the container width
+*/
+@media (max-width: 1024px) {
+  .container {
+    max-width: 70%;
+  }
 }
 
-.progressBarBackground {
-  width: 100%;
-  height: 0.6rem;
-  background-color: var(--progress-bg);
-  border-radius: 0.3rem;
-  overflow: hidden;
-}
-
-.progressBarFill {
-  height: 100%;
-  background-color: var(--progress-fill);
-  border-radius: 0.3rem;
-  transition: width 0.7s ease-out;
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
 }
